@@ -1,9 +1,23 @@
-# Reserva de Laboratorios
-### El propósito de este proyecto es realizar una aplicación para la reserva de laboratorios especialmente para los laboratorios del área de sistemas de la Universidad Escuela Colombiana de Ingenieria Julio Garavito. Esta aplicación permitirá que los usuarios puedan reservar cada laboratorio en el horario permitido que deseen, además de cancelar dichas reservas de ser necesario, consultar cualquier tipo de información de cada laboratorio que necesiten, todo lo anterior mediante una interfaz web amigable e intuitiva para el usuario. Especialmente este Repositorio es para el área del Front, si desea visitar el estado del back seguir este link https://github.com/Waldron63/SunTeaBack
+# Laboratory Reservation System
 
-## Autores del Proyecto
+### The purpose of this project is to develop an application for laboratory reservations, specifically for the laboratories in the systems area of the Universidad Escuela Colombiana de Ingeniería Julio Garavito. This application will allow users to reserve each laboratory within the permitted schedule, as well as cancel reservations if necessary, and consult any type of information about each laboratory they need, all through a user-friendly and intuitive web interface. This repository is specifically for the Frontend area; if you want to check the status of the backend, follow this link: https://github.com/Waldron63/SunTeaBack
+
+## Key Features
+- View real-time laboratory availability
+- Make and manage reservations  
+- User-friendly interface
+- Instant booking confirmation
+- Seamless reservation management
+
+## Tech Stack
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- REST API Integration
+
+## Development Team
+
 - Alejandro Prieto
-- Juan David 
+- Juan David
 - María Paula Sánchez
 - Santiago Gualdron
-
