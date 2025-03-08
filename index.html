@@ -1,18 +1,163 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Reserva de laboratorios</title>
-        <link rel="stylesheet" href="./css/style.css" />
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reserva de laboratorios</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <section id="seccionTemporal">
+        <div>
+            <button id="tempLogin">Ingresar</button>
+            <button id="tempNewUser"> Crear Usuario </button>
+            <button id="tempNewReserve"> Crear Reserva</button>
+            <button id="tempShowReserves">Mirar Reservas</button>
+        </div>
 
 
-    </head>
-    
-    <body>
-        
-        
-        <script src="./js/javaScript.js" defer></script>
-    </body>
+    </section>
+
+    <section id="seccionLogin">
+        <h1>Login:</h1>
+        <form id="formLogin" action="" method="post">
+            <!-- Aca en action, poner la "direccion" y el metodo es como lo hace-->
+
+            <div>
+                <div>
+                    <label for="inputLoginUserEmail">correo: </label>
+                    <input id="inputLoginUserEmail" name="email" type="email" required />
+                </div>
+
+                <div>
+                    <label for="inputLoginUserPassword">Contraseña: </label>
+                    <input id="inputLoginUserPassword" name="password" type="password" required />
+                </div>
+                <div>
+                    <button id="buttonLogin" type="submit">Ingresar</button>
+                </div>
+                <div>
+                    <button id="temp1" class="volverTemp">Volver Pagina inicial</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section id="seccionNewUser">
+        <h1>Crear Usuario:</h1>
+        <form id="formNewUser" action="" method="post">
+            <!-- Aca en action, poner la "direccion" y el metodo es como lo hace-->
+            <div>
+                <div>
+                    <label for="inputNewUserName">Nombre Usuario: </label>
+                    <input id="inputNewUserName" name="name" type="text" required />
+                </div>
+
+                <div>
+                    <label for="inputNewUserEmail">Correo: </label>
+                    <input id="inputNewUserEmail" name="email" type="email" required />
+                </div>
+
+                <div>
+                    <label for="inputNewUserType">Tipo usuario: </label>
+                    <select id="inputNewUserType" name="userType" required>
+                        <option value="Teacher">Profesor</option>
+                        <option value="Administrator">Administrador</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="inputNewUserPassword">Contraseña: </label>
+                    <input id="inputNewUserPassword" name="password" type="password" required />
+                </div>
+
+                <div>
+                    <button id="buttonCreateNewUser" type="submit">Ingresar</button>
+                </div>
+
+                <div>
+                    <button id="temp2" class="volverTemp">Volver Pagina inicial</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section id="seccionNewReserve">
+        <h1>Realizar Reserva:</h1>
+        <form id="formNewReserve" action="" method="post">
+            <div>
+                <div>
+                    <label>Usuario: </label>
+                    <label> Nombre Usuario</label>
+
+                </div>
+
+                <div>
+                    <label for="selectNewReserveLaboratory">Laboratorio: </label>
+                    <select id="selectNewReserveLaboratory" required>
+                        <option value="L1">Lab1</option>
+                        <option value="L2">Lab2</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="selectNewReserveType">Tipo de Reserva: </label>
+                    <select id="selectNewReserveType" required>
+                        <option value="Class">Clase</option>
+                        <option value="Reserve">Reserva</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label for="textAreaNewReserveRazon">Razon:</label>
+                    <textarea id="textAreaNewReserveRazon" rows="1" required></textarea>
+                    <br />
+                </div>
+
+
+                <div>
+                    <label for="inputNewReserveDate">Fecha de reserva:</label>
+                    <input id="inputNewReserveDate" type="date" required />
+                </div>
+
+                <div>
+                    <div>
+                        <label for="inputNewReserveTime">Hora Inicial: </label>
+                        <input id="inputNewReserveTime" type="time" required />
+                    </div>
+                    <div>
+                        <label>HoraFinal: </label>
+                        <label id="labelNewReserveFinalTime"> 00:00</label>
+                    </div>
+                </div>
+
+                <div>
+                    <button id="buttonCreateNewReserve" type="submit">Crear Reserva</button>
+                </div>
+
+                <div>
+                    <button id="temp3" class="volverTemp">Volver Pagina inicial</button>
+                </div>
+            </div>
+
+        </form>
+    </section>
+
+    <section id="seccionShowReserves">
+        <div>
+            <h1>Mostrar Reservas:</h1>
+            <div id="divShowReservesReserves"></div>
+
+            <div>
+                <button id="temp4" class="volverTemp">Volver Pagina inicial</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/javaScript.js" defer></script>
+</body>
 
 </html>
