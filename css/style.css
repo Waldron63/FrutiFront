@@ -8,8 +8,8 @@
     --borderColor: #ddd;
     --errorColor: #e74c3c;
     --successColor: #2ecc71;
-    --boxShadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --borderRadius: 12px; /* Aumentado para botones más curvos */
+    --boxShadow: 0px 3px 10px 0px #000000;
+    --borderRadius: 18px;
     --transitionSpeed: all 0.3s ease;
 
     --fontFamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,42 +21,31 @@
 /* GENERALES */
 
 body {
-    background-color: #121212;
-    color: var(--textColor);
-    line-height: 1.6;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: var(--fontFamily);
+    font-family: var(--fontFamily);    
 }
 
 h1 {
     color: var(--textLight);
-    margin-bottom: 1.5rem;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 500;
-    letter-spacing: 1px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
     color: var(--textLight);
+    font-size: 1rem;
     font-weight: normal;
-    font-size: 0.95rem;
 }
 
 input {
     width: 100%;
+    border: none;
+    background-color: #ffffff;
+    font-size: 1rem;
     padding: 10px 12px;
     margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: var(--borderRadius);
     transition: var(--transitionSpeed);
-    background-color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
+    border-radius: var(--borderRadius);
 }
 
 input:focus {
@@ -79,88 +68,57 @@ button {
 }
 
 
-/* CLASES GENERALES */
+/* CLASES */
 .logo {
     max-width: 40vh;
-    margin-bottom: 25px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.volverTemp {
+    margin-top: 30px;
 }
 
-/* CLASES ESPECIFICAS */
-#seccionLogin {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: flex-end;
-    display: flex;
-    align-content: center;
-    background-color: transparent;
-    position: relative;
-}
 
-#seccionLogin::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.loginContainer {
+    width: 50%;
     height: 100%;
-    background-image: var(--imgBackgroundLogin);
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.8);
-}
-
-#seccionLogin .loginContainer {
-    width: 50vh;
-    height: 100vh;
-    padding: 40px;
-    background-color: rgba(183, 42, 42, 0.85);
-    backdrop-filter: blur(8px);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.5s ease-out;
+    padding: 30px;
+    background-color: rgba(183, 42, 42, 0.523);
     
+    animation: fadeIn 0.5s ease-out;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+/* ESPECIFICAS */
+#seccionLogin {
+    width: 100vw;
+    height: 100vh;
+    display: flex;  
+    justify-content: flex-end;
+    background: var(--imgBackgroundLogin);
+    background-size: cover;
+    background-position: center; 
+    overflow: hidden;
+}
+
+
 #formLogin {
-    width: 100%;
-    max-width: 400px;
+    width: 80%;
+    max-width: 100vw;
 }
 
 #buttonLogin {
-    background-color: #800000;
-    transition: all 0.2s ease;
-    width: 100%;
+    width: 80%;
 }
 
-.volverTemp {
-    
-    left: 40px;
-    color: var(--textLight);
-    border: 1px solid var(--textLight);
-    padding: 8px 16px;
 
-    position: absolute;
-    
-}
 
 /* ANIMACIONES */
 button:hover {
-    background-color: #99000034;
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px #000000;
+    box-shadow: var(--boxShadow)
 }
 
 
