@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <meta charset="UTF-8" />
     <title>Reserva de laboratorios</title>
     <link rel="stylesheet" href="./css/style.css" />
 </head>
-
 <body>
     <section id="seccionTemporal">
         <div>
@@ -15,73 +12,64 @@
             <button id="tempNewUser"> Crear Usuario </button>
             <button id="tempNewReserve"> Crear Reserva</button>
             <button id="tempShowReserves">Mirar Reservas</button>
+            <button id="tempShowLaboratory">Mirar Laboratorios</button>
         </div>
-
-
     </section>
 
     <section id="seccionLogin">
-        <h1>Login:</h1>
-        <form id="formLogin" action="#" method="post">
-            <!-- Aca en action, poner la "direccion" y el metodo es como lo hace-->
-
-            <div>
+        <div class="loginContainer">
+            <img src="./img/Logo.png" alt="Logo" class="logo">
+            <h1><strong>Login</strong></h1>
+            <form id="formLogin" action="#" method="post">
                 <div>
-                    <label for="inputLoginUserEmail">correo: </label>
-                    <input id="inputLoginUserEmail" name="email" type="email" />
-                </div>
-
-                <div>
-                    <label for="inputLoginUserPassword">Contraseña: </label>
-                    <input id="inputLoginUserPassword" name="password" type="password" />
+                    <label for="inputLoginUserEmail"><Strong>Correo:</Strong></label>
+                    <input id="inputLoginUserEmail" name="email" type="email" required/>
                 </div>
                 <div>
+                    <label for="inputLoginUserPassword"><strong>Contraseña:</strong></label>
+                    <input id="inputLoginUserPassword" name="password" type="password" required/>
+                </div>
+                <div class="buttonContainer">
                     <button id="buttonLogin" type="button">Ingresar</button>
                 </div>
-                <div>
-                    <button id="temp1" type="button" class="volverTemp">Volver Pagina inicial</button>
+                <div class="buttonContainer">
+                    <button id="temp1" type="button" class="volverTemp">Volver Página Inicial</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </section>
 
     <section id="seccionNewUser">
-        <h1>Crear Usuario:</h1>
-        <form id="formNewUser" action="#" method="post">
-            <!-- Aca en action, poner la "direccion" y el metodo es como lo hace-->
-            <div>
+        <div id="divSeccionNewUser">
+            <h1>Crear Usuario:</h1>
+            <form id="formNewUser" action="#" method="post">
                 <div>
-                    <label for="inputNewUserName">Nombre Usuario: </label>
-                    <input id="inputNewUserName" name="name" type="text"  />
+                    <label for="inputNewUserName"><strong>Nombre Usuario:</strong></label>
+                    <input id="inputNewUserName" name="name" type="text" />
                 </div>
-
                 <div>
-                    <label for="inputNewUserEmail">Correo: </label>
-                    <input id="inputNewUserEmail" name="email" type="email"  />
+                    <label for="inputNewUserEmail"><strong>Correo:</strong></label>
+                    <input id="inputNewUserEmail" name="email" type="email" />
                 </div>
-
                 <div>
-                    <label for="selectNewUserType">Tipo usuario: </label>
-                    <select id="selectNewUserType" name="userType" >
+                    <label for="selectNewUserType"><strong>Tipo usuario:</strong></label>
+                    <select id="selectNewUserType" name="userType">
                         <option value="Teacher">Profesor</option>
                         <option value="Administrator">Administrador</option>
                     </select>
                 </div>
-
                 <div>
-                    <label for="inputNewUserPassword">Contraseña: </label>
-                    <input id="inputNewUserPassword" name="password" type="password"  />
+                    <label for="inputNewUserPassword"><strong>Contraseña:</strong></label>
+                    <input id="inputNewUserPassword" name="password" type="password" />
                 </div>
-
                 <div>
                     <button id="buttonCreateNewUser" type="button">Crear</button>
                 </div>
-
                 <div>
-                    <button id="temp2" type="button"  class="volverTemp">Volver Pagina inicial</button>
+                    <button id="temp2" type="button" class="volverTemp">Volver Página Inicial</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </section>
 
     <section id="seccionNewReserve">
@@ -91,9 +79,7 @@
                 <div>
                     <label>Usuario: </label>
                     <label> Nombre Usuario</label>
-
                 </div>
-
                 <div>
                     <label for="selectNewReserveLaboratory">Laboratorio: </label>
                     <select id="selectNewReserveLaboratory" >
@@ -101,7 +87,6 @@
                         <option value="L2">Lab2</option>
                     </select>
                 </div>
-
                 <div>
                     <label for="selectNewReserveType">Tipo de Reserva: </label>
                     <select id="selectNewReserveType" >
@@ -109,20 +94,15 @@
                         <option value="Reserve">Reserva</option>
                     </select>
                 </div>
-
-
                 <div>
                     <label for="textAreaNewReserveRazon">Razon:</label>
                     <textarea id="textAreaNewReserveRazon" rows="1" ></textarea>
                     <br />
                 </div>
-
-
                 <div>
                     <label for="inputNewReserveDate">Fecha de reserva:</label>
                     <input id="inputNewReserveDate" type="date"  />
                 </div>
-
                 <div>
                     <div>
                         <label for="inputNewReserveTime">Hora Inicial: </label>
@@ -133,24 +113,30 @@
                         <label id="labelNewReserveFinalTime"> 00:00</label>
                     </div>
                 </div>
-
                 <div>
                     <button id="buttonCreateNewReserve" type="button">Crear Reserva</button>
                 </div>
-
                 <div>
                     <button id="temp3" type="button" class="volverTemp">Volver Pagina inicial</button>
                 </div>
             </div>
-
         </form>
     </section>
 
     <section id="seccionShowReserves">
+        <h1>Mostrar Reservas:</h1>
         <div>
-            <h1>Mostrar Reservas:</h1>
-            <div id="divShowReservesReserves" class="reservasTemp"></div>
+            <div id="divShowReservesReserves"></div>
+            <div>
+                <button id="temp4" type="button" class="volverTemp">Volver Pagina inicial</button>
+            </div>
+        </div>
+    </section>
 
+    <section id="seccionShowLaboratory">
+        <h1>Laboratorios</h1>
+        <div>
+            <div id="divShowLaboratories"></div>
             <div>
                 <button id="temp4" type="button" class="volverTemp">Volver Pagina inicial</button>
             </div>
@@ -159,5 +145,4 @@
 
     <script src="./js/javaScript.js" defer></script>
 </body>
-
 </html>

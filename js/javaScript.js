@@ -4,7 +4,7 @@ const seccionLogin = document.getElementById('seccionLogin');
 const seccionNewUser = document.getElementById('seccionNewUser');
 const seccionNewReserve = document.getElementById('seccionNewReserve');
 const seccionShowReserves = document.getElementById('seccionShowReserves');
-
+const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
 
 
 //ESTO SON LOS BOTONES DE LOGIN, NEW USER, NEW RESERVE
@@ -34,6 +34,8 @@ const buttonTempLogin = document.getElementById('tempLogin');
 const buttonTempNewUser = document.getElementById('tempNewUser');
 const buttonTempNewReserve = document.getElementById('tempNewReserve');
 const buttonTempShowReserves = document.getElementById('tempShowReserves');
+const buttonTempShowLaboratory = document.getElementById('tempShowLaboratory');
+
 
 let tempUser = "";
 let tempUsers = [];
@@ -75,7 +77,7 @@ function botonesTemp() {
     buttonTempNewUser.addEventListener('click', interfaceNewUser);
     buttonTempNewReserve.addEventListener('click', interfaceNewReserve);
     buttonTempShowReserves.addEventListener('click', interfaceShowReserves);
-
+    buttonTempShowLaboratory.addEventListener('click',interfaceShowLaboratory);
 }
 
 
@@ -110,6 +112,7 @@ function interfacesOff() {
     seccionNewUser.style.display = 'none';
     seccionNewReserve.style.display = 'none';
     seccionShowReserves.style.display = 'none';
+    seccionShowLaboratory.style.display = 'none';
 }
 
 function interfaceLogin() {
@@ -185,6 +188,11 @@ function mostrarReservas() {
     });
 }
 
+function interfaceShowLaboratory(){
+    interfacesOff();
+    seccionShowLaboratory.style.display = 'flex';
+}
+
 
 
 
@@ -192,7 +200,9 @@ function main() {
     botonesTemp();
     reservasTemp();
     botones();
-    interfaceTemp();
+    //interfaceTemp();
+    interfaceLogin();
+    //interfaceNewUser();
 }
 
 main();

@@ -1,6 +1,190 @@
-.reservasTemp {
+/* VARIABLES */
+:root {
+    --primaryColor: #b72a2a;
+    --primaryDark: #921e1e;
+    --secondaryColor: #1a1a3a;
+    --textColor: #333;
+    --textLight: #fff;
+    --borderColor: #ddd;
+    --errorColor: #e74c3c;
+    --successColor: #2ecc71;
+    --boxShadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --borderRadius: 12px; /* Aumentado para botones más curvos */
+    --transitionSpeed: all 0.3s ease;
+
+    --fontFamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /*LOGIN*/
+    --imgBackgroundLogin: url('../img/FondoLogin.jpg');
+}
+
+/* GENERALES */
+
+body {
+    background-color: #121212;
+    color: var(--textColor);
+    line-height: 1.6;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--fontFamily);
+}
+
+h1 {
+    color: var(--textLight);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--textLight);
+    font-weight: normal;
+    font-size: 0.95rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: var(--borderRadius);
+    transition: var(--transitionSpeed);
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primaryColor);
+    box-shadow: 0 0 0 2px rgba(183, 42, 42, 0.2);
+}
+
+button {
+    background-color: var(--primaryDark);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    transition: var(--transitionSpeed);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+}
+
+
+/* CLASES GENERALES */
+.logo {
+    max-width: 150px;
+    margin-bottom: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* CLASES ESPECIFICAS */
+#seccionLogin {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end; /* Alinea a la derecha */
+    background-color: transparent;
+    position: relative;
+}
+
+#seccionLogin::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--imgBackgroundLogin);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    z-index: -1;
+}
+
+#seccionLogin .loginContainer {
+    width: 50%; /* Ocupa la mitad derecha de la pantalla */
+    height: 100vh;
+    padding: 40px;
+    background-color: rgba(183, 42, 42, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-out;
+    position: relative; /* Para posicionar el botón de volver */
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+}
+
+#formLogin {
+    width: 100%;
+    max-width: 400px;
+}
+
+#buttonLogin {
+    background-color: #800000;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.volverTemp {
+    position: absolute;
+    left: 40px;
+    background-color: transparent;
+    color: var(--textLight);
+    border: 1px solid var(--textLight);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+
+/* ANIMACIONES */
+button:hover {
+    background-color: #7a1919;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    #seccionLogin .loginContainer {
+        width: 100%;
+    }
+    
+    #formLogin {
+        width: 90%;
+    }
+    
+    .volverTemp {
+        left: 20px;
+    }
 }
