@@ -1,13 +1,13 @@
 /* VARIABLES */
 :root {
-    --primaryColor: #b72a2a;
-    --primaryDark: #921e1e;
-    --secondaryColor: #1a1a3a;
-    --textColor: #333;
-    --textLight: #fff;
-    --borderColor: #ddd;
-    --errorColor: #e74c3c;
-    --successColor: #2ecc71;
+    --primaryColor: #990000;
+    --primaryDark: #920000;
+    --colorTransparent:  #99000058;
+    --secondaryColor: #008542;
+    --textColor: #000000;
+    --textLight: #ffffff;
+    --borderColor: #ffffff;
+
     --boxShadow: 0px 3px 10px 0px #000000;
     --borderRadius: 18px;
     --transitionSpeed: all 0.3s ease;
@@ -16,6 +16,15 @@
 
     /*LOGIN*/
     --imgBackgroundLogin: url('../img/FondoLogin.jpg');
+
+    /*NEW USER*/
+    --imgBackgroundNewUser: url('../img/FondoNewUser.jpg');
+
+    /*NEW RESERVE*/
+    --imgBackgroundNewReserve: url('../img/FondoNewReserve.jpg');
+    
+    /*SHOW RESERVES*/
+    --imgBackgroundShowReserves: url('../img/FondoShowReserves.jpg');
 }
 
 /* GENERALES */
@@ -66,21 +75,23 @@ button {
     font-size: 1rem;
 }
 
+select {
+    width: 100%;
+    border: none;
+    background-color: #ffffff;
+    font-size: 1rem;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    transition: var(--transitionSpeed);
+    border-radius: var(--borderRadius);
+}
 
 /* CLASES */
-.logo {
-    max-width: 40vh;
-}
-
-.volverTemp {
-    margin-top: 30px;
-}
-
 .userContainer {
     width: 50%;
     height: 100%;
     padding: 30px;
-    background-color: rgba(183, 42, 42, 0.523);
+    background-color: var(--colorTransparent);
     
     animation: fadeIn 0.5s ease-out;
     display: flex;
@@ -89,15 +100,23 @@ button {
     align-items: center;
 }
 
+.logo {
+    max-width: 40vh;
+}
 
 .formUser {
     width: 80%;
     max-width: 100vw;
 }
 
+.volverTemp {
+    margin-top: 30px;
+}
+
+
 
 /* ESPECIFICAS */
-#seccionLogin, #seccionNewUser{
+#seccionLogin{
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -109,10 +128,91 @@ button {
     background-position: center; 
 }
 
-
-#buttonLogin {
+#buttonLogin ,#buttonCreateNewUser #selectNewUserType{
     width: 80%;
 }
+
+#seccionNewUser {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;  
+    justify-content: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), var(--imgBackgroundNewUser);
+    background-size: cover;
+    background-position: center; 
+}
+
+
+
+#seccionShowReserves {
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundShowReserves);
+    background-size: cover;
+    background-position: center; 
+}
+
+.showReservesContainer {
+    height: 60vh;
+    width: 50vw;
+    padding-bottom: 65px;
+    padding-inline: 35px;
+
+    
+    background-color: rgba(183, 42, 42, 0.523);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#divShowReservesReserves {
+    display: flexbox;
+    justify-items: center;
+    height: 40vh;
+    
+
+    
+    padding: 10px;
+    
+    background: var(--textLight);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    overflow-y: auto;
+    scrollbar-color: var(--primaryColor) var(--textLight); 
+    scrollbar-width:thin; 
+}
+
+.reservaCard {
+    width: 97%;
+    height: 20vh;
+
+    padding: 15px;
+    
+    margin: 10px;
+    
+
+    background: var(--secondaryColor);
+    color: var(--textLight);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    text-align: left;
+}
+
+
+
+
+
 
 /* ANIMACIONES */
 button:hover {
@@ -132,3 +232,68 @@ button:hover {
     }
 }
 
+
+#seccionNewReserve {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundNewReserve);
+    background-size: cover;
+    background-position: center;
+}
+
+.newReserveContainer {
+    width: 50vw;
+    padding: 35px;
+    background-color: rgba(183, 42, 42, 0.7);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.formGroup {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-weight: bold;
+    color: var(--textLight);
+    margin-bottom: 5px;
+}
+
+.formGroup select,
+.formGroup textarea,
+.formGroup input {
+    width: 100%;
+    padding: 8px;
+    border-radius: var(--borderRadius);
+    border: 1px solid var(--secondaryColor);
+    background: var(--textLight);
+    color: var(--primaryColor);
+}
+
+.timeGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.timeGroup div {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}

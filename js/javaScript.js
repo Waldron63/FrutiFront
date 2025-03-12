@@ -1,14 +1,3 @@
-
-
-
-
-
-
-const seccionNewReserve = document.getElementById('seccionNewReserve');
-const seccionShowReserves = document.getElementById('seccionShowReserves');
-const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
-
-
 //ESTO SON LOS BOTONES DE LOGIN, NEW USER, NEW RESERVE
 
 const inputNewReserveDate = document.getElementById('inputNewReserveDate');
@@ -50,10 +39,21 @@ const buttonCreateNewUser = document.getElementById('buttonCreateNewUser');
 const buttonNewUserLogin = document.getElementById('buttonNewUserLogin');
 
 
+const seccionShowReserves = document.getElementById('seccionShowReserves');
+const buttonShowReservesReservar = document.getElementById('buttonShowReservesReservar');
+
+
+const seccionNewReserve = document.getElementById('seccionNewReserve');
+const buttonNewReserveShowReserves = document.getElementById('buttonNewReserveShowReserves')
+
+
+const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
+
 
 let tempUser = "";
 let tempUsers = [];
-let tempReservas = []; //Variable que uso para mirar como se verian las resrvas
+let tempReservas = [];
+let tempLaboratoryos = [];
 
 
 
@@ -78,6 +78,10 @@ class Reserve {
         this.initialTime = initialTime;
         this.finalTime = initialTime;
     }
+}
+
+class laboratory{
+
 }
 
 function interfaceTemp() {
@@ -107,7 +111,7 @@ function botonesVolver() {
 function reservasTemp (){
     tempUser = new User("USUARIO PRUEBA", "m@mail.com", "ADM", "ASDAS");
     reserva = new Reserve(tempUser,"LaboratorioPrueba","Clase","Prueba","25-02-2025","10:30");
-    for (let i = 0;i<3;i++){
+    for (let i = 0;i<10;i++){
         tempReservas.push(reserva);
     }
 }
@@ -121,10 +125,11 @@ function botones() {
     buttonCreateNewUser.addEventListener('click',newUser);
     buttonNewUserLogin.addEventListener('click',interfaceLogin);
 
-    
-    buttonCreateNewReserve.addEventListener('click',newReserve);
-    
 
+    buttonCreateNewReserve.addEventListener('click',newReserve);
+    buttonNewReserveShowReserves.addEventListener('click',interfaceShowReserves);
+
+    buttonShowReservesReservar.addEventListener('click',interfaceNewReserve);
 }
 
 function interfacesOff() {
@@ -201,11 +206,17 @@ function mostrarReservas() {
     divShowReservesReserves.innerHTML = ''; 
 
     tempReservas.forEach(reserva => {
-        let button = document.createElement('button');
-        button.type = 'button';
-        button.disabled = true; // Hacer el botón no clickeable por el momento
-        button.textContent = `Usuario: ${reserva.user.name}, Laboratorio: ${reserva.laboratory}, Fecha: ${reserva.date}, Hora Inicial: ${reserva.initialTime}, Hora Final: ${reserva.finalTime}, Tipo: ${reserva.type}, Razón: ${reserva.razon}`;
-        divShowReservesReserves.appendChild(button);
+        let reservaCard = document.createElement('button');
+        reservaCard.classList.add('reservaCard');
+        reservaCard.innerHTML = `
+            <strong>Usuario:</strong> ${reserva.user.name} <br>
+            <strong>Laboratorio:</strong> ${reserva.laboratory} <br>
+            <strong>Fecha:</strong> ${reserva.date} <br>
+            <strong>Hora:</strong> ${reserva.initialTime} - ${reserva.finalTime} <br>
+            <strong>Tipo:</strong> ${reserva.type} <br>
+            <strong>Razón:</strong> ${reserva.razon}
+        `;
+        divShowReservesReserves.appendChild(reservaCard);
     });
 }
 
@@ -222,8 +233,12 @@ function main() {
     reservasTemp();
     botones();
     //interfaceTemp();
+    
+    //INTERFACES CHECK
     //interfaceLogin();
-    interfaceNewUser();
+    //interfaceNewUser();
+    //interfaceShowReserves();
+    interfaceNewReserve();
 }
 
 main();

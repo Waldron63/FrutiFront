@@ -76,63 +76,67 @@
     </section>
 
     <section id="seccionNewReserve">
-        <h1>Realizar Reserva:</h1>
-        <form id="formNewReserve" action="#" method="post">
-            <div>
-                <div>
-                    <label>Usuario: </label>
-                    <label> Nombre Usuario</label>
+        <div class="newReserveContainer">
+            <h1>Realizar Reserva:</h1>
+            <form id="formNewReserve" action="#" method="post">
+                <div class="formGroup">
+                    <label>Usuario:</label>
+                    <label>Nombre Usuario</label>
                 </div>
-                <div>
-                    <label for="selectNewReserveLaboratory">Laboratorio: </label>
-                    <select id="selectNewReserveLaboratory" >
+    
+                <div class="formGroup">
+                    <label for="selectNewReserveLaboratory">Laboratorio:</label>
+                    <select id="selectNewReserveLaboratory">
                         <option value="L1">Lab1</option>
                         <option value="L2">Lab2</option>
                     </select>
                 </div>
-                <div>
-                    <label for="selectNewReserveType">Tipo de Reserva: </label>
-                    <select id="selectNewReserveType" >
+    
+                <div class="formGroup">
+                    <label for="selectNewReserveType">Tipo de Reserva:</label>
+                    <select id="selectNewReserveType">
                         <option value="Class">Clase</option>
                         <option value="Reserve">Reserva</option>
                     </select>
                 </div>
-                <div>
-                    <label for="textAreaNewReserveRazon">Razon:</label>
-                    <textarea id="textAreaNewReserveRazon" rows="1" ></textarea>
-                    <br />
+    
+                <div class="formGroup">
+                    <label for="textAreaNewReserveRazon">Razón:</label>
+                    <textarea id="textAreaNewReserveRazon" rows="2"></textarea>
                 </div>
-                <div>
+    
+                <div class="formGroup">
                     <label for="inputNewReserveDate">Fecha de reserva:</label>
-                    <input id="inputNewReserveDate" type="date"  />
+                    <input id="inputNewReserveDate" type="date" />
                 </div>
-                <div>
+    
+                <div class="timeGroup">
                     <div>
-                        <label for="inputNewReserveTime">Hora Inicial: </label>
-                        <input id="inputNewReserveTime" type="time"  />
+                        <label for="inputNewReserveTime">Hora Inicial:</label>
+                        <input id="inputNewReserveTime" type="time" />
                     </div>
                     <div>
-                        <label>HoraFinal: </label>
-                        <label id="labelNewReserveFinalTime"> 00:00</label>
+                        <label>Hora Final:</label>
+                        <label id="labelNewReserveFinalTime">00:00</label>
                     </div>
                 </div>
-                <div>
+    
+                <div class="buttonGroup">
                     <button id="buttonCreateNewReserve" type="button">Crear Reserva</button>
+                    <button id="buttonNewReserveShowReserves" type="button">Mostrar Reservas</button>
+                    <button id="temp3" type="button" class="volverTemp">Volver Página Inicial</button>
                 </div>
-                <div>
-                    <button id="temp3" type="button" class="volverTemp">Volver Pagina inicial</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </section>
+    
 
     <section id="seccionShowReserves">
-        <h1>Mostrar Reservas:</h1>
-        <div>
+        <div class="showReservesContainer">
+            <h1>Mostrar Reservas:</h1>
             <div id="divShowReservesReserves"></div>
-            <div>
-                <button id="temp4" type="button" class="volverTemp">Volver Pagina inicial</button>
-            </div>
+            <button id="temp4" type="button" class="volverTemp">Volver Página Inicial</button>
+            <button id="buttonShowReservesReservar" type="button" >Reservar</button>
         </div>
     </section>
 
