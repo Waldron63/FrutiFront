@@ -245,8 +245,12 @@ function mostrarLaboratorios() {
         labCard.classList.add('laboratoryCard');
 
         labCard.innerHTML = `
+            <h3 class="lab-title">${laboratorio.nombre}</h3>    
             <img src=${laboratorio.foto} alt="Logo" class="logo">
-            <h3 class="lab-title">${laboratorio.nombre}</h3>
+            <div>
+            <button>Borrar</button>
+            <button>Editar</button>
+            </div>
         `;
 
         divShowLaboratories.appendChild(labCard);
@@ -260,8 +264,9 @@ function main() {
     reservasTemp();
     laboratoriosTemp();
     botones();
-    interfaceTemp();
+    //interfaceTemp();
     //interfaceShowLaboratory();
+    interfaceShowReserves();
     
 }
 

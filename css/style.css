@@ -178,8 +178,8 @@ select {
     margin: 10px;
     
 
-    background: var(--secondaryColor);
-    color: var(--textLight);
+    background: #ffffff;
+    color: var(--textColor);
     border-radius: var(--borderRadius);
     box-shadow: var(--boxShadow);
     text-align: left;
@@ -192,7 +192,7 @@ select {
     padding-inline: 35px;
 
     
-    background-color: rgba(183, 42, 42, 0.523);
+    background-color: #fda9a9;
     border-radius: var(--borderRadius);
     box-shadow: var(--boxShadow);
     
@@ -201,8 +201,9 @@ select {
     justify-content: center;
     animation: fadeIn 0.5s ease-out;
 }
-
-
+#MAPIS{
+    color: #000000;
+}
 
 /* ESPECIFICAS */
 #seccionLogin{
@@ -235,17 +236,6 @@ select {
 
 
 
-#seccionShowReserves {
-    height: 100vh;
-    width: 100vw;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--imgBackgroundShowReserves);
-    background-size: cover;
-    background-position: center; 
-}
 
 #divShowReservesReserves {
     display: flexbox;
@@ -256,7 +246,7 @@ select {
     
     padding: 10px;
     
-    background: var(--textLight);
+    background: #ff9595;
     border-radius: var(--borderRadius);
     box-shadow: var(--boxShadow);
     
@@ -348,7 +338,7 @@ button:hover {
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #fff;
+    background-color: #ffffff;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -357,8 +347,8 @@ button:hover {
 }
 
 .laboratoryCard img {
-    width: 100%;
-    height: 75%;
+    width: 150px;
+    height: 100px;
     object-fit: cover;
     border-bottom: 2px solid #ccc;
 }
@@ -370,16 +360,55 @@ button:hover {
 }
 
 /*LABORATORIOS*/
-#divShowLaboratories {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 columnas fijas */
-    gap: 15px; /* Espacio entre elementos */
-    padding: 20px;
-    justify-content: center; /* Centrar si hay menos de 6 elementos */
+#seccionShowReserves , #seccionShowLaboratory{
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundShowReserves);
+    background-size: cover;
+    background-position: center; 
 }
 
+
+#divShowLaboratories {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    
+    background: var(--textLight);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    overflow-y: auto;
+    scrollbar-color: var(--primaryColor) var(--textLight); 
+    scrollbar-width:thin; 
+
+    padding: 20px;
+}
+
+
+.showLaboratoriesContainer{
+    height: 70vh;
+    width: 78vw;
+    padding-bottom: 65px;
+    padding-inline: 35px;
+
+    
+    background-color: rgba(183, 42, 42, 0.027);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+
 .lab-card {
-    background-color: #f9f9f9;
+    background-color: #5d239e;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
@@ -387,10 +416,10 @@ button:hover {
 }
 
 .lab-img {
-    width: 100%; /* Imagen ocupa todo el div */
-    height: 150px; /* Altura fija */
-    object-fit: cover; /* Ajustar imagen sin deformarse */
-    border-radius: 5px;
+    width: 100%; 
+    height: 15px; 
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 .lab-title {
@@ -400,7 +429,7 @@ button:hover {
 }
 
 .laboratoryCard {
-    background: #f8f9fa;
+    background: #04488b;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -413,16 +442,3 @@ button:hover {
     transform: scale(1.05);
 }
 
-.lab-img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover; /* Ajusta la imagen sin deformarla */
-    border-radius: 5px;
-}
-
-.lab-title {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
