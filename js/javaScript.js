@@ -1,26 +1,12 @@
 //ESTO SON LOS BOTONES DE LOGIN, NEW USER, NEW RESERVE
-
-const inputNewReserveDate = document.getElementById('inputNewReserveDate');
-const inputNewReserveTime = document.getElementById('inputNewReserveTime'); 
-
-
- 
-
-const selectNewReserveLaboratory = document.getElementById('selectNewReserveLaboratory');
-const selectNewReserveType = document.getElementById('selectNewReserveType');
-const textAreaNewReserveRazon = document.getElementById('textAreaNewReserveRazon');
- 
-
 const seccionTemporal = document.getElementById('seccionTemporal');
 const buttonTempLogin = document.getElementById('tempLogin');
 const buttonTempNewUser = document.getElementById('tempNewUser');
 const buttonTempNewReserve = document.getElementById('tempNewReserve');
 const buttonTempShowReserves = document.getElementById('tempShowReserves');
 const buttonTempShowLaboratory = document.getElementById('tempShowLaboratory');
+const buttonTempLongOut = document.getElementById('tempLongOut');
 
-
-
-const buttonCreateNewReserve = document.getElementById('buttonCreateNewReserve');
 
 
 const seccionLogin = document.getElementById('seccionLogin');
@@ -44,8 +30,13 @@ const buttonShowReservesReservar = document.getElementById('buttonShowReservesRe
 
 
 const seccionNewReserve = document.getElementById('seccionNewReserve');
+const buttonCreateNewReserve = document.getElementById('buttonCreateNewReserve');
 const buttonNewReserveShowReserves = document.getElementById('buttonNewReserveShowReserves')
-
+const inputNewReserveDate = document.getElementById('inputNewReserveDate');
+const inputNewReserveTime = document.getElementById('inputNewReserveTime'); 
+const selectNewReserveLaboratory = document.getElementById('selectNewReserveLaboratory');
+const selectNewReserveType = document.getElementById('selectNewReserveType');
+const textAreaNewReserveRazon = document.getElementById('textAreaNewReserveRazon');
 
 const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
 
@@ -53,7 +44,7 @@ const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
 let tempUser = "";
 let tempUsers = [];
 let tempReservas = [];
-let tempLaboratoryos = [];
+let tempLaboratorios = [];
 
 
 
@@ -80,8 +71,11 @@ class Reserve {
     }
 }
 
-class laboratory{
-
+class Laboratory{
+    constructor(nombre,foto){
+        this.nombre=nombre;
+        this.foto=foto;
+    }
 }
 
 function interfaceTemp() {
@@ -116,6 +110,13 @@ function reservasTemp (){
     }
 }
 
+function laboratoriosTemp(){
+    laboratorio = new Laboratory("Prueba",'./img/FondoShowReserves.jpg')
+    for (let i = 0;i<10;i++){
+        tempLaboratorios.push(laboratorio);
+    }
+
+}
 //COSAS QUE POSIBLEMENTE SI SIGAN    
 function botones() {
     buttonLogin.addEventListener('click',templogin)
@@ -130,6 +131,14 @@ function botones() {
     buttonNewReserveShowReserves.addEventListener('click',interfaceShowReserves);
 
     buttonShowReservesReservar.addEventListener('click',interfaceNewReserve);
+
+    buttonTempLongOut.addEventListener('click',longOut)
+}
+
+function longOut(){
+    tempUser = "";
+    alert("Se cerro Sesion");
+    console.log(tempUser);
 }
 
 function interfacesOff() {
@@ -165,7 +174,8 @@ function newUser() {
     let password = inputNewUserPassword.value;
     let type = selectNewUserType.value;
 
-    let user = new User(name, email, password, type);
+    let user = new User(name, email, type,password);
+    tempUsers.push(user);
     alert(`Usuario creado con éxito:\nNombre: ${name}\nEmail: ${email}\nTipo: ${type}`);
     console.log(tempUsers);
 
@@ -222,23 +232,37 @@ function mostrarReservas() {
 
 function interfaceShowLaboratory(){
     interfacesOff();
+    mostrarLaboratorios();
     seccionShowLaboratory.style.display = 'flex';
 }
 
+function mostrarLaboratorios() {
+    let divShowLaboratories = document.getElementById('divShowLaboratories');
+    divShowLaboratories.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
+
+    tempLaboratorios.forEach(laboratorio => {
+        let labCard = document.createElement('div');
+        labCard.classList.add('laboratoryCard');
+
+        labCard.innerHTML = `
+            <img src=${laboratorio.foto} alt="Logo" class="logo">
+            <h3 class="lab-title">${laboratorio.nombre}</h3>
+        `;
+
+        divShowLaboratories.appendChild(labCard);
+    });
+}
 
 
 
 function main() {
     botonesTemp();
     reservasTemp();
+    laboratoriosTemp();
     botones();
-    //interfaceTemp();
+    interfaceTemp();
+    //interfaceShowLaboratory();
     
-    //INTERFACES CHECK
-    //interfaceLogin();
-    //interfaceNewUser();
-    //interfaceShowReserves();
-    interfaceNewReserve();
 }
 
 main();

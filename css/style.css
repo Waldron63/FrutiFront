@@ -114,136 +114,6 @@ select {
 }
 
 
-
-/* ESPECIFICAS */
-#seccionLogin{
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    display: flex;  
-    justify-content: flex-end;
-    background: var(--imgBackgroundLogin);
-    background-size: cover;
-    background-position: center; 
-}
-
-#buttonLogin ,#buttonCreateNewUser #selectNewUserType{
-    width: 80%;
-}
-
-#seccionNewUser {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    display: flex;  
-    justify-content: flex-end;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), var(--imgBackgroundNewUser);
-    background-size: cover;
-    background-position: center; 
-}
-
-
-
-#seccionShowReserves {
-    height: 100vh;
-    width: 100vw;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--imgBackgroundShowReserves);
-    background-size: cover;
-    background-position: center; 
-}
-
-.showReservesContainer {
-    height: 60vh;
-    width: 50vw;
-    padding-bottom: 65px;
-    padding-inline: 35px;
-
-    
-    background-color: rgba(183, 42, 42, 0.523);
-    border-radius: var(--borderRadius);
-    box-shadow: var(--boxShadow);
-    
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.5s ease-out;
-}
-
-#divShowReservesReserves {
-    display: flexbox;
-    justify-items: center;
-    height: 40vh;
-    
-
-    
-    padding: 10px;
-    
-    background: var(--textLight);
-    border-radius: var(--borderRadius);
-    box-shadow: var(--boxShadow);
-    
-    overflow-y: auto;
-    scrollbar-color: var(--primaryColor) var(--textLight); 
-    scrollbar-width:thin; 
-}
-
-.reservaCard {
-    width: 97%;
-    height: 20vh;
-
-    padding: 15px;
-    
-    margin: 10px;
-    
-
-    background: var(--secondaryColor);
-    color: var(--textLight);
-    border-radius: var(--borderRadius);
-    box-shadow: var(--boxShadow);
-    text-align: left;
-}
-
-
-
-
-
-
-/* ANIMACIONES */
-button:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--boxShadow)
-}
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-#seccionNewReserve {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--imgBackgroundNewReserve);
-    background-size: cover;
-    background-position: center;
-}
-
 .newReserveContainer {
     width: 50vw;
     padding: 35px;
@@ -296,4 +166,263 @@ button:hover {
     display: flex;
     justify-content: space-around;
     margin-top: 15px;
+}
+
+
+.reservaCard {
+    width: 97%;
+    height: 20vh;
+
+    padding: 15px;
+    
+    margin: 10px;
+    
+
+    background: var(--secondaryColor);
+    color: var(--textLight);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    text-align: left;
+}
+
+.showReservesContainer {
+    height: 60vh;
+    width: 50vw;
+    padding-bottom: 65px;
+    padding-inline: 35px;
+
+    
+    background-color: rgba(183, 42, 42, 0.523);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+
+
+/* ESPECIFICAS */
+#seccionLogin{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;  
+    justify-content: flex-end;
+    background: var(--imgBackgroundLogin);
+    background-size: cover;
+    background-position: center; 
+}
+
+#buttonLogin ,#buttonCreateNewUser #selectNewUserType{
+    width: 80%;
+}
+
+#seccionNewUser {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;  
+    justify-content: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), var(--imgBackgroundNewUser);
+    background-size: cover;
+    background-position: center; 
+}
+
+
+
+#seccionShowReserves {
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundShowReserves);
+    background-size: cover;
+    background-position: center; 
+}
+
+#divShowReservesReserves {
+    display: flexbox;
+    justify-items: center;
+    height: 40vh;
+    
+
+    
+    padding: 10px;
+    
+    background: var(--textLight);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    
+    overflow-y: auto;
+    scrollbar-color: var(--primaryColor) var(--textLight); 
+    scrollbar-width:thin; 
+}
+
+
+
+#seccionNewReserve {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundNewReserve);
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* ANIMACIONES */
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--boxShadow)
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*TEMPORAL*/
+#seccionTemporal {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--imgBackgroundShowReserves);
+    background-size: cover;
+    background-position: center;
+}
+
+.temporalContainer {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.temporalContainer button {
+    width: 250px;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--textLight);
+    background: linear-gradient(135deg, var(--primaryColor), var(--secondaryColor));
+    border: none;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow);
+    cursor: pointer;
+    transition: var(--transitionSpeed);
+}
+
+.temporalContainer button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.laboratoryCard {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.laboratoryCard img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+    border-bottom: 2px solid #ccc;
+}
+
+.laboratoryCard h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/*LABORATORIOS*/
+#divShowLaboratories {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columnas fijas */
+    gap: 15px; /* Espacio entre elementos */
+    padding: 20px;
+    justify-content: center; /* Centrar si hay menos de 6 elementos */
+}
+
+.lab-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.lab-img {
+    width: 100%; /* Imagen ocupa todo el div */
+    height: 150px; /* Altura fija */
+    object-fit: cover; /* Ajustar imagen sin deformarse */
+    border-radius: 5px;
+}
+
+.lab-title {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.laboratoryCard {
+    background: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.laboratoryCard:hover {
+    transform: scale(1.05);
+}
+
+.lab-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    border-radius: 5px;
+}
+
+.lab-title {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
