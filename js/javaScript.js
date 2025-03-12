@@ -265,8 +265,8 @@ function main() {
     laboratoriosTemp();
     botones();
     //interfaceTemp();
-    //interfaceShowLaboratory();
-    interfaceShowReserves();
+    interfaceShowLaboratory();
+    //interfaceShowReserves();
     
 }
 

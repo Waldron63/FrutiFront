@@ -2,17 +2,17 @@
 :root {
     --primaryColor: #990000;
     --primaryDark: #920000;
-    --colorTransparent:  #99000058;
+    --colorTransparent:  #99000091;
     --secondaryColor: #008542;
     --textColor: #000000;
     --textLight: #ffffff;
     --borderColor: #ffffff;
 
     --boxShadow: 0px 3px 10px 0px #000000;
-    --borderRadius: 18px;
+    --borderRadius: 6px;
     --transitionSpeed: all 0.3s ease;
 
-    --fontFamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --fontFamily: 'Ubuntu', sans-serif;
 
     /*LOGIN*/
     --imgBackgroundLogin: url('../img/FondoLogin.jpg');
@@ -360,7 +360,7 @@ button:hover {
 }
 
 /*LABORATORIOS*/
-#seccionShowReserves , #seccionShowLaboratory{
+#seccionShowReserves {
     height: 100vh;
     width: 100vw;
     
@@ -370,6 +370,19 @@ button:hover {
     background: var(--imgBackgroundShowReserves);
     background-size: cover;
     background-position: center; 
+}
+#seccionShowLaboratory {
+    display: flexbox;
+    flex-direction: column;
+    background: var(--imgBackgroundShowReserves);
+}
+
+#seccionShowLaboratory h1{
+    color: #ffffff;
+}
+
+#MAPIS2{
+    background: #990000;
 }
 
 
