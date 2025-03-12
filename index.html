@@ -9,7 +9,7 @@
     <section id="seccionTemporal">
         <div>
             <button id="tempLogin">Ingresar</button>
-            
+            <button id="tempNewUser">Crear Usuario</button>
             <button id="tempNewReserve"> Crear Reserva</button>
             <button id="tempShowReserves">Mirar Reservas</button>
             <button id="tempShowLaboratory">Mirar Laboratorios</button>
@@ -17,10 +17,10 @@
     </section>
 
     <section id="seccionLogin">
-        <div class="loginContainer">
+        <div class="userContainer">
             <img src="./img/Logo.png" alt="Logo" class="logo">
             <h1><strong>Login</strong></h1>
-            <form id="formLogin" action="#" method="post">
+            <form id="formLogin" class="formUser"  action="#" method="post">
                 <div>
                     <label for="inputLoginUserEmail"><Strong>Correo:</Strong></label>
                     <input id="inputLoginUserEmail" name="email" type="email"/>
@@ -34,16 +34,17 @@
                 </div>
                 <div>
                     <button id="temp1" type="button" class="volverTemp">Volver Página Inicial</button>
-                    <button id="tempNewUser" type="button"> Crear Usuario </button>
+                    <button id="buttonLoginNewUser" type="button"> Crear Usuario </button>
                 </div>
             </form>
         </div>
     </section>
 
     <section id="seccionNewUser">
-        <div id="divSeccionNewUser">
-            <h1>Crear Usuario:</h1>
-            <form id="formNewUser" action="#" method="post">
+        <div class="userContainer">
+            <img src="./img/Logo.png" alt="Logo" class="logo">
+            <h1><strong>Crear Usuario</strong></h1>
+            <form id="formNewUser" class="formUser" action="#" method="post">
                 <div>
                     <label for="inputNewUserName"><strong>Nombre Usuario:</strong></label>
                     <input id="inputNewUserName" name="name" type="text" />
@@ -53,7 +54,7 @@
                     <input id="inputNewUserEmail" name="email" type="email" />
                 </div>
                 <div>
-                    <label for="selectNewUserType"><strong>Tipo usuario:</strong></label>
+                    <label for="selectNewUserType"><strong>Tipo usuario:</strong></label><br>
                     <select id="selectNewUserType" name="userType">
                         <option value="Teacher">Profesor</option>
                         <option value="Administrator">Administrador</option>
@@ -68,6 +69,7 @@
                 </div>
                 <div>
                     <button id="temp2" type="button" class="volverTemp">Volver Página Inicial</button>
+                    <button id="buttonNewUserLogin" type="button">Ingresar</button>
                 </div>
             </form>
         </div>

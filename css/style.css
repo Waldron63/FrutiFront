@@ -76,7 +76,7 @@ button {
     margin-top: 30px;
 }
 
-.loginContainer {
+.userContainer {
     width: 50%;
     height: 100%;
     padding: 30px;
@@ -89,8 +89,15 @@ button {
     align-items: center;
 }
 
+
+.formUser {
+    width: 80%;
+    max-width: 100vw;
+}
+
+
 /* ESPECIFICAS */
-#seccionLogin {
+#seccionLogin, #seccionNewUser{
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -102,11 +109,6 @@ button {
     background-position: center; 
 }
 
-
-#formLogin {
-    width: 80%;
-    max-width: 100vw;
-}
 
 #buttonLogin {
     width: 80%;

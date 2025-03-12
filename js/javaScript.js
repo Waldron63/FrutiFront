@@ -1,33 +1,26 @@
 
 
-const seccionLogin = document.getElementById('seccionLogin');
-const seccionNewUser = document.getElementById('seccionNewUser');
+
+
+
+
 const seccionNewReserve = document.getElementById('seccionNewReserve');
 const seccionShowReserves = document.getElementById('seccionShowReserves');
 const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
 
 
 //ESTO SON LOS BOTONES DE LOGIN, NEW USER, NEW RESERVE
-const inputLoginUserEmail = document.getElementById('inputLoginUserEmail');
-const inputLoginUserPassword = document.getElementById('inputLoginUserPassword');
- 
-const inputNewUserName = document.getElementById('inputNewUserName');
-const inputNewUserEmail  = document.getElementById('inputNewUserEmail');
-const inputNewUserPassword  = document.getElementById('inputNewUserPassword');
-const selectNewUserType  = document.getElementById('selectNewUserType');
- 
+
 const inputNewReserveDate = document.getElementById('inputNewReserveDate');
-const inputNewReserveTime = document.getElementById('inputNewReserveTime');
+const inputNewReserveTime = document.getElementById('inputNewReserveTime'); 
+
+
+ 
+
 const selectNewReserveLaboratory = document.getElementById('selectNewReserveLaboratory');
 const selectNewReserveType = document.getElementById('selectNewReserveType');
 const textAreaNewReserveRazon = document.getElementById('textAreaNewReserveRazon');
  
- 
-const buttonLogin = document.getElementById('buttonLogin');
-const buttonCreateNewUser = document.getElementById('buttonCreateNewUser');
-const buttonCreateNewReserve = document.getElementById('buttonCreateNewReserve');
-
-
 
 const seccionTemporal = document.getElementById('seccionTemporal');
 const buttonTempLogin = document.getElementById('tempLogin');
@@ -35,6 +28,27 @@ const buttonTempNewUser = document.getElementById('tempNewUser');
 const buttonTempNewReserve = document.getElementById('tempNewReserve');
 const buttonTempShowReserves = document.getElementById('tempShowReserves');
 const buttonTempShowLaboratory = document.getElementById('tempShowLaboratory');
+
+
+
+const buttonCreateNewReserve = document.getElementById('buttonCreateNewReserve');
+
+
+const seccionLogin = document.getElementById('seccionLogin');
+const inputLoginUserEmail = document.getElementById('inputLoginUserEmail');
+const inputLoginUserPassword = document.getElementById('inputLoginUserPassword');
+const buttonLogin = document.getElementById('buttonLogin');
+const buttonLoginNewUser = document.getElementById('buttonLoginNewUser');
+
+
+const seccionNewUser = document.getElementById('seccionNewUser');
+const inputNewUserName = document.getElementById('inputNewUserName');
+const inputNewUserEmail  = document.getElementById('inputNewUserEmail');
+const inputNewUserPassword  = document.getElementById('inputNewUserPassword');
+const selectNewUserType  = document.getElementById('selectNewUserType');
+const buttonCreateNewUser = document.getElementById('buttonCreateNewUser');
+const buttonNewUserLogin = document.getElementById('buttonNewUserLogin');
+
 
 
 let tempUser = "";
@@ -74,10 +88,10 @@ function interfaceTemp() {
 function botonesTemp() {
     botonesVolver();
     buttonTempLogin.addEventListener('click', interfaceLogin);
-    buttonTempNewUser.addEventListener('click', interfaceNewUser);
     buttonTempNewReserve.addEventListener('click', interfaceNewReserve);
     buttonTempShowReserves.addEventListener('click', interfaceShowReserves);
     buttonTempShowLaboratory.addEventListener('click',interfaceShowLaboratory);
+    buttonTempNewUser.addEventListener('click',interfaceNewUser)
 }
 
 
@@ -101,8 +115,15 @@ function reservasTemp (){
 //COSAS QUE POSIBLEMENTE SI SIGAN    
 function botones() {
     buttonLogin.addEventListener('click',templogin)
+    buttonLoginNewUser.addEventListener('click',interfaceNewUser)
+
+
     buttonCreateNewUser.addEventListener('click',newUser);
+    buttonNewUserLogin.addEventListener('click',interfaceLogin);
+
+    
     buttonCreateNewReserve.addEventListener('click',newReserve);
+    
 
 }
 
@@ -201,8 +222,8 @@ function main() {
     reservasTemp();
     botones();
     //interfaceTemp();
-    interfaceLogin();
-    //interfaceNewUser();
+    //interfaceLogin();
+    interfaceNewUser();
 }
 
 main();
