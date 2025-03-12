@@ -40,6 +40,7 @@ const textAreaNewReserveRazon = document.getElementById('textAreaNewReserveRazon
 
 const seccionShowLaboratory = document.getElementById('seccionShowLaboratory');
 
+const PRUEBAS = document.getElementById('PRUEBAS');
 
 let tempUser = "";
 let tempUsers = [];
@@ -148,6 +149,7 @@ function interfacesOff() {
     seccionNewReserve.style.display = 'none';
     seccionShowReserves.style.display = 'none';
     seccionShowLaboratory.style.display = 'none';
+    PRUEBAS.style.display = 'none';
 }
 
 function interfaceLogin() {
@@ -236,6 +238,8 @@ function interfaceShowLaboratory(){
     seccionShowLaboratory.style.display = 'flex';
 }
 
+
+
 function mostrarLaboratorios() {
     let divShowLaboratories = document.getElementById('divShowLaboratories');
     divShowLaboratories.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
@@ -247,7 +251,7 @@ function mostrarLaboratorios() {
         labCard.innerHTML = `
             <h3 class="lab-title">${laboratorio.nombre}</h3>    
             <img src=${laboratorio.foto} alt="Logo" class="logo">
-            <div>
+            <div class="MAPISCLASS">
             <button>Borrar</button>
             <button>Editar</button>
             </div>
@@ -264,10 +268,16 @@ function main() {
     reservasTemp();
     laboratoriosTemp();
     botones();
-    //interfaceTemp();
+    interfaceTemp();
     interfaceShowLaboratory();
-    //interfaceShowReserves();
+    interfaceShowReserves();
+    prueb();
     
+}
+
+function prueb(){
+    interfacesOff();
+    PRUEBAS.style.display = 'flex';
 }
 
 main();
