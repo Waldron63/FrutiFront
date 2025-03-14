@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas Laboratorios</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+
+    <section id="seccionLogin" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Login</strong></h1>
+                    <div class="divInputsUserForm">
+                        <label for="inputLoginEmail"><strong>Correo</strong></label>
+                        <input type="email" name="email" id="inputLoginEmail">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputLoginPassword"><strong>Contraseña</strong></label>
+                        <input type="password" name="password" id="inputLoginPassword">
+                    </div>
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonLoginNewUser" type="button"><strong>Crear Usuario</strong></button>
+                    <button id="buttonLoginLogin" type="button"><strong>Ingresar</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionNewUser" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Crear Usuario</strong></h1>
+                    <div class="divInputsUserForm">
+                        <label for="inputNewUserUser"><strong>Nombre Usuario</strong></label>
+                        <input type="text" name="user" id="inputNewUserUser">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewUserID"><strong>ID Escuela</strong></label>
+                        <input type="number" name="idUser" id="inputNewUserID" min="1">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewUserEmail"><strong>Correo</strong></label>
+                        <input type="email" name="email" id="inputNewUserEmail">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewUserPassword"><strong>Contraseña</strong></label>
+                        <input type="password" name="password" id="inputNewUserPassword">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="selectNewUserType"><strong>Tipo de Usuario</strong></label>
+                        <select name="userType" id="selectNewUserType"></select>
+                    </div>
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonNewUserLogin" type="button"></button><strong>Login</strong></button>
+                    <button id="buttonNewUserNewUser" type="button"><strong>Crear</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionEditUser" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Editar Usuario</strong></h1>
+                    <div class="divInputsUserForm">
+                        <label for="inputEditUserUser"><strong>Nombre Usuario</strong></label>
+                        <input type="text" name="user" id="inputEditUserUser">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditUserEmail"><strong>Correo</strong></label>
+                        <input type="email" name="email" id="inputEditUserEmail">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditUserPassword"><strong>Contraseña</strong></label>
+                        <input type="password" name="password" id="inputEditUserPassword">
+                    </div>
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonEditUserVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonEditUserGuardar" type="button"><strong>Guardar</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionNewReserve" class="seccion">
+    </section>
+
+    <section id="seccionShowReserves" class="seccion">
+        <div class="divShowBackground">
+            <div class="encabezadoMenu">
+                <img src="./img/Logo.png" class="logoPequeno">
+                <h1>Mostrar Reservas</h1>
+            </div>
+            <div class="divShowContainer">
+                <h1><strong>Reservas:</strong></h1>
+                <div id="divShowReservesReserves" class="divShowContent"></div>
+                <div class="divShowBotones">
+                    <button id="buttonShowReservesVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonShowReservesNewReserve" type="button"><strong>Crear Reserva</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionShowUsers" class="seccion">
+        <div class="divShowBackground">
+            <div class="encabezadoMenu">
+                <img src="./img/Logo.png" class="logoPequeno">
+                <h1>Mostrar Usuarios</h1>
+            </div>
+            <div class="divShowContainer">
+                <h1><strong>Usuarios:</strong></h1>
+                <div id="divShowUsersUsers" class="divShowContent"></div>
+                <div class="divShowBotones">
+                    <button id="buttonShowUsersVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonShowUsersNewUser" type="button"><strong>Crear Usuario</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionShowResources" class="seccion">
+        <div class="divShowBackground">
+            <div class="encabezadoMenu">
+                <img src="./img/Logo.png" class="logoPequeno">
+                <h1>Mostrar Recursos</h1>
+            </div>
+            <div class="divShowContainer">
+                <div class="divShowColumns">
+                    <div class="divShowContent divShowRecursos">
+                        <h2>Recursos Físicos</h2>
+                        <div id="divShowResourcesPhysical" class="divShowList"></div>
+                    </div>
+
+                    <div class="divShowContent divShowRecursos">
+                    <h2>Recursos Digitales</h2>
+                    <div id="divShowResourcesDigital" class="divShowList"></div>
+                </div>
+                </div>
+            
+                <div class="divShowBotones">
+                    <button id="buttonShowResourcesVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonShowResourcesNewResource" type="button"><strong>Agregar Recurso</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionShowLaboratories" class="seccion">
+
+    </section>
+
+    <section id="seccionMenu" class="seccion">
+        <div>
+            <div class="encabezadoMenu">
+                <img src="./img/Logo.png" class="logoPequeno">
+                <h1>Menú</h1>
+            </div>
+            <div >
+
+            </div>
+        </div>
+        
+
+    </section>
+
+    <section id="seccion" class="seccion">
+
+    </section>
+
+
+    <script src="./JS/script.js"></script>
+</body>
+
+</html>
