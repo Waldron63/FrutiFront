@@ -5,7 +5,8 @@
 
     --colorPrincipalClaro: #ffffff;
 
-    --colorSecundario: #F07D7D;
+    --colorSecundario: #ff9595;
+    --colorSecundarioClaro: #fda9a9;
 
     --colorFondoSecundario: #F5F5F5;
 
@@ -14,9 +15,9 @@
 
     --colorBoxShadow: #00000072;
 
-    --fuentePrincipal: 'Urbanis', sans-serif;
+    --fontFamily: "Raleway", sans-serif;
 
-    --borderRadius: 6px;
+    --borderRadius: 2px;
 
     /*FOTOS*/
     --imgLoginBackground: url('../img/BloqueI.jpg');
@@ -25,8 +26,10 @@
 
 /*GENERAL*/
 body {
-    font-family: var(--fuentePrincipal);
-    font-optical-sizing: auto;
+    font-family: var(--fontFamily);
+    font-weight: 100;
+    font-style: normal;
+
     
     margin: 0; 
     padding: 0; 
@@ -34,16 +37,16 @@ body {
 }
 
 h1 {
-    font-family: var(--fuentePrincipal);
+    font-family: var(--fontFamily);
     font-size: 2.5rem;
-    font-weight: 500;
+    font-weight: 100;
 
     align-self: center;
     text-align: center;
 }
 
 label {
-    font-family: var(--fuentePrincipal);
+    font-family: var(--fontFamily);
     font-size: 1rem;
     font-weight: normal;
 
@@ -52,7 +55,7 @@ label {
     margin-left: 2px;
 }
 
-input {
+input, textarea {
     font-size: 1rem;
 
     width: 35vw;
@@ -81,7 +84,7 @@ select {
 button {
     width: 40%;
     
-    font-family: var(--fuentePrincipal);
+    font-family: var(--fontFamily);
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -124,6 +127,7 @@ button {
     
     color: var(--colorTextoClaro);
     background: var(--colorPrincipalTrasparente);
+    backdrop-filter: blur(4px);
 
     animation: slideInRight 0.8s ease-out;
 }
@@ -142,7 +146,7 @@ button {
 }
 
 .divUserBotones{
-    width: 60%;
+    width: 90%;
 
     display: flex;
     justify-content: center;
@@ -192,8 +196,9 @@ button {
     margin: 5vh;
     padding: 5px;
 
-    background: var(--colorPrincipalTrasparente);
-    color: var(--colorTextoClaro);
+    background: var(--colorSecundario);
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
+    color: var(--colorTextoOscuro);
 
     display: flex;
     flex-direction: column;
@@ -208,8 +213,8 @@ button {
     height: 55vh; 
     padding-inline: 3vw;
 
-    background: var(--colorSecundario);
-
+    background: var(--colorSecundarioClaro);
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
     border-radius: var(--borderRadius);    
     
 
@@ -228,24 +233,22 @@ button {
 }
 
 .showCards {
-    width: 80%;
+    font-family: var(--fontFamily);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+    width: 95%;
     height: auto;
-    padding: 15px; 
-    margin: 6px;
+    padding: 25px 20px; 
+    margin: 10px;
 
     background: var(--colorFondoSecundario);
     color: var(--colorTextoOscuro);
-
     border-radius: var(--borderRadius);
-
-    font-size: 1.1rem; 
-    text-align: left; 
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
     
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
     animation: fadeIn 0.6s ease-out;
 }
 
@@ -271,17 +274,16 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background: #990000;
     
     overflow-y: auto;    
+    overflow-x: hidden;
 }
 
 .divShowRecursos {
     width: 40%;
     height: 100%;
     
-    background: var(--colorFondoSecundario);
+    background: var(--colorPrincipalClaro);
     color: var(--colorTextoOscuro);
 
     border-radius: var(--borderRadius);
@@ -316,10 +318,9 @@ button {
 }
 
 
-input:focus {
+input:focus, select:focus {
     outline: none;
-    border-color: var(--primaryColor);
-    box-shadow: 0px 0px 5px 5px var(--colorBoxShadow);
+    box-shadow: 0px 0px 5px 3px var(--colorBoxShadow);
 }
 
 button:hover {

@@ -26,6 +26,15 @@ const buttonEditUserGuardar = document.getElementById('buttonEditUserGuardar');
 
 //NEW RESERVE
 const seccionNewReserve = document.getElementById('seccionNewReserve');
+const selectNewReserveLaboratory = document.getElementById('selectNewReserveLaboratory');
+const selectNewReserveType = document.getElementById('selectNewReserveType');
+const textAreaNewReserveRazon = document.getElementById('textAreaNewReserveRazon');
+const inputNewReserveDate = document.getElementById('inputNewReserveDate');
+const inputNewReserveStartTime = document.getElementById('inputNewReserveStartTime');
+const inputNewReserveEndTime = document.getElementById('inputNewReserveEndTime');
+const buttonNewReserveVolver = document.getElementById('buttonNewReserveVolver');
+const buttonNewReserveNewReserve = document.getElementById('buttonNewReserveNewReserve');
+
 
 //SHOW RESERVES
 const seccionShowReserves = document.getElementById('seccionShowReserves');
@@ -140,6 +149,8 @@ function interfaceEditUser(){
 
 function interfaceNewReserve(){
     interfacesOff();
+    addLaboratoriesNewReserve();
+    addReserveTypeNewReserve();
     seccionNewReserve.style.display = 'flex';
 }
 
@@ -193,6 +204,10 @@ function botonesEvents(){
     buttonShowReservesVolver.addEventListener('click',interfaceMenu);
     buttonShowReservesNewReserve.addEventListener('click',interfaceNewReserve);
 
+    //NEW RESERVE
+    //buttonNewReserveVolver.addEventListener('click',); //ARREGLAR
+    buttonNewReserveNewReserve.addEventListener('click',newReserve);
+
     //SHOW RESOURCES
     //buttonShowResourcesVolver.addEventListener('click',alert("ARREGLAR"));
     //buttonShowResourcesNewResource.addEventListener('click',alert("ARREGLAR"));
@@ -200,11 +215,44 @@ function botonesEvents(){
 
 //======ACCIONES
 function inputEventos(){
+    //NEW USER
     inputNewUserID.addEventListener("input", function () {
         if (this.value < 1) {
             this.value = "";
         }
     });
+    
+    //NEW RESERVE
+    let today = new Date().toISOString().split("T")[0];
+    inputNewReserveDate.setAttribute("min", today);
+
+    inputNewReserveEndTime.setAttribute("readonly", true);
+    inputNewReserveStartTime.addEventListener("input",horaFinal);
+    
+
+}
+
+function horaFinal() {
+    if (inputNewReserveStartTime.value) {
+        let [hours, minutes] = inputNewReserveStartTime.value.split(":");
+        let endHours = parseInt(hours);
+        let endMinutes = parseInt(minutes) + 30;
+
+        if (endMinutes >= 60) {
+            endHours += 1;
+            endMinutes -= 60;
+        }
+
+        endHours += 1;
+
+        if (endHours >= 24) {
+            endHours -= 24;
+        }
+
+        inputNewReserveEndTime.value = `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
+    } else {
+        inputNewReserveEndTime.value = "";
+    }
 }
 
 //======METODOS
@@ -232,6 +280,7 @@ function addUserTypes(){
         { value: "administrador", text: "Administrador"}
     ];
     
+
     userTypes.forEach(type => {
         let option = document.createElement("option");
         option.value = type.value;  
@@ -249,29 +298,67 @@ function showUsers(){
         let userCard = document.createElement('button');
         userCard.classList.add('showCards');
         userCard.innerHTML = `
-            <strong>Nombre Usuario: ${usuario.userName}</strong> <br>
-            <strong>ID: ${usuario.id}</strong> <br>
-            <strong>Email: ${usuario.email}</strong> <br>
-            <strong>Rol: ${usuario.type}</strong> <br>
+            <strong>Usuario: </strong>${usuario.userName} <br>
+            <strong>ID: </strong>${usuario.id} <br>
+            <strong>Email: </strong>${usuario.email} <br>
+            <strong>Rol: </strong>${usuario.type} <br>
         `;
         
         divShowUsersUsers.appendChild(userCard);
     });
 }
 
+//NEW RESERVE
+function newReserve(){
+    alert("Reserva Creada");
+}
+
+function addLaboratoriesNewReserve() {
+    selectNewReserveLaboratory.innerHTML = "";
+
+    
+    let option = document.createElement("option");
+    option.value = "none";
+    option.text = "";
+    selectNewReserveLaboratory.appendChild(option);
+
+    
+    laboratories.forEach(laboratory => {
+        option = document.createElement("option");
+        option.value = laboratory.name;
+        option.textContent = laboratory.name;
+        selectNewReserveLaboratory.appendChild(option);
+    });
+}
+
+function addReserveTypeNewReserve() {
+    selectNewReserveType.innerHTML = "";
+    let reserveTypes = [
+        { value: "none", text: "" },
+        { value: "clase", text: "Clase" },
+        { value: "reserva", text: "Reserva" }
+    ];
+
+    reserveTypes.forEach(type => {
+        let option = document.createElement("option");
+        option.value = type.value;
+        option.textContent = type.text;
+        selectNewReserveType.appendChild(option);
+    });
+}
+
 //SHOW RESERVES
 function showReserves(){
     divShowReservesReserves.innerHTML = "";
-    let tempReservesArray = tempAddReserves();
 
     tempReservesArray.forEach(reserva => {
         let reserveCard = document.createElement('button');
         reserveCard.classList.add('showCards');
         reserveCard.innerHTML = `
-            <strong>Laboratorio:</strong> ${reserva.laboratory.name} <br>
-            <strong>Tipo:</strong> ${reserva.type} <br>
-            <strong>Día:</strong> ${reserva.day} <br>
-            <strong>Hora:</strong> ${reserva.startTime} - ${reserva.endTime} <br>
+            <strong>Laboratorio:</strong>${reserva.laboratory} <br>
+            <strong>Tipo:</strong> ${reserva.type}<br>
+            <strong>Día:</strong> ${reserva.day}<br>
+            <strong>Hora:</strong> ${reserva.startTime} - ${reserva.endTime}<br>
         `;
 
         divShowReservesReserves.appendChild(reserveCard);
@@ -303,9 +390,8 @@ function showResourcesPhysical() {
 
 function showResourcesDigital() {
     divShowResourcesDigital.innerHTML = "";
-    let tempDigitalArray = tempAddDigital();
 
-    tempDigitalArray.forEach(recurso => {
+    laboratories.forEach(recurso => {
         let resourceCard = document.createElement('button');
         resourceCard.classList.add('showCards');
         resourceCard.innerHTML = `
@@ -319,6 +405,9 @@ function showResourcesDigital() {
 
 //MAIN
 function main(){
+    laboratories = tempAddLaboratories();
+    reserves = tempAddReserves();
+
     interfacesOff();
     botonesEvents();
     inputEventos();
@@ -333,8 +422,9 @@ main();
 //FALTA AJUSTAR VISUAL
 //interfaceShowUsers();
 //interfaceShowReserves();
-//interfaceShowResources(); //AJUSTAR UNAS CLASES
+//interfaceShowResources();
 
+interfaceNewReserve();
 
 
 //document.addEventListener("DOMContentLoaded", main);
@@ -344,12 +434,13 @@ main();
 function tempAddUsers() {
     let users = [];
     for (let i = 0; i < 10; i++) {
+        let randomNumber = rando(1,99999)
         users.push(new User(
             `Usuario${i}`,           
-            i,
-            `correo${i}@email.com`, 
-            "contrasena",
-            "profesor"
+            randomNumber,
+            `correo${randomNumber}@email.com`, 
+            "Contrasena",
+            "Profesor"
         ));
     }
     return users;
@@ -394,8 +485,9 @@ function tempAddPhysical() {
     let physicalResources = [];
 
     for (let i = 0; i < 10; i++) {
+        let randomNumber = rando(1,99999)
         let object = `Objeto ${i + 1}`;
-        let quantity = i;
+        let quantity = randomNumber;
 
         physicalResources.push(new ResourcePhysical(object, quantity));
     }
@@ -407,11 +499,16 @@ function tempAddDigital() {
     let digitalResources = [];
 
     for (let i = 10; i < 20; i++) {
-        let name = `Software ${i - 9}`;
-        let version = `Version: ${i}.0`;
+        let randomNumber = rando(1,99999)
+        let name = `Software ${randomNumber}`;
+        let version = `Version: ${randomNumber}.0`;
 
         digitalResources.push(new ResourceDigital(name, version));
     }
 
     return digitalResources;
+}
+
+function rando(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
