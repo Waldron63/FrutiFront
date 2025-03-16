@@ -1,4 +1,4 @@
-//============VARIABLES GLOBALES
+//============OBJETOS CADA INTERFAZ
 //LOGIN
 const seccionLogin = document.getElementById('seccionLogin');
 const inputLoginEmail = document.getElementById('inputLoginEmail');
@@ -95,14 +95,15 @@ const seccionMenu = document.getElementById('seccionMenu');
 //SHOW LABORATORIES
 const seccionShowLaboratories = document.getElementById('seccionShowLaboratories');
 
-//VARIABLES GENERALES
+//============VARIABLES FUNCIONAMIENTO
+//PARA GUARDAR TODAS LAS SECCIONES
 let secciones = document.querySelectorAll('.seccion');
 
-//VARIABLES TEMPORALES
-let userLogin;
-let isLogin = false;
+//SISTEMA DE LOGUEO
+let userLogin; //DATOS DEL USUARIO LOGUEADO
+let isLogin = false; //PARA INDICAR QUE EL USUARIO ESTA LOGUEADO O NO
 
-//AGRUPAN COSAS
+//GUARDAR COSAS GENERALES
 let laboratories; //Este es para listar laboratorios
 let reserves; //Este es para listar las reservas del usuario
 
@@ -158,12 +159,12 @@ function interfacesOff(){
         seccion.style.display = 'none';
     });
 }
-
+//LOGIN
 function interfaceLogin(){
     interfacesOff();
     seccionLogin.style.display = 'flex';
 }
-
+//NEW USER
 function interfaceNewUser(){
     interfacesOff();
     addTypesSelect(selectNewUserType,[
@@ -173,23 +174,23 @@ function interfaceNewUser(){
     ]);
     seccionNewUser.style.display = 'flex';
 }
-
+//EDIT USER
 function interfaceEditUser(){
     interfacesOff();
     seccionEditUser.style.display = 'flex';
 }
-
+//NEW LABORATORY
 function interfaceNewLaboratory(){
     interfacesOff();
     seccionNewLaboratory.style.display = 'flex';
 }
-
+//EDIT LABORATORY
 function interfaceEditLaboratory(){
     interfacesOff();
     addLaboratoriesSelect(selectEditLaboratoryLaboratory);
     seccionEditLaboratory.style.display = 'flex';
 }
-
+//NEW RESERVE
 function interfaceNewReserve(){
     interfacesOff();
     addLaboratoriesSelect(selectNewReserveLaboratory);
@@ -200,7 +201,7 @@ function interfaceNewReserve(){
     ])
     seccionNewReserve.style.display = 'flex';
 }
-
+//NEW RESOURCE
 function interfaceNewResource(){
     interfacesOff();
     addLaboratoriesSelect(selectNewResourceLaboratory);
@@ -215,37 +216,96 @@ function interfaceNewResource(){
 
     seccionNewResource.style.display = 'flex';
 }
-
-function interfaceShowReserves(){
-    interfacesOff();
-    showReserves();
-    seccionShowReserves.style.display = 'flex';
-}
-
+//SHOW USERS
 function interfaceShowUsers(){
     interfacesOff();
     showUsers();
     seccionShowUsers.style.display = 'flex';
 }
-
+//SHOW RESERVES
+function interfaceShowReserves(){
+    interfacesOff();
+    showReserves();
+    seccionShowReserves.style.display = 'flex';
+}
+//SHOW RESOURCES
 function interfaceShowResources(){
     interfacesOff();
     addLaboratoriesSelect(selectShowResourcesLaboratory);
     showResources();
     seccionShowResources.style.display = 'flex';
 }
-
+//SHOW LABORATORIES
 function interfaceShowLaboratories(){
     interfacesOff();
     seccionShowLaboratories.style.display = 'flex';
 }
-
+//MENU
 function interfaceMenu(){
     interfacesOff();
     seccionMenu.style.display = 'flex';
 }
 
+//======ENVIAR DATOS AL  BACK
+//LOGIN
+function login(){
+    alert("Login");
+}
+//NEW USER
+function newUser(){
+    alert("newUser");
+}
+//EDIT USER
+function editUser(){
+    alert("Editado");
+}
+//NEW LABORATORY
+function newLaboratory(){
+    alert("Laboratorio Creado");
+}
+//EDIT LABORATORY
+function editLaboratory(){
+    alert("Guardado");
+}
+//NEW RESERVE
+function newReserve(){
+    alert("Reserva Creada");
+}
+//NEW RESOURCE
+function addResource(){
+    alert("Agregado");
+}
+//SHOW USERS
+//SHOW RESERVES
+//SHOW RESOURCES
+//MENU
+
+//======RECIBIR DATOS DEL  BACK
+//LOGIN
+
+//NEW USER
+
+//EDIT USER
+
+//NEW LABORATORY
+
+//EDIT LABORATORY
+
+//NEW RESERVE
+
+//NEW RESOURCE
+
+//SHOW USERS
+
+//SHOW RESERVES
+
+//SHOW RESOURCES
+
+//MENU
+
+
 //======BOTONES
+    //ESTA DEFINE LAS ACCIONES DE LOS BOTONES
 function botonesEvents(){
     //LOGIN
     buttonLoginNewUser.addEventListener('click',interfaceNewUser);
@@ -255,9 +315,24 @@ function botonesEvents(){
     buttonNewUserLogin.addEventListener('click',interfaceLogin);
     buttonNewUserNewUser.addEventListener('click',newUser);
 
-    //EDIT
+    //EDIT USER
     buttonEditUserVolver.addEventListener('click',interfaceMenu);
-    buttonEditUserGuardar.addEventListener('click',edit);
+    buttonEditUserGuardar.addEventListener('click',editUser);
+
+    //NEW LABORATORY
+    buttonNewLaboratoryVolver.addEventListener('click',interfaceMenu);
+    buttonNewLaboratoryNewLaboratory.addEventListener('click',newLaboratory);
+
+    //EDIT LABORATORY
+
+
+    //NEW RESERVE
+    //buttonNewReserveVolver.addEventListener('click',); //ARREGLAR
+    buttonNewReserveNewReserve.addEventListener('click',newReserve);
+
+    //NEW RESOURCE
+    buttonNewResourceVovler.addEventListener('click',interfaceMenu);
+    buttonNewResourceAdd.addEventListener('click',addResource);
 
     //SHOW USERS
     buttonShowUsersVolver.addEventListener('click',interfaceMenu);
@@ -267,38 +342,25 @@ function botonesEvents(){
     buttonShowReservesVolver.addEventListener('click',interfaceMenu);
     buttonShowReservesNewReserve.addEventListener('click',interfaceNewReserve);
 
-    //NEW RESERVE
-    //buttonNewReserveVolver.addEventListener('click',); //ARREGLAR
-    buttonNewReserveNewReserve.addEventListener('click',newReserve);
-
     //SHOW RESOURCES
     //buttonShowResourcesVolver.addEventListener('click',alert("ARREGLAR"));
     //buttonShowResourcesNewResource.addEventListener('click',alert("ARREGLAR"));
 
-    //NEW LABORATORY
-    buttonNewLaboratoryVolver.addEventListener('click',interfaceMenu);
-    buttonNewLaboratoryNewLaboratory.addEventListener('click',newLaboratory);
-
-    //NEW RESOURCE
-    buttonNewResourceVovler.addEventListener('click',interfaceMenu);
-    buttonNewResourceAdd.addEventListener('click',addResource);
+    //MENU
 }
 
-//======ACCIONES
+//======INPUTS
 function inputEventos(){
+    //LOGIN
+
     //NEW USER
     inputNewUserID.addEventListener("input", function () {
         if (this.value < 1) {
             this.value = "";
         }
     });
-    
-    //NEW RESERVE
-    let today = new Date().toISOString().split("T")[0];
-    inputNewReserveDate.setAttribute("min", today);
 
-    inputNewReserveEndTime.setAttribute("readonly", true);
-    inputNewReserveStartTime.addEventListener("input",horaFinal);
+    //EDIT USER
 
     //NEW LABORATORY
     inputNewLaboratoryCapacity.addEventListener("input", function () {
@@ -306,6 +368,16 @@ function inputEventos(){
             this.value = "";
         }
     });
+
+    //EDIT LABORATORY
+
+    
+    //NEW RESERVE
+    let today = new Date().toISOString().split("T")[0];
+    inputNewReserveDate.setAttribute("min", today);
+
+    inputNewReserveEndTime.setAttribute("readonly", true);
+    inputNewReserveStartTime.addEventListener("input",horaFinal);
 
     //NEW RESOURCE
     inputNewResourceQuantity.addEventListener("input", function () {
@@ -332,18 +404,59 @@ function inputEventos(){
         }
     });
 
+    //SHOW USERS
+
+    //SHOW RESERVES
+
+    //SHOW RESOURCES
+
+    //MENU
   
 }
 
-function cleanNewResource(){
-    divNewResourcePhysical.style.display = "none";
-    inputNewResourceName.value = "";
-    inputNewResourceQuantity.value = "";
-    divNewResourceDigital.style.display = "none";
-    inputNewResourceSoftware.value = "";
-    inputNewResourceVersion.value = "";
-}
+//======METODOS PARA FUNCIONAMIENTO
+//GENERALES
+    //GERNERAR LOS LABORATORIOS EN EL SELECT INDICADO
+function addLaboratoriesSelect(selectLaboratory) {
+    selectLaboratory.innerHTML = "";
 
+    
+    let option = document.createElement("option");
+    option.value = "none";
+    option.text = "";
+    selectLaboratory.appendChild(option);
+
+    
+    laboratories.forEach(laboratory => {
+        option = document.createElement("option");
+        option.value = laboratory.name;
+        option.textContent = laboratory.name;
+        selectLaboratory.appendChild(option);
+    });
+}
+    //PONER LOS TIPOS DE ALGO (UN ARREGLO [{VALUE = "", TEXT = ""}]}) EN UN SELECT INDICADO
+function addTypesSelect(selectType,types){
+    selectType.innerHTML ="";
+    
+    types.forEach(type => {
+        let option = document.createElement("option");
+        option.value = type.value;  
+        option.textContent = type.text;  
+        selectType.appendChild(option);  
+    });
+}
+//LOGIN
+
+//NEW USER
+
+//EDIT USER
+
+//NEW LABORATORY
+
+//EDIT LABORATORY
+
+//NEW RESERVE
+    //PARA QUE CAMBIE LA HORA FINAL DE LA RESERVA
 function horaFinal() {
     if (inputNewReserveStartTime.value) {
         let [hours, minutes] = inputNewReserveStartTime.value.split(":");
@@ -366,24 +479,18 @@ function horaFinal() {
         inputNewReserveEndTime.value = "";
     }
 }
-
-//======METODOS
-//LOGIN
-function login(){
-    alert("Login");
+//NEW RESOURCE
+    //LIMPIAR LOS INPUTS
+function cleanNewResource(){
+    divNewResourcePhysical.style.display = "none";
+    inputNewResourceName.value = "";
+    inputNewResourceQuantity.value = "";
+    divNewResourceDigital.style.display = "none";
+    inputNewResourceSoftware.value = "";
+    inputNewResourceVersion.value = "";
 }
-
-//NEW USER
-function newUser(){
-    alert("newUser");
-}
-
-//EDIT
-function edit(){
-    alert("Editado");
-}
-
 //SHOW USERS
+    //CREAR LAS TARJETAS DE USUARIOS
 function showUsers(){
     divShowUsersUsers.innerHTML = "";
 
@@ -401,42 +508,8 @@ function showUsers(){
         divShowUsersUsers.appendChild(userCard);
     });
 }
-
-//NEW RESERVE
-function newReserve(){
-    alert("Reserva Creada");
-}
-
-function addLaboratoriesSelect(selectLaboratory) {
-    selectLaboratory.innerHTML = "";
-
-    
-    let option = document.createElement("option");
-    option.value = "none";
-    option.text = "";
-    selectLaboratory.appendChild(option);
-
-    
-    laboratories.forEach(laboratory => {
-        option = document.createElement("option");
-        option.value = laboratory.name;
-        option.textContent = laboratory.name;
-        selectLaboratory.appendChild(option);
-    });
-}
-
-function addTypesSelect(selectType,types){
-    selectType.innerHTML ="";
-    
-    types.forEach(type => {
-        let option = document.createElement("option");
-        option.value = type.value;  
-        option.textContent = type.text;  
-        selectType.appendChild(option);  
-    });
-}
-
 //SHOW RESERVES
+    //CREAR LAS TARJETAS DE RESERVAS
 function showReserves(){
     divShowReservesReserves.innerHTML = "";
 
@@ -454,13 +527,13 @@ function showReserves(){
     });
 
 }
-
 //SHOW RESOURCES
+    //CREAR LAS TARJETAS DE RECURSOS
 function showResources(){
     showResourcesPhysical();
     showResourcesDigital();
 }
-
+    //CREAR TARJETAS RECURSOS FISICOS
 function showResourcesPhysical() {
     divShowResourcesPhysical.innerHTML = "";
     let tempPhysicalArray = tempAddPhysical();
@@ -476,7 +549,7 @@ function showResourcesPhysical() {
         divShowResourcesPhysical.appendChild(resourceCard);
     });
 }
-
+    //CREAR TARJETAS RECURSOS DIGITALES
 function showResourcesDigital() {
     divShowResourcesDigital.innerHTML = "";
 
@@ -491,16 +564,9 @@ function showResourcesDigital() {
         divShowResourcesDigital.appendChild(resourceCard);
     });
 }
+//MENU
 
-//NEW LABORATORY
-function newLaboratory(){
-    alert("Laboratorio Creado");
-}
 
-//NEW RESOURCE
-function addResource(){
-    alert("Agregado");
-}
 
 //MAIN
 function main(){
@@ -513,9 +579,7 @@ function main(){
 }
 
 main();
-//interfaceLogin();
-//interfaceNewUser();
-//interfaceEditUser();
+
 //interfaceMenu(); //FALTA TERMINARLA
 
 //FALTA AJUSTAR VISUAL
@@ -523,17 +587,12 @@ main();
 //interfaceShowReserves();
 //interfaceShowResources();   //FALTA COMPLETARLA
 
-//interfaceNewReserve();
-//interfaceNewLaboratory();
-
-//interfaceNewResource();
-interfaceEditLaboratory();
 
 
 //document.addEventListener("DOMContentLoaded", main);
 
 
-//======TEMPORALES
+//======TEMPORALES (ES MIENTRAS UNIMOS CON EL BACK)
 function tempAddUsers() {
     let users = [];
     for (let i = 0; i < 10; i++) {
