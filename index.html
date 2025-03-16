@@ -105,6 +105,95 @@
         </div>
     </section>
 
+    <section id="seccionNewLaboratory" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Crear Laboratorio</strong></h1>
+                    
+                    <div class="divInputsUserForm">
+                        <label for="inputNewLaboratoryName"><strong>Nombre</strong></label>
+                        <input type="text" name="name" id="inputNewLaboratoryName">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewLaboratoryAbreviation"><strong>Abreviacion</strong></label>
+                        <input type="text" name="abreviation" id="inputNewLaboratoryAbreviation">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewLaboratoryCapacity"><strong>Capacidad Total</strong></label>
+                        <input type="number" name="capacity" id="inputNewLaboratoryCapacity" min="1">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewLaboratoryLocation"><strong>Ubicacion</strong></label>
+                        <input type="text" name="location" id="inputNewLaboratoryLocation">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputNewLaboratoryImage"><strong>Fotografía</strong></label>
+                        <input type="file" name="image" id="inputNewLaboratoryImage" accept="image/*">
+                    </div>
+                    
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonNewLaboratoryVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonNewLaboratoryNewLaboratory" type="button"><strong>Crear</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionEditLaboratory" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Editar Laboratorio</strong></h1>
+
+                    <div class="divInputsUserForm">
+                        <label for="selectEditLaboratoryLaboratory"><strong>Laboratorio</strong></label>
+                        <select name="laboratory" id="selectEditLaboratoryLaboratory"></select>
+                    </div>
+                    
+                    <div class="divInputsUserForm">
+                        <label for="inputEditLaboratoryName"><strong>Nombre</strong></label>
+                        <input type="text" name="name" id="inputEditLaboratoryName">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditLaboratoryAbreviation"><strong>Abreviacion</strong></label>
+                        <input type="text" name="abreviation" id="inputEditLaboratoryAbreviation">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditLaboratoryCapacity"><strong>Capacidad Total</strong></label>
+                        <input type="number" name="capacity" id="inputEditLaboratoryCapacity" min="1">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditLaboratoryLocation"><strong>Ubicacion</strong></label>
+                        <input type="text" name="location" id="inputEditLaboratoryLocation">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputEditLaboratoryImage"><strong>Fotografía</strong></label>
+                        <input type="file" name="image" id="inputEditLaboratoryImage" accept="image/*">
+                    </div>
+                    
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonEditLaboratoryVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonEditLaboratoryGuardar" type="button"><strong>Guardar</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="seccionNewReserve" class="seccion">
         <div class="divUserBackground">
             <div class="divUserPrincipal">
@@ -150,19 +239,54 @@
             </div>
         </div>
     </section>
+    
+    <section id="seccionNewResource" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Agregar Recurso</strong></h1>
+                    
+                    <div class="divInputsUserForm">
+                        <label for="selectNewResourceLaboratory"><strong>Laboratorio</strong></label>
+                        <select name="laboratory" id="selectNewResourceLaboratory"></select>
+                    </div>
 
-    <section id="seccionShowReserves" class="seccion">
-        <div class="divShowBackground">
-            <div class="encabezadoMenu">
-                <img src="./img/Logo.png" class="logoPequeno">
-                <h1>Mostrar Reservas</h1>
-            </div>
-            <div class="divShowContainer">
-                <h1><strong>Reservas:</strong></h1>
-                <div id="divShowReservesReserves" class="divShowContent"></div>
-                <div class="divShowBotones">
-                    <button id="buttonShowReservesVolver" type="button"><strong>Volver</strong></button>
-                    <button id="buttonShowReservesNewReserve" type="button"><strong>Crear Reserva</strong></button>
+                    <div class="divInputsUserForm">
+                        <label for="selectNewResourceType"><strong>Tipo de Recurso</strong></label>
+                        <select name="Type" id="selectNewResourceType"></select>
+                    </div>
+
+                    <div id="divNewResourcePhysical" class="divInputsUserForm">
+                        <div class="divInputsUserForm">
+                            <label for="inputNewResourceName"><strong>Nombre</strong></label>
+                            <input type="text" name="name" id="inputNewResourceName">
+                        </div>
+
+                        <div class="divInputsUserForm">
+                            <label for="inputNewResourceQuantity"><strong>Cantidad</strong></label>
+                            <input type="number" name="quantity" id="inputNewResourceQuantity" min="1">
+                        </div>
+
+                    </div>
+
+                    <div id="divNewResourceDigital" class="divInputsUserForm">
+                        <div class="divInputsUserForm">
+                            <label for="inputNewResourceSoftware"><strong>Nombre del Software</strong></label>
+                            <input type="text" name="software" id="inputNewResourceSoftware">
+                        </div>
+
+                        <div class="divInputsUserForm">
+                            <label for="inputNewResourceVersion"><strong>Version</strong></label>
+                            <input type="number" name="version" id="inputNewResourceVersion" min="1">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonNewResourceVovler" type="button"><strong>Volver</strong></button>
+                    <button id="buttonNewResourceAdd" type="button"><strong>Agregar</strong></button>
                 </div>
             </div>
         </div>
@@ -185,6 +309,23 @@
         </div>
     </section>
 
+    <section id="seccionShowReserves" class="seccion">
+        <div class="divShowBackground">
+            <div class="encabezadoMenu">
+                <img src="./img/Logo.png" class="logoPequeno">
+                <h1>Mostrar Reservas</h1>
+            </div>
+            <div class="divShowContainer">
+                <h1><strong>Reservas:</strong></h1>
+                <div id="divShowReservesReserves" class="divShowContent"></div>
+                <div class="divShowBotones">
+                    <button id="buttonShowReservesVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonShowReservesNewReserve" type="button"><strong>Crear Reserva</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="seccionShowResources" class="seccion">
         <div class="divShowBackground">
             <div class="encabezadoMenu">
@@ -192,6 +333,11 @@
                 <h1>Mostrar Recursos</h1>
             </div>
             <div class="divShowContainer">
+                <div class="divInputsUserForm">
+                    <label for="selectShowResourcesLaboratory"><strong>Laboratorio</strong></label>
+                    <select name="laboratory" id="selectShowResourcesLaboratory"></select>
+                </div>
+
                 <div class="divShowColumns">
                     <div class="divShowContent divShowRecursos">
                         <h2>Recursos Físicos</h2>
@@ -212,10 +358,6 @@
         </div>
     </section>
 
-    <section id="seccionShowLaboratories" class="seccion">
-
-    </section>
-
     <section id="seccionMenu" class="seccion">
         <div>
             <div class="encabezadoMenu">
@@ -230,6 +372,15 @@
 
     </section>
 
+    <section id="seccionShowLaboratories" class="seccion">
+
+    </section>
+
+    
+
+    
+
+    <!--PARA CREAR UNA SECCION SIEMPRE USAR ESTE-->
     <section id="seccion" class="seccion">
 
     </section>

@@ -24,6 +24,27 @@ const inputEditUserPassword = document.getElementById('inputEditUserPassword');
 const buttonEditUserVolver = document.getElementById('buttonEditUserVolver');
 const buttonEditUserGuardar = document.getElementById('buttonEditUserGuardar');
 
+//NEW LABORATORY
+const seccionNewLaboratory = document.getElementById('seccionNewLaboratory');
+const inputNewLaboratoryName = document.getElementById('inputNewLaboratoryName');
+const inputNewLaboratoryAbreviation = document.getElementById('inputNewLaboratoryAbreviation');
+const inputNewLaboratoryCapacity = document.getElementById('inputNewLaboratoryCapacity');
+const inputNewLaboratoryLocation = document.getElementById('inputNewLaboratoryLocation');
+const inputNewLaboratoryImage = document.getElementById('inputNewLaboratoryImage');
+const buttonNewLaboratoryVolver = document.getElementById('buttonNewLaboratoryVolver');
+const buttonNewLaboratoryNewLaboratory = document.getElementById('buttonNewLaboratoryNewLaboratory');
+
+//EDIT LABORATORY
+const seccionEditLaboratory = document.getElementById('seccionEditLaboratory');
+const selectEditLaboratoryLaboratory = document.getElementById('selectEditLaboratoryLaboratory');
+const inputEditLaboratoryName = document.getElementById('inputEditLaboratoryName');
+const inputEditLaboratoryAbreviation = document.getElementById('inputEditLaboratoryAbreviation');
+const inputEditLaboratoryCapacity = document.getElementById('inputEditLaboratoryCapacity');
+const inputEditLaboratoryLocation = document.getElementById('inputEditLaboratoryLocation');
+const inputEditLaboratoryImage = document.getElementById('inputEditLaboratoryImage');
+const buttonEditLaboratoryVolver = document.getElementById('buttonEditLaboratoryVolver');
+const buttonEditLaboratoryGuardar = document.getElementById('buttonEditLaboratoryGuardar');
+
 //NEW RESERVE
 const seccionNewReserve = document.getElementById('seccionNewReserve');
 const selectNewReserveLaboratory = document.getElementById('selectNewReserveLaboratory');
@@ -35,12 +56,18 @@ const inputNewReserveEndTime = document.getElementById('inputNewReserveEndTime')
 const buttonNewReserveVolver = document.getElementById('buttonNewReserveVolver');
 const buttonNewReserveNewReserve = document.getElementById('buttonNewReserveNewReserve');
 
-
-//SHOW RESERVES
-const seccionShowReserves = document.getElementById('seccionShowReserves');
-const divShowReservesReserves = document.getElementById('divShowReservesReserves');
-const buttonShowReservesVolver = document.getElementById('buttonShowReservesVolver');
-const buttonShowReservesNewReserve = document.getElementById('buttonShowReservesNewReserve');
+//NEW RESOURCE
+const seccionNewResource = document.getElementById('seccionNewResource');
+const selectNewResourceLaboratory = document.getElementById('selectNewResourceLaboratory');
+const selectNewResourceType = document.getElementById('selectNewResourceType');
+const divNewResourcePhysical = document.getElementById('divNewResourcePhysical');
+const inputNewResourceName = document.getElementById('inputNewResourceName');
+const inputNewResourceQuantity = document.getElementById('inputNewResourceQuantity');
+const divNewResourceDigital = document.getElementById('divNewResourceDigital');
+const inputNewResourceSoftware = document.getElementById('inputNewResourceSoftware');
+const inputNewResourceVersion = document.getElementById('inputNewResourceVersion');
+const buttonNewResourceVovler = document.getElementById('buttonNewResourceVovler');
+const buttonNewResourceAdd = document.getElementById('buttonNewResourceAdd');
 
 //SHOW USERS
 const seccionShowUsers = document.getElementById('seccionShowUsers');
@@ -48,31 +75,32 @@ const divShowUsersUsers = document.getElementById('divShowUsersUsers');
 const buttonShowUsersVolver = document.getElementById('buttonShowUsersVolver');
 const buttonShowUsersNewUser = document.getElementById('buttonShowUsersNewUser');
 
+//SHOW RESERVES
+const seccionShowReserves = document.getElementById('seccionShowReserves');
+const divShowReservesReserves = document.getElementById('divShowReservesReserves');
+const buttonShowReservesVolver = document.getElementById('buttonShowReservesVolver');
+const buttonShowReservesNewReserve = document.getElementById('buttonShowReservesNewReserve');
 
 //SHOW RESOURCES
 const seccionShowResources = document.getElementById('seccionShowResources');
+const selectShowResourcesLaboratory = document.getElementById('selectShowResourcesLaboratory');
 const divShowResourcesPhysical = document.getElementById('divShowResourcesPhysical');
 const divShowResourcesDigital = document.getElementById('divShowResourcesDigital');
 const buttonShowResourcesVolver = document.getElementById('buttonShowResourcesVolver');
 const buttonShowResourcesNewResource = document.getElementById('buttonShowResourcesNewResource');
 
-//SHOW LABORATORIES
-const seccionShowLaboratories = document.getElementById('seccionShowLaboratories');
-
-
 //MENU
 const seccionMenu = document.getElementById('seccionMenu');
 
+//SHOW LABORATORIES
+const seccionShowLaboratories = document.getElementById('seccionShowLaboratories');
 
 //VARIABLES GENERALES
 let secciones = document.querySelectorAll('.seccion');
 
-
-
 //VARIABLES TEMPORALES
 let userLogin;
 let isLogin = false;
-
 
 //AGRUPAN COSAS
 let laboratories; //Este es para listar laboratorios
@@ -138,7 +166,11 @@ function interfaceLogin(){
 
 function interfaceNewUser(){
     interfacesOff();
-    addUserTypes();
+    addTypesSelect(selectNewUserType,[
+        { value: "none", text: ""},
+        { value: "profesor", text: "Profesor" },
+        { value: "administrador", text: "Administrador"}
+    ]);
     seccionNewUser.style.display = 'flex';
 }
 
@@ -147,11 +179,41 @@ function interfaceEditUser(){
     seccionEditUser.style.display = 'flex';
 }
 
+function interfaceNewLaboratory(){
+    interfacesOff();
+    seccionNewLaboratory.style.display = 'flex';
+}
+
+function interfaceEditLaboratory(){
+    interfacesOff();
+    addLaboratoriesSelect(selectEditLaboratoryLaboratory);
+    seccionEditLaboratory.style.display = 'flex';
+}
+
 function interfaceNewReserve(){
     interfacesOff();
-    addLaboratoriesNewReserve();
-    addReserveTypeNewReserve();
+    addLaboratoriesSelect(selectNewReserveLaboratory);
+    addTypesSelect(selectNewReserveType,[
+        { value: "none", text: "" },
+        { value: "class", text: "Clase" },
+        { value: "reserve", text: "Reserva" }
+    ])
     seccionNewReserve.style.display = 'flex';
+}
+
+function interfaceNewResource(){
+    interfacesOff();
+    addLaboratoriesSelect(selectNewResourceLaboratory);
+    addTypesSelect(selectNewResourceType,[
+        { value: "none", text: ""},
+        { value: "physical", text: "Fisico" },
+        { value: "digital", text: "Digital"}
+    ]);
+    divNewResourceDigital.style.display = "none";
+    divNewResourcePhysical.style.display = "none";
+
+
+    seccionNewResource.style.display = 'flex';
 }
 
 function interfaceShowReserves(){
@@ -168,6 +230,7 @@ function interfaceShowUsers(){
 
 function interfaceShowResources(){
     interfacesOff();
+    addLaboratoriesSelect(selectShowResourcesLaboratory);
     showResources();
     seccionShowResources.style.display = 'flex';
 }
@@ -211,6 +274,14 @@ function botonesEvents(){
     //SHOW RESOURCES
     //buttonShowResourcesVolver.addEventListener('click',alert("ARREGLAR"));
     //buttonShowResourcesNewResource.addEventListener('click',alert("ARREGLAR"));
+
+    //NEW LABORATORY
+    buttonNewLaboratoryVolver.addEventListener('click',interfaceMenu);
+    buttonNewLaboratoryNewLaboratory.addEventListener('click',newLaboratory);
+
+    //NEW RESOURCE
+    buttonNewResourceVovler.addEventListener('click',interfaceMenu);
+    buttonNewResourceAdd.addEventListener('click',addResource);
 }
 
 //======ACCIONES
@@ -228,8 +299,49 @@ function inputEventos(){
 
     inputNewReserveEndTime.setAttribute("readonly", true);
     inputNewReserveStartTime.addEventListener("input",horaFinal);
-    
 
+    //NEW LABORATORY
+    inputNewLaboratoryCapacity.addEventListener("input", function () {
+        if (this.value < 1) {
+            this.value = "";
+        }
+    });
+
+    //NEW RESOURCE
+    inputNewResourceQuantity.addEventListener("input", function () {
+        if (this.value < 1) {
+            this.value = "";
+        }
+    });
+
+    inputNewResourceVersion.addEventListener("input", function () {
+        if (this.value < 1) {
+            this.value = "";
+        }
+    });
+
+    selectNewResourceType.addEventListener("change", function() {
+        let value = this.value;
+        
+        cleanNewResource();
+        
+        if (value === "physical") {
+            divNewResourcePhysical.style.display = "flex";
+        } else if (value === "digital") {
+            divNewResourceDigital.style.display = "flex";
+        }
+    });
+
+  
+}
+
+function cleanNewResource(){
+    divNewResourcePhysical.style.display = "none";
+    inputNewResourceName.value = "";
+    inputNewResourceQuantity.value = "";
+    divNewResourceDigital.style.display = "none";
+    inputNewResourceSoftware.value = "";
+    inputNewResourceVersion.value = "";
 }
 
 function horaFinal() {
@@ -271,24 +383,6 @@ function edit(){
     alert("Editado");
 }
 
-//NEWUSER
-function addUserTypes(){
-    selectNewUserType.innerHTML ="";
-    let userTypes = [
-        { value: "none", text: ""},
-        { value: "profesor", text: "Profesor" },
-        { value: "administrador", text: "Administrador"}
-    ];
-    
-
-    userTypes.forEach(type => {
-        let option = document.createElement("option");
-        option.value = type.value;  
-        option.textContent = type.text;  
-        selectNewUserType.appendChild(option);  
-    });
-}
-
 //SHOW USERS
 function showUsers(){
     divShowUsersUsers.innerHTML = "";
@@ -313,37 +407,32 @@ function newReserve(){
     alert("Reserva Creada");
 }
 
-function addLaboratoriesNewReserve() {
-    selectNewReserveLaboratory.innerHTML = "";
+function addLaboratoriesSelect(selectLaboratory) {
+    selectLaboratory.innerHTML = "";
 
     
     let option = document.createElement("option");
     option.value = "none";
     option.text = "";
-    selectNewReserveLaboratory.appendChild(option);
+    selectLaboratory.appendChild(option);
 
     
     laboratories.forEach(laboratory => {
         option = document.createElement("option");
         option.value = laboratory.name;
         option.textContent = laboratory.name;
-        selectNewReserveLaboratory.appendChild(option);
+        selectLaboratory.appendChild(option);
     });
 }
 
-function addReserveTypeNewReserve() {
-    selectNewReserveType.innerHTML = "";
-    let reserveTypes = [
-        { value: "none", text: "" },
-        { value: "clase", text: "Clase" },
-        { value: "reserva", text: "Reserva" }
-    ];
-
-    reserveTypes.forEach(type => {
+function addTypesSelect(selectType,types){
+    selectType.innerHTML ="";
+    
+    types.forEach(type => {
         let option = document.createElement("option");
-        option.value = type.value;
-        option.textContent = type.text;
-        selectNewReserveType.appendChild(option);
+        option.value = type.value;  
+        option.textContent = type.text;  
+        selectType.appendChild(option);  
     });
 }
 
@@ -403,6 +492,16 @@ function showResourcesDigital() {
     });
 }
 
+//NEW LABORATORY
+function newLaboratory(){
+    alert("Laboratorio Creado");
+}
+
+//NEW RESOURCE
+function addResource(){
+    alert("Agregado");
+}
+
 //MAIN
 function main(){
     laboratories = tempAddLaboratories();
@@ -422,9 +521,13 @@ main();
 //FALTA AJUSTAR VISUAL
 //interfaceShowUsers();
 //interfaceShowReserves();
-//interfaceShowResources();
+//interfaceShowResources();   //FALTA COMPLETARLA
 
-interfaceNewReserve();
+//interfaceNewReserve();
+//interfaceNewLaboratory();
+
+//interfaceNewResource();
+interfaceEditLaboratory();
 
 
 //document.addEventListener("DOMContentLoaded", main);
