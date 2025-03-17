@@ -12,7 +12,7 @@ const inputNewUserUser = document.getElementById('inputNewUserUser');
 const inputNewUserID = document.getElementById('inputNewUserID');
 const inputNewUserEmail = document.getElementById('inputNewUserEmail');
 const inputNewUserPassword = document.getElementById('inputNewUserPassword');
-const selectNewUserType = document.getElementById('selectNewUserType');
+const divSelectUserType = document.getElementById('divSelectUserType');
 const divNewUserButtons = document.getElementById('divNewUserButtons');
 const buttonNewUserLogin = document.getElementById('buttonNewUserLogin');
 const buttonNewUserShowUsers = document.getElementById('buttonNewUserShowUsers');
@@ -36,6 +36,17 @@ const inputNewLaboratoryImage = document.getElementById('inputNewLaboratoryImage
 const buttonNewLaboratoryVolver = document.getElementById('buttonNewLaboratoryVolver');
 const buttonNewLaboratoryShowLaboratories = document.getElementById('buttonNewLaboratoryShowLaboratories');
 const buttonNewLaboratoryNewLaboratory = document.getElementById('buttonNewLaboratoryNewLaboratory');
+
+//ADD SCHEDULE
+const seccionAddSchedule = document.getElementById('seccionAddSchedule');
+const selectAddScheduleLaboratory = document.getElementById('selectAddScheduleLaboratory');
+const selectAddScheduleType = document.getElementById('selectAddScheduleType');
+const inputAddScheduleStarDate = document.getElementById('inputAddScheduleStarDate');
+const inputAddScheduleEndDate = document.getElementById('inputAddScheduleEndDate');
+const inputAddScheduleStartTime = document.getElementById('inputAddScheduleStartTime');
+const inputAddScheduleEndTime = document.getElementById('inputAddScheduleEndTime');
+const buttonAddScheduleVolver = document.getElementById('buttonAddScheduleVolver');
+const buttonAddScheduleAgregar = document.getElementById('buttonAddScheduleAgregar');
 
 //EDIT LABORATORY
 const seccionEditLaboratory = document.getElementById('seccionEditLaboratory');
@@ -82,6 +93,7 @@ const buttonShowUsersNewUser = document.getElementById('buttonShowUsersNewUser')
 
 //SHOW RESERVES
 const seccionShowReserves = document.getElementById('seccionShowReserves');
+const selectShowReservesLaboratory = document.getElementById('selectShowReservesLaboratory');
 const divShowReservesReserves = document.getElementById('divShowReservesReserves');
 const buttonShowReservesVolver = document.getElementById('buttonShowReservesVolver');
 const buttonShowReservesNewReserve = document.getElementById('buttonShowReservesNewReserve');
@@ -175,18 +187,13 @@ function interfaceLogin(){
 }
 //NEW USER
 function interfaceNewUser(){
-    addTypesSelect(selectNewUserType,[
-        { value: "none", text: ""},
-        { value: "teacher", text: "Profesor" },
-        { value: "admin", text: "Administrador"}
-    ]);
-
     if (document.getElementById("buttonNewUserBack")){
         document.getElementById("buttonNewUserBack").remove();
     }
     if (document.getElementById("buttonNewUserShowUsers")) {
         document.getElementById("buttonNewUserShowUsers").remove();
     }
+    divSelectUserType.innerHTML = "";
     buttonNewUserLogin.style.display = "block";
     interfacesOff();
     seccionNewUser.style.display = 'flex';
@@ -216,7 +223,42 @@ function interfaceNewUserMenu(){
 
         document.getElementById("divNewUserButtons").appendChild(showUsersButton);
     }
+    if (!document.getElementById("selectNewUserType")) {
+    
+        let label = document.createElement("label");
+        label.setAttribute("for", "selectNewUserType");
+        label.innerHTML = "<strong>Tipo de Usuario</strong>";
+    
+        let selectNewUserType = document.createElement("select");
+        selectNewUserType.id = "selectNewUserType";
+        selectNewUserType.name = "userType";
+
+        addTypesSelect(selectNewUserType,[
+            { value: "none", text: "" },
+            { value: "teacher", text: "Profesor" },
+            { value: "admin", text: "Administrador" }
+        ]);    
+    
+        divSelectUserType.innerHTML = "";
+        divSelectUserType.appendChild(label);
+        divSelectUserType.appendChild(selectNewUserType);
+    }
+    
 }
+//NEW SCHEDULE
+function interfaceAddSchedule(){
+    interfacesOff();
+    addLaboratoriesSelect(selectAddScheduleLaboratory);
+    addTypesSelect(selectAddScheduleType,[
+        { value: "none", text: "" },
+        { value: "class", text: "Clase" },
+        { value: "reserve", text: "Reserva" }
+    ]);
+
+    seccionAddSchedule.style.display = "flex";
+    loginValidate();
+}
+
 //EDIT USER
 function interfaceEditUser(){
     interfacesOff();
@@ -276,6 +318,7 @@ function interfaceShowUsers(){
 }
 //SHOW RESERVES
 function interfaceShowReserves(){
+    addLaboratoriesSelect(selectShowReservesLaboratory);
     showReserves();
 
     interfacesOff();
@@ -313,8 +356,8 @@ function login(){
     laboratories = getLaboratories();
 }
 //NEW USER
-function newUser(){
-    alert("newUser");
+function newUser() {
+    alert("LOL");
 }
 //EDIT USER
 function editUser(){
@@ -329,9 +372,10 @@ function editLaboratory(){
     alert("Guardado");
 }
 //NEW RESERVE
-function newReserve(){
-    alert("Reserva Creada");
+function newReserve() {
+    alert("nueva reserva");
 }
+
 //NEW RESOURCE
 function addResource(){
     alert("Agregado");
@@ -349,6 +393,7 @@ function deleteResource(resource){
     alert("RECURSO BORRADO: ");
 }
 //MENU
+
 
 //======RECIBIR DATOS DEL  BACK
 //GENERALES
@@ -721,6 +766,7 @@ function adminMenuButtons(){
         { text: "Nueva Reserva", action: interfaceNewReserve },
         { text: "Nuevo Laboratorio", action: interfaceNewLaboratory },
         { text: "Nuevo Recurso", action: interfaceNewResource },
+        { text: "Agregar Horarios", action: interfaceAddSchedule },
         { text: "Editar Usuario", action: interfaceEditUser },
         { text: "Editar Laboratorio", action: interfaceEditLaboratory },
         { text: "Mostrar Usuarios", action: interfaceShowUsers },

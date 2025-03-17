@@ -61,9 +61,8 @@
                         <input type="password" name="password" id="inputNewUserPassword">
                     </div>
 
-                    <div class="divInputsUserForm">
-                        <label for="selectNewUserType"><strong>Tipo de Usuario</strong></label>
-                        <select name="userType" id="selectNewUserType"></select>
+                    <div class="divInputsUserForm" id="divSelectUserType">
+
                     </div>
                 </div>
 
@@ -295,6 +294,52 @@
         </div>
     </section>
 
+    <section id="seccionAddSchedule" class="seccion">
+        <div class="divUserBackground">
+            <div class="divUserPrincipal">
+                <img src="./img/Logo.png" class="logoGrande">
+                <div class="divUserForm">
+                    <h1><strong>Agregar Horarios</strong></h1>
+                    
+                    <div class="divInputsUserForm">
+                        <label for="selectAddScheduleLaboratory"><strong>Laboratorio</strong></label>
+                        <select name="laboratory" id="selectAddScheduleLaboratory"></select>
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="selectAddScheduleType"><strong>Tipo de horario</strong></label>
+                        <select name="Type" id="selectAddScheduleType"></select>
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputAddScheduleStarDate"><strong>Fecha Inicial</strong></label>
+                        <input type="date" name="date" id="inputAddScheduleStarDate">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputAddScheduleEndDate"><strong>Fecha Final</strong></label>
+                        <input type="date" name="date" id="inputAddScheduleEndDate">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputAddScheduleStartTime"><strong>Hora Inicial</strong></label>
+                        <input type="time" name="startTime" id="inputAddScheduleStartTime">
+                    </div>
+
+                    <div class="divInputsUserForm">
+                        <label for="inputAddScheduleEndTime"><strong>Hora Final</strong></label>
+                        <input type="time" name="endTime" id="inputAddScheduleEndTime">
+                    </div>
+                </div>
+
+                <div class="divUserBotones">
+                    <button id="buttonAddScheduleVolver" type="button"><strong>Volver</strong></button>
+                    <button id="buttonAddScheduleAgregar" type="button"><strong>Agregar</strong></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="seccionShowUsers" class="seccion">
         <div class="divShowBackground">
             <div class="encabezadoMenu">
@@ -320,6 +365,10 @@
             </div>
             <div class="divShowContainer">
                 <h1><strong>Reservas:</strong></h1>
+                <div class="divInputsUserForm">
+                    <label for="selectShowReservesLaboratory"><strong>Laboratorio</strong></label>
+                    <select name="laboratory" id="selectShowReservesLaboratory"></select>
+                </div>
                 <div id="divShowReservesReserves" class="divShowContent"></div>
                 <div class="divShowBotones">
                     <button id="buttonShowReservesVolver" type="button"><strong>Volver</strong></button>
@@ -400,7 +449,7 @@
 
     </section>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./JS/script.js"></script>
 </body>
 
