@@ -13,7 +13,9 @@ const inputNewUserID = document.getElementById('inputNewUserID');
 const inputNewUserEmail = document.getElementById('inputNewUserEmail');
 const inputNewUserPassword = document.getElementById('inputNewUserPassword');
 const selectNewUserType = document.getElementById('selectNewUserType');
+const divNewUserButtons = document.getElementById('divNewUserButtons');
 const buttonNewUserLogin = document.getElementById('buttonNewUserLogin');
+const buttonNewUserShowUsers = document.getElementById('buttonNewUserShowUsers');
 const buttonNewUserNewUser = document.getElementById('buttonNewUserNewUser');
 
 //EDIT USER
@@ -32,6 +34,7 @@ const inputNewLaboratoryCapacity = document.getElementById('inputNewLaboratoryCa
 const inputNewLaboratoryLocation = document.getElementById('inputNewLaboratoryLocation');
 const inputNewLaboratoryImage = document.getElementById('inputNewLaboratoryImage');
 const buttonNewLaboratoryVolver = document.getElementById('buttonNewLaboratoryVolver');
+const buttonNewLaboratoryShowLaboratories = document.getElementById('buttonNewLaboratoryShowLaboratories');
 const buttonNewLaboratoryNewLaboratory = document.getElementById('buttonNewLaboratoryNewLaboratory');
 
 //EDIT LABORATORY
@@ -54,6 +57,7 @@ const inputNewReserveDate = document.getElementById('inputNewReserveDate');
 const inputNewReserveStartTime = document.getElementById('inputNewReserveStartTime');
 const inputNewReserveEndTime = document.getElementById('inputNewReserveEndTime');
 const buttonNewReserveVolver = document.getElementById('buttonNewReserveVolver');
+const buttonNewReserveShowReserves = document.getElementById('buttonNewReserveShowReserves');
 const buttonNewReserveNewReserve = document.getElementById('buttonNewReserveNewReserve');
 
 //NEW RESOURCE
@@ -67,6 +71,7 @@ const divNewResourceDigital = document.getElementById('divNewResourceDigital');
 const inputNewResourceSoftware = document.getElementById('inputNewResourceSoftware');
 const inputNewResourceVersion = document.getElementById('inputNewResourceVersion');
 const buttonNewResourceVovler = document.getElementById('buttonNewResourceVovler');
+const buttonNewResourceShowResources = document.getElementById('buttonNewResourceShowResources');
 const buttonNewResourceAdd = document.getElementById('buttonNewResourceAdd');
 
 //SHOW USERS
@@ -175,8 +180,41 @@ function interfaceNewUser(){
         { value: "admin", text: "Administrador"}
     ]);
 
+    if (document.getElementById("buttonNewUserBack")){
+        document.getElementById("buttonNewUserBack").remove();
+    }
+    if (document.getElementById("buttonNewUserShowUsers")) {
+        document.getElementById("buttonNewUserShowUsers").remove();
+    }
+    buttonNewUserLogin.style.display="flex";
     interfacesOff();
     seccionNewUser.style.display = 'flex';
+}
+function interfaceNewUserMenu(){
+    interfaceNewUser();
+    buttonNewUserLogin.style.display="none";
+    if (!document.getElementById("buttonNewUserBack")) {
+        
+        let backButton = document.createElement("button");
+        backButton.id = "buttonNewUserBack";
+        backButton.type = "button";
+        backButton.innerHTML = "<strong>Volver</strong>";
+
+        backButton.addEventListener("click", interfaceMenu);
+
+        document.getElementById("divNewUserButtons").appendChild(backButton);
+    }
+    if (!document.getElementById("buttonNewUserShowUsers")) {
+        
+        let showUsersButton = document.createElement("button");
+        showUsersButton.id = "buttonNewUserShowUsers";
+        showUsersButton.type = "button";
+        showUsersButton.innerHTML = "<strong>Listar Usuarios</strong>";
+
+        showUsersButton.addEventListener("click", interfaceShowUsers);
+
+        document.getElementById("divNewUserButtons").appendChild(showUsersButton);
+    }
 }
 //EDIT USER
 function interfaceEditUser(){
@@ -343,6 +381,7 @@ function botonesEvents(){
 
     //NEW USER
     buttonNewUserLogin.addEventListener('click',interfaceLogin);
+    buttonNewUserShowUsers.addEventListener('click',interfaceShowUsers);
     buttonNewUserNewUser.addEventListener('click',newUser);
 
     //EDIT USER
@@ -355,19 +394,22 @@ function botonesEvents(){
 
     //EDIT LABORATORY
     buttonEditLaboratoryVolver.addEventListener('click',interfaceMenu);
+    buttonNewLaboratoryShowLaboratories.addEventListener('click',interfaceShowLaboratories);
     buttonEditLaboratoryGuardar.addEventListener('click',editLaboratory);
 
     //NEW RESERVE
     buttonNewReserveVolver.addEventListener('click',interfaceMenu);
+    buttonNewReserveShowReserves.addEventListener('click',interfaceShowReserves);
     buttonNewReserveNewReserve.addEventListener('click',newReserve);
 
     //NEW RESOURCE
     buttonNewResourceVovler.addEventListener('click',interfaceMenu);
+    buttonNewResourceShowResources.addEventListener('click',interfaceShowResources);
     buttonNewResourceAdd.addEventListener('click',addResource);
 
     //SHOW USERS
     buttonShowUsersVolver.addEventListener('click',interfaceMenu);
-    buttonShowUsersNewUser.addEventListener('click',interfaceNewUser);
+    buttonShowUsersNewUser.addEventListener('click',interfaceNewUserMenu);
 
     //SHOW RESERVES
     buttonShowReservesVolver.addEventListener('click',interfaceMenu);
@@ -619,7 +661,7 @@ function generateMenuButtons(){
     //PARA GENERAR LOS BOTONES DEL ADMINISTRADOR
 function adminMenuButtons(){
     let botones = [
-        { text: "Crear Usuario", action: interfaceNewUser },
+        { text: "Crear Usuario", action: interfaceNewUserMenu },
         { text: "Editar Usuario", action: interfaceEditUser },
         { text: "Nuevo Laboratorio", action: interfaceNewLaboratory },
         { text: "Editar Laboratorio", action: interfaceEditLaboratory },

@@ -21,6 +21,7 @@
 
     /*FOTOS*/
     --imgLoginBackground: url('../img/BloqueI.jpg');
+    --imgMenuBackground: url('../img/User.jpg');
 
 }
 
@@ -298,20 +299,32 @@ button {
     width: 100vw;
     height: 80vh;
     gap: 15px;
-    margin: 20px;
+    padding: 20px;
 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     
-    
     overflow-y: auto;
+    
+    background: var(--imgLoginBackground);
+    background-size:cover;
+    background-position: center;
+
 }
 
 #divMenuBotones button {
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+
+
     width: 30%;
     min-width: 400px;
     height: 15vh;
+    background: var(--colorPrincipalTrasparente);
+    backdrop-filter: blur(5px);
+    border-radius: var(--borderRadius);
 }
 
     /*ANIMACIONES*/
@@ -351,4 +364,10 @@ button:hover {
 .showCards:hover {
     transform: translateY(-2px);
     box-shadow: 0px 0px 5px 0px var(--colorBoxShadow);
+}
+
+#divMenuBotones button:hover {
+    background: var(--colorSecundario);
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 5px var(--colorBoxShadow);
 }
