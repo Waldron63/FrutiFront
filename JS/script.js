@@ -766,6 +766,17 @@ function main(){
     botonesEvents();
     //GENERAR ACCIONES DE LOS INPUT
     inputEventos();
+
+
+
+
+
+
+
+    //TEMPORALES
+    isLogin = true;
+    login();
+    interfaceMenu();
 }
 //ESTA SE EJECUTA AUTOMATICAMENTE CUANDO TODA LA PAGINA WEB YA "CARGA"
 //document.addEventListener("DOMContentLoaded", main);
@@ -774,10 +785,6 @@ function main(){
 
 main();
 userLogin = new User("ALEJANDRO",1234,"PRUEBA@MAIL.COM","*****","admin");
-
-isLogin = true;
-login();
-interfaceMenu();
 
 //FALTA AJUSTAR VISUAL
 //interfaceShowUsers();
