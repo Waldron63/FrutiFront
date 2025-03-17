@@ -96,6 +96,7 @@ const buttonShowResourcesNewResource = document.getElementById('buttonShowResour
 
 //MENU
 const seccionMenu = document.getElementById('seccionMenu');
+const buttonMenuLogOut = document.getElementById('buttonMenuLogOut');
 const divMenuBotones = document.getElementById('divMenuBotones');
 
 //SHOW LABORATORIES
@@ -108,7 +109,7 @@ const buttonShowLaboratoriesNewLaboratory = document.getElementById('buttonShowL
 let secciones = document.querySelectorAll('.seccion');
 
 //SISTEMA DE LOGUEO
-let userLogin; //DATOS DEL USUARIO LOGUEADO
+let userLogin = null; //DATOS DEL USUARIO LOGUEADO
 let isLogin = false; //PARA INDICAR QUE EL USUARIO ESTA LOGUEADO O NO
 
 //GUARDAR COSAS GENERALES
@@ -186,7 +187,7 @@ function interfaceNewUser(){
     if (document.getElementById("buttonNewUserShowUsers")) {
         document.getElementById("buttonNewUserShowUsers").remove();
     }
-    buttonNewUserLogin.style.display="flex";
+    buttonNewUserLogin.style.display = "block";
     interfacesOff();
     seccionNewUser.style.display = 'flex';
 }
@@ -336,8 +337,17 @@ function addResource(){
     alert("Agregado");
 }
 //SHOW USERS
+function deleteUser(idUsuario){
+    alert("Usuario con ID: " + idUsuario + " Eliminado");
+}
 //SHOW RESERVES
+function deleteReserve(reserva){
+    alert("Reserva: " + reserva.Date + " Eliminada")
+}
 //SHOW RESOURCES
+function deleteResource(resource){
+    alert("RECURSO BORRADO: ");
+}
 //MENU
 
 //======RECIBIR DATOS DEL  BACK
@@ -381,7 +391,6 @@ function botonesEvents(){
 
     //NEW USER
     buttonNewUserLogin.addEventListener('click',interfaceLogin);
-    buttonNewUserShowUsers.addEventListener('click',interfaceShowUsers);
     buttonNewUserNewUser.addEventListener('click',newUser);
 
     //EDIT USER
@@ -424,6 +433,7 @@ function botonesEvents(){
     buttonShowLaboratoriesNewLaboratory.addEventListener('click',interfaceNewLaboratory);
 
     //MENU
+    buttonMenuLogOut.addEventListener('click',logOut);
 }
 
 //======INPUTS
@@ -577,39 +587,61 @@ function showUsers(){
     divShowUsersUsers.innerHTML = "";
 
     let tempUsersArray = tempAddUsers();
+
     tempUsersArray.forEach(usuario => {
-        let userCard = document.createElement('button');
-        userCard.classList.add('showCards');
+        let userCard = document.createElement("div");
+        userCard.classList.add("showCards");
+
         userCard.innerHTML = `
             <strong>Usuario: </strong>${usuario.userName} <br>
             <strong>ID: </strong>${usuario.id} <br>
             <strong>Email: </strong>${usuario.email} <br>
             <strong>Rol: </strong>${usuario.type} <br>
         `;
-        
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Borrar";
+        deleteButton.classList.add("deleteButton");
+
+        deleteButton.addEventListener("click", () => {
+            deleteUser(usuario.id);
+            showUsers();
+        });
+
+        userCard.appendChild(deleteButton);
         divShowUsersUsers.appendChild(userCard);
     });
 }
 //SHOW RESERVES
     //CREAR LAS TARJETAS DE RESERVAS
-function showReserves(){
+function showReserves() {
     divShowReservesReserves.innerHTML = "";
 
     tempReservesArray = getReserves();
 
     tempReservesArray.forEach(reserva => {
-        let reserveCard = document.createElement('button');
-        reserveCard.classList.add('showCards');
+        let reserveCard = document.createElement("div");
+        reserveCard.classList.add("showCards");
+
         reserveCard.innerHTML = `
-            <strong>Laboratorio:</strong>${reserva.laboratory} <br>
-            <strong>Tipo:</strong> ${reserva.type}<br>
-            <strong>Día:</strong> ${reserva.day}<br>
-            <strong>Hora:</strong> ${reserva.startTime} - ${reserva.endTime}<br>
+            <strong>Laboratorio:</strong> ${reserva.laboratory} <br>
+            <strong>Tipo:</strong> ${reserva.type} <br>
+            <strong>Día:</strong> ${reserva.day} <br>
+            <strong>Hora:</strong> ${reserva.startTime} - ${reserva.endTime} <br>
         `;
 
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Borrar";
+        deleteButton.classList.add("deleteButton");
+
+        deleteButton.addEventListener("click", () => {
+            deleteReserve(reserva);
+            showReserves();
+        });
+
+        reserveCard.appendChild(deleteButton);
         divShowReservesReserves.appendChild(reserveCard);
     });
-
 }
 //SHOW RESOURCES
     //CREAR LAS TARJETAS DE RECURSOS
@@ -623,13 +655,24 @@ function showResourcesPhysical() {
     let tempPhysicalArray = tempAddPhysical();
 
     tempPhysicalArray.forEach(recurso => {
-        let resourceCard = document.createElement('button');
-        resourceCard.classList.add('showCards');
+        let resourceCard = document.createElement("div");
+        resourceCard.classList.add("showCards");
+
         resourceCard.innerHTML = `
             <strong>Objeto:</strong> ${recurso.object} <br>
             <strong>Cantidad:</strong> ${recurso.quantity} <br>
         `;
 
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Borrar";
+        deleteButton.classList.add("deleteButton");
+
+        deleteButton.addEventListener("click", () => {
+            deleteResource(recurso);
+            showResourcesPhysical();
+        });
+
+        resourceCard.appendChild(deleteButton);
         divShowResourcesPhysical.appendChild(resourceCard);
     });
 }
@@ -637,14 +680,27 @@ function showResourcesPhysical() {
 function showResourcesDigital() {
     divShowResourcesDigital.innerHTML = "";
 
-    laboratories.forEach(recurso => {
-        let resourceCard = document.createElement('button');
-        resourceCard.classList.add('showCards');
+    let tempDigitallArray = tempAddDigital();
+
+    tempDigitallArray.forEach(recurso => {
+        let resourceCard = document.createElement("div");
+        resourceCard.classList.add("showCards");
+
         resourceCard.innerHTML = `
-            <strong>Nombre:</strong> ${recurso.name} <br>
-            <strong>Versión:</strong> ${recurso.version} <br>
+            <strong>Objeto:</strong> ${recurso.name} <br>
+            <strong>Cantidad:</strong> ${recurso.version} <br>
         `;
 
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Borrar";
+        deleteButton.classList.add("deleteButton");
+
+        deleteButton.addEventListener("click", () => {
+            deleteResource(recurso);
+            showResourcesPhysical();
+        });
+
+        resourceCard.appendChild(deleteButton);
         divShowResourcesDigital.appendChild(resourceCard);
     });
 }
@@ -695,6 +751,12 @@ function crearBotones(elemento,botones){
         elemento.appendChild(btn);
     });
 }
+    //PARA DESLOGUEARSE
+function logOut(){
+    userLogin = null;
+    isLogin = false;
+    loginValidate();
+}
 //MAIN (ES DONDE GUARDO LO GENERAL PARA INICIAR TODO)
 function main(){   
     //APAGAR TODAS LAS INTERFACES
@@ -711,10 +773,9 @@ function main(){
 
 main();
 userLogin = new User("ALEJANDRO",1234,"PRUEBA@MAIL.COM","*****","admin");
+
 isLogin = true;
 login();
-
-
 interfaceMenu();
 
 //FALTA AJUSTAR VISUAL
@@ -726,7 +787,7 @@ interfaceMenu();
 //======TEMPORALES (ES MIENTRAS UNIMOS CON EL BACK)
 function tempAddUsers() {
     let users = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
         let randomNumber = rando(1,99999)
         users.push(new User(
             `Usuario${i}`,           
