@@ -774,6 +774,7 @@ function main(){
 
 
     //TEMPORALES
+    userLogin = new User("ALEJANDRO",1234,"PRUEBA@MAIL.COM","*****","admin");
     isLogin = true;
     login();
     interfaceMenu();
@@ -784,7 +785,6 @@ function main(){
 
 
 main();
-userLogin = new User("ALEJANDRO",1234,"PRUEBA@MAIL.COM","*****","admin");
 
 //FALTA AJUSTAR VISUAL
 //interfaceShowUsers();
