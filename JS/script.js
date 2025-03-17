@@ -717,16 +717,17 @@ function generateMenuButtons(){
     //PARA GENERAR LOS BOTONES DEL ADMINISTRADOR
 function adminMenuButtons(){
     let botones = [
-        { text: "Crear Usuario", action: interfaceNewUserMenu },
-        { text: "Editar Usuario", action: interfaceEditUser },
-        { text: "Nuevo Laboratorio", action: interfaceNewLaboratory },
-        { text: "Editar Laboratorio", action: interfaceEditLaboratory },
+        { text: "Nuevo Usuario", action: interfaceNewUserMenu },
         { text: "Nueva Reserva", action: interfaceNewReserve },
+        { text: "Nuevo Laboratorio", action: interfaceNewLaboratory },
         { text: "Nuevo Recurso", action: interfaceNewResource },
+        { text: "Editar Usuario", action: interfaceEditUser },
+        { text: "Editar Laboratorio", action: interfaceEditLaboratory },
         { text: "Mostrar Usuarios", action: interfaceShowUsers },
         { text: "Mostrar Reservas", action: interfaceShowReserves },
-        { text: "Mostrar Recursos", action: interfaceShowResources },
-        { text: "Mostrar Laboratorios", action: interfaceShowLaboratories }
+        { text: "Mostrar Laboratorios", action: interfaceShowLaboratories },
+        { text: "Mostrar Recursos", action: interfaceShowResources }
+        
     ];
 
     crearBotones(divMenuBotones,botones);
