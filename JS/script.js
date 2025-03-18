@@ -394,6 +394,11 @@ function deleteResource(resource){
 }
 //MENU
 
+//ADD SHCHEDULE
+function addSchedule(){
+    alert('creado');
+}
+
 
 //======RECIBIR DATOS DEL  BACK
 //GENERALES
@@ -479,6 +484,10 @@ function botonesEvents(){
 
     //MENU
     buttonMenuLogOut.addEventListener('click',logOut);
+
+    //ADD SCHEDDULE
+    buttonAddScheduleVolver.addEventListener('click',interfaceMenu);
+    buttonAddScheduleAgregar.addEventListener('click',addSchedule);
 }
 
 //======INPUTS
