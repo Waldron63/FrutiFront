@@ -93,7 +93,6 @@ const buttonShowUsersNewUser = document.getElementById('buttonShowUsersNewUser')
 
 //SHOW RESERVES
 const seccionShowReserves = document.getElementById('seccionShowReserves');
-const selectShowReservesLaboratory = document.getElementById('selectShowReservesLaboratory');
 const divShowReservesReserves = document.getElementById('divShowReservesReserves');
 const buttonShowReservesVolver = document.getElementById('buttonShowReservesVolver');
 const buttonShowReservesNewReserve = document.getElementById('buttonShowReservesNewReserve');
@@ -318,7 +317,6 @@ function interfaceShowUsers() {
 }
 //SHOW RESERVES
 function interfaceShowReserves() {
-    addLaboratoriesSelect(selectShowReservesLaboratory);
     showReserves();
 
     interfacesOff();
@@ -635,8 +633,21 @@ function getUsers(){
 
 }
 //SHOW RESERVES
-function getReserves() {
-    return tempAddReserves();
+async function getReserves() {
+    try {
+        let response;
+
+        if (userLogin.rol === "admin") {
+            response = await axios.get("http://localhost:8080/api/reserve/reserves"); 
+        } else {
+            response = await axios.get(`http://localhost:8080/api/reserve/users/${userLogin.id}`); 
+        }        
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }
 //SHOW RESOURCES
 
@@ -883,35 +894,44 @@ function showUsers() {
 }
 //SHOW RESERVES
 //CREAR LAS TARJETAS DE RESERVAS
-function showReserves() {
-    divShowReservesReserves.innerHTML = "";
+async function showReserves() {
+    divShowReservesReserves.innerHTML = ""; // Limpiar antes de agregar nuevas reservas
 
-    tempReservesArray = getReserves();
+    try {
+        const tempReservesArray = await getReserves(); // Esperar a que lleguen los datos
 
-    tempReservesArray.forEach(reserva => {
-        let reserveCard = document.createElement("div");
-        reserveCard.classList.add("showCards");
+        tempReservesArray.forEach(reserva => {
+            let reserveCard = document.createElement("div");
+            reserveCard.classList.add("showCards");
 
-        reserveCard.innerHTML = `
-            <strong>Laboratorio:</strong> ${reserva.laboratory} <br>
-            <strong>Tipo:</strong> ${reserva.type} <br>
-            <strong>Día:</strong> ${reserva.day} <br>
-            <strong>Hora:</strong> ${reserva.startTime} - ${reserva.endTime} <br>
-        `;
+            reserveCard.innerHTML = `
+                <strong>Laboratorio:</strong> ${reserva.laboratoryName} <br>
+                <strong>Razon:</strong> ${reserva.reason} <br>
+                <strong>ID usuario:</strong> ${reserva.userId} <br>
+                <strong>Tipo:</strong> ${reserva.type.toUpperCase()} <br>
+                <strong>Fecha:</strong> ${reserva.numberDay} - ${reserva.month} - ${reserva.year}<br>
+                <strong>Dia:</strong> ${reserva.day}<br>
+                <strong>Hora:</strong> ${reserva.startHour} - ${reserva.endTime} <br>
+            `;
 
-        let deleteButton = document.createElement("button");
-        deleteButton.textContent = "Borrar";
-        deleteButton.classList.add("deleteButton");
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Borrar";
+            deleteButton.classList.add("deleteButton");
 
-        deleteButton.addEventListener("click", () => {
-            deleteReserve(reserva);
-            showReserves();
+            deleteButton.addEventListener("click", async () => {
+                await deleteReserve(reserva.id); // Asegurarse de que se borre antes de actualizar la lista
+                showReserves();
+            });
+
+            reserveCard.appendChild(deleteButton);
+            divShowReservesReserves.appendChild(reserveCard);
         });
 
-        reserveCard.appendChild(deleteButton);
-        divShowReservesReserves.appendChild(reserveCard);
-    });
+    } catch (error) {
+        console.error("Error al mostrar las reservas:", error);
+    }
 }
+
 //SHOW RESOURCES
 //CREAR LAS TARJETAS DE RECURSOS
 function showResources() {
@@ -980,7 +1000,7 @@ function generateMenuButtons() {
     if (userLogin == null || !isLogin) {
         return
     }
-    if (userLogin.type == 'admin') {
+    if (userLogin.rol === "admin") {
         adminMenuButtons();
     } else {
         userMenuButtons();
@@ -1040,8 +1060,21 @@ function main() {
     //GENERAR ACCIONES DE LOS INPUT
     inputEventos();
 
-
-    userLogin = new User(null, 1234, null, "password", "admin");
+    
+    userLogin = {
+        id: 1231312,
+        name:"adasdas",
+        mail:"adassad@gmail.com",
+        password:13123123,
+        rol:"admin"
+    };/*
+    userLogin = {
+        "id": "1245",
+        "name": "adsf",
+        "mail": "134@gmail.com",
+        "password": "asdasdsa",
+        "rol": "teacher"
+    };*/
     isLogin = true;
     laboratories = getLaboratories();
 
@@ -1053,11 +1086,6 @@ function main() {
 
 
 main();
-
-//FALTA AJUSTAR VISUAL
-//interfaceShowUsers();
-//interfaceShowReserves();
-//interfaceShowResources();   //FALTA COMPLETARLA
 
 
 //======TEMPORALES (ES MIENTRAS UNIMOS CON EL BACK)
