@@ -1,7 +1,7 @@
 //============OBJETOS CADA INTERFAZ
 //LOGIN
 const seccionLogin = document.getElementById('seccionLogin');
-const inputLoginEmail = document.getElementById('inputLoginEmail');
+const inputLoginID = document.getElementById('inputLoginID');
 const inputLoginPassword = document.getElementById('inputLoginPassword');
 const buttonLoginLogin = document.getElementById('buttonLoginLogin');
 const buttonLoginNewUser = document.getElementById('buttonLoginNewUser');
@@ -141,10 +141,10 @@ class User {
 
 class Reserve {
     constructor(laboratory, type, day, startTime, endTime) {
-        this.laboratory = laboratory; 
-        this.type = type; 
-        this.day = day; 
-        this.startTime = startTime; 
+        this.laboratory = laboratory;
+        this.type = type;
+        this.day = day;
+        this.startTime = startTime;
         this.endTime = endTime;
     }
 }
@@ -161,7 +161,7 @@ class Laboratory {
 
 class ResourcePhysical {
     constructor(object, quantity) {
-        this.object = object; 
+        this.object = object;
         this.quantity = quantity;
     }
 }
@@ -175,19 +175,19 @@ class ResourceDigital {
 
 //============FUNCIONES
 //======INTERFACES
-function interfacesOff(){
+function interfacesOff() {
     secciones.forEach(seccion => {
         seccion.style.display = 'none';
     });
 }
 //LOGIN
-function interfaceLogin(){
+function interfaceLogin() {
     interfacesOff();
     seccionLogin.style.display = 'flex';
 }
 //NEW USER
-function interfaceNewUser(){
-    if (document.getElementById("buttonNewUserBack")){
+function interfaceNewUser() {
+    if (document.getElementById("buttonNewUserBack")) {
         document.getElementById("buttonNewUserBack").remove();
     }
     if (document.getElementById("buttonNewUserShowUsers")) {
@@ -198,11 +198,11 @@ function interfaceNewUser(){
     interfacesOff();
     seccionNewUser.style.display = 'flex';
 }
-function interfaceNewUserMenu(){
+function interfaceNewUserMenu() {
     interfaceNewUser();
-    buttonNewUserLogin.style.display="none";
+    buttonNewUserLogin.style.display = "none";
     if (!document.getElementById("buttonNewUserBack")) {
-        
+
         let backButton = document.createElement("button");
         backButton.id = "buttonNewUserBack";
         backButton.type = "button";
@@ -213,7 +213,7 @@ function interfaceNewUserMenu(){
         document.getElementById("divNewUserButtons").appendChild(backButton);
     }
     if (!document.getElementById("buttonNewUserShowUsers")) {
-        
+
         let showUsersButton = document.createElement("button");
         showUsersButton.id = "buttonNewUserShowUsers";
         showUsersButton.type = "button";
@@ -224,35 +224,35 @@ function interfaceNewUserMenu(){
         document.getElementById("divNewUserButtons").appendChild(showUsersButton);
     }
     if (!document.getElementById("selectNewUserType")) {
-    
+
         let label = document.createElement("label");
         label.setAttribute("for", "selectNewUserType");
         label.innerHTML = "<strong>Tipo de Usuario</strong>";
-    
+
         let selectNewUserType = document.createElement("select");
         selectNewUserType.id = "selectNewUserType";
         selectNewUserType.name = "userType";
 
-        addTypesSelect(selectNewUserType,[
+        addTypesSelect(selectNewUserType, [
             { value: "none", text: "" },
             { value: "teacher", text: "Profesor" },
             { value: "admin", text: "Administrador" }
-        ]);    
-    
+        ]);
+
         divSelectUserType.innerHTML = "";
         divSelectUserType.appendChild(label);
         divSelectUserType.appendChild(selectNewUserType);
     }
-    
+
 }
 //NEW SCHEDULE
-function interfaceAddSchedule(){
+function interfaceAddSchedule() {
     interfacesOff();
     addLaboratoriesSelect(selectAddScheduleLaboratory);
-    addTypesSelect(selectAddScheduleType,[
+    addTypesSelect(selectAddScheduleType, [
         { value: "none", text: "" },
-        { value: "class", text: "Clase" },
-        { value: "reserve", text: "Reserva" }
+        { value: "lesson", text: "Clase" },
+        { value: "available", text: "Reserva" }
     ]);
 
     seccionAddSchedule.style.display = "flex";
@@ -260,19 +260,19 @@ function interfaceAddSchedule(){
 }
 
 //EDIT USER
-function interfaceEditUser(){
+function interfaceEditUser() {
     interfacesOff();
     seccionEditUser.style.display = 'flex';
     loginValidate();
 }
 //NEW LABORATORY
-function interfaceNewLaboratory(){
+function interfaceNewLaboratory() {
     interfacesOff();
     seccionNewLaboratory.style.display = 'flex';
     loginValidate();
 }
 //EDIT LABORATORY
-function interfaceEditLaboratory(){
+function interfaceEditLaboratory() {
     addLaboratoriesSelect(selectEditLaboratoryLaboratory);
 
     interfacesOff();
@@ -280,25 +280,25 @@ function interfaceEditLaboratory(){
     loginValidate();
 }
 //NEW RESERVE
-function interfaceNewReserve(){
+function interfaceNewReserve() {
     addLaboratoriesSelect(selectNewReserveLaboratory);
-    addTypesSelect(selectNewReserveType,[
+    addTypesSelect(selectNewReserveType, [
         { value: "none", text: "" },
-        { value: "class", text: "Clase" },
-        { value: "reserve", text: "Reserva" }
+        { value: "lesson", text: "Clase" },
+        { value: "available", text: "Reserva" }
     ])
-    
+
     interfacesOff();
     seccionNewReserve.style.display = 'flex';
     loginValidate();
 }
 //NEW RESOURCE
-function interfaceNewResource(){    
+function interfaceNewResource() {
     addLaboratoriesSelect(selectNewResourceLaboratory);
-    addTypesSelect(selectNewResourceType,[
-        { value: "none", text: ""},
+    addTypesSelect(selectNewResourceType, [
+        { value: "none", text: "" },
         { value: "physical", text: "Fisico" },
-        { value: "digital", text: "Digital"}
+        { value: "digital", text: "Digital" }
     ]);
     divNewResourceDigital.style.display = "none";
     divNewResourcePhysical.style.display = "none";
@@ -309,7 +309,7 @@ function interfaceNewResource(){
     loginValidate();
 }
 //SHOW USERS
-function interfaceShowUsers(){
+function interfaceShowUsers() {
     showUsers();
 
     interfacesOff();
@@ -317,7 +317,7 @@ function interfaceShowUsers(){
     loginValidate();
 }
 //SHOW RESERVES
-function interfaceShowReserves(){
+function interfaceShowReserves() {
     addLaboratoriesSelect(selectShowReservesLaboratory);
     showReserves();
 
@@ -326,7 +326,7 @@ function interfaceShowReserves(){
     loginValidate();
 }
 //SHOW RESOURCES
-function interfaceShowResources(){
+function interfaceShowResources() {
     addLaboratoriesSelect(selectShowResourcesLaboratory);
     showResources();
 
@@ -335,13 +335,13 @@ function interfaceShowResources(){
     loginValidate();
 }
 //SHOW LABORATORIES
-function interfaceShowLaboratories(){
+function interfaceShowLaboratories() {
     interfacesOff();
     seccionShowLaboratories.style.display = 'flex';
     loginValidate();
 }
 //MENU
-function interfaceMenu(){
+function interfaceMenu() {
     generateMenuButtons();
     interfacesOff();
     seccionMenu.style.display = 'flex';
@@ -350,64 +350,272 @@ function interfaceMenu(){
 
 //======ENVIAR DATOS AL  BACK
 //LOGIN
-function login(){
-//    alert("Login");
+function login() {
+    let id = inputLoginID.value.trim();
+    let password = inputLoginPassword.value.trim();
+
+    if (id === "" || password === "") {
+        Swal.fire({
+            title: "¡Error!",
+            text: "Por favor, completa todos los campos.",
+            icon: "error",
+            confirmButtonText: "Intentar de nuevo"
+        });
+        return;
+    }
+
+    userLogin = new User(null, id, null, password, "admin");
+    isLogin = true;
 
     laboratories = getLaboratories();
+    interfaceMenu();
 }
 //NEW USER
 function newUser() {
-    alert("LOL");
+    let id = inputNewUserID.value.trim();
+    let name = inputNewUserUser.value.trim();
+    let mail = inputNewUserEmail.value.trim();
+    let password = inputNewUserPassword.value.trim();
+    let rol = "teacher";
+    if (document.getElementById("selectNewUserType")) {
+        rol = document.getElementById("selectNewUserType").value.trim();
+    }
+
+    if (id === "" || name === "" || mail === "" || password === "" || rol === "" || rol === "none") {
+        Swal.fire({
+            title: "¡Error!",
+            text: "Por favor completa todos los campos.",
+            icon: "error",
+            confirmButtonText: "Intentar de nuevo"
+        });
+        return;
+    }
+
+    const userData = {
+        id: id,
+        name: name,
+        mail: mail,
+        password: password,
+        rol: rol
+    };
+
+    axios.post("http://localhost:8080/api/user/signin", userData)
+        .then(response => {
+            Swal.fire({
+                title: "¡Usuario Creado!",
+                text: "El usuario se ha registrado correctamente.",
+                icon: "success",
+                confirmButtonText: "OK",
+                timer: 3000,
+                timerProgressBar: true
+            });
+            console.log(userData);
+            inputNewUserID.value = "";
+            inputNewUserUser.value = "";
+            inputNewUserEmail.value = "";
+            inputNewUserPassword.value = "";
+            if (document.getElementById("selectNewUserType")) {
+                document.getElementById("selectNewUserType").value = "none";
+            }
+
+        })
+        .catch(error => {
+            console.log(error);
+            Swal.fire({
+                title: "¡Error!",
+                text: "Hubo un problema al crear el usuario.",
+                icon: "error",
+                confirmButtonText: "Intentar de nuevo"
+            });
+        });
+
+
 }
+
 //EDIT USER
-function editUser(){
+function editUser() {
     alert("Editado");
 }
 //NEW LABORATORY
-function newLaboratory(){
-    alert("Laboratorio Creado");
+function newLaboratory() {
+    let name = inputNewLaboratoryName.value.trim();
+    let abbreviation = inputNewLaboratoryAbreviation.value.trim();
+    let capacity = inputNewLaboratoryCapacity.value.trim();
+    let location = inputNewLaboratoryLocation.value.trim();
+
+    if (name === "" || abbreviation === "" || capacity === "" || location === "" || inputNewLaboratoryImage.files.length <= 0) {
+        Swal.fire({
+            title: "¡Error!",
+            text: "Por favor completa todos los campos.",
+            icon: "error",
+            confirmButtonText: "Intentar de nuevo"
+        });
+        return;
+    }
+
+    /*
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("abbreviation", abbreviation);
+    formData.append("totalCapacity", parseInt(capacity, 10));
+    formData.append("location", location);
+    formData.append("scheduleReferences", JSON.stringify([]));
+    //formData.append("image", imageInput.files[0]);*/
+
+    const laboratoryData = {
+        name: name,
+        abbreviation: abbreviation,
+        totalCapacity: capacity,
+        location: location,
+        scheduleReferences: []
+    }
+
+    /*
+    axios.post("http://localhost:8080/api/laboratories/", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+        
+        
+    })*/
+    axios.post("http://localhost:8080/api/laboratories/", laboratoryData)
+        .then(response => {
+            Swal.fire({
+                title: "¡Laboratorio Creado!",
+                text: "El laboratorio se ha registrado correctamente.",
+                icon: "success",
+                confirmButtonText: "OK",
+                timer: 3000,
+                timerProgressBar: true
+            });
+
+            inputNewLaboratoryName.value = "";
+            inputNewLaboratoryAbreviation.value = "";
+            inputNewLaboratoryCapacity.value = "";
+            inputNewLaboratoryLocation.value = "";
+            inputNewLaboratoryImage.value = "";
+        })
+        .catch(error => {
+            console.error("Error al crear el laboratorio:", error);
+            console.log(formData);
+            Swal.fire({
+                title: "¡Error!",
+                text: "Hubo un problema al crear el laboratorio.",
+                icon: "error",
+                confirmButtonText: "Intentar de nuevo"
+            });
+        });
 }
+
+
+
 //EDIT LABORATORY
-function editLaboratory(){
+function editLaboratory() {
     alert("Guardado");
 }
 //NEW RESERVE
 function newReserve() {
-    alert("nueva reserva");
+    let type = selectNewReserveType.value.trim();
+    let reason = textAreaNewReserveRazon.value.trim();
+    let userId = userLogin.id;
+    let state = "free";
+    let startHour = inputNewReserveStartTime.value.trim();
+    let endHour = inputNewReserveEndTime.value.trim();
+    let date = inputNewReserveDate.value.trim();
+    let laboratoryName = selectNewReserveLaboratory.value.trim();
+
+    if (type === "" || reason === "" || reason === "none" || startHour === "" || date === "" || laboratoryName === "" || startHour === "") {
+        Swal.fire({
+            title: "¡Error!",
+            text: "Por favor completa todos los campos.",
+            icon: "error",
+            confirmButtonText: "Intentar de nuevo"
+        });
+        return;
+    }
+
+    let parsedDate = new Date(date);
+    let numberDay = parsedDate.getDate();
+    let day = parsedDate.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+    let month = parsedDate.toLocaleDateString('en-US', { month: 'long' }).toUpperCase();
+    let year = parsedDate.getFullYear();
+
+
+    const reserveData = {
+        type: type,
+        reason: reason,
+        userId: userId,
+        state: state,
+        startHour: startHour,
+        numberDay: numberDay,
+        day: day,
+        month: month,
+        year: year,
+        laboratoryName: laboratoryName
+    };
+
+
+    axios.post("http://localhost:8080/api/reserve", reserveData)
+        .then(response => {
+            Swal.fire({
+                title: "¡Reserva Creada!",
+                text: "La reserva se ha realizado con éxito.",
+                icon: "success",
+                confirmButtonText: "OK",
+                timer: 3000,
+                timerProgressBar: true
+            });
+
+            document.getElementById("selectNewReserveType").value = "";
+            document.getElementById("textAreaNewReserveRazon").value = "";
+            document.getElementById("inputNewReserveStartTime").value = "";
+            document.getElementById("inputNewReserveDate").value = "";
+            document.getElementById("selectNewReserveLaboratory").value = "";
+
+        })
+        .catch(error => {
+            console.error(error);
+            Swal.fire({
+                title: "¡Error!",
+                text: "Hubo un problema al crear la reserva.",
+                icon: "error",
+                confirmButtonText: "Intentar de nuevo"
+            });
+        });
 }
 
+
+
 //NEW RESOURCE
-function addResource(){
+function addResource() {
     alert("Agregado");
 }
 //SHOW USERS
-function deleteUser(idUsuario){
+function deleteUser(idUsuario) {
     alert("Usuario con ID: " + idUsuario + " Eliminado");
 }
 //SHOW RESERVES
-function deleteReserve(reserva){
+function deleteReserve(reserva) {
     alert("Reserva: " + reserva.Date + " Eliminada")
 }
 //SHOW RESOURCES
-function deleteResource(resource){
+function deleteResource(resource) {
     alert("RECURSO BORRADO: ");
 }
 //MENU
 
 //ADD SHCHEDULE
-function addSchedule(){
+function addSchedule() {
     alert('creado');
 }
 
 
 //======RECIBIR DATOS DEL  BACK
 //GENERALES
-    //LABORATORIOS
-function getLaboratories(){
+//LABORATORIOS
+function getLaboratories() {
     return tempAddLaboratories();
 }
 //LOGIN
-function getLogin(){
+function getLogin() {
     login = true;
 }
 //NEW USER
@@ -423,9 +631,11 @@ function getLogin(){
 //NEW RESOURCE
 
 //SHOW USERS
+function getUsers(){
 
+}
 //SHOW RESERVES
-function getReserves(){
+function getReserves() {
     return tempAddReserves();
 }
 //SHOW RESOURCES
@@ -433,66 +643,71 @@ function getReserves(){
 //MENU
 
 //======BOTONES
-    //ESTA DEFINE LAS ACCIONES DE LOS BOTONES
-function botonesEvents(){
+//ESTA DEFINE LAS ACCIONES DE LOS BOTONES
+function botonesEvents() {
     //LOGIN
-    buttonLoginNewUser.addEventListener('click',interfaceNewUser);
-    buttonLoginLogin.addEventListener('click',login);
+    buttonLoginNewUser.addEventListener('click', interfaceNewUser);
+    buttonLoginLogin.addEventListener('click', login);
 
     //NEW USER
-    buttonNewUserLogin.addEventListener('click',interfaceLogin);
-    buttonNewUserNewUser.addEventListener('click',newUser);
+    buttonNewUserLogin.addEventListener('click', interfaceLogin);
+    buttonNewUserNewUser.addEventListener('click', newUser);
 
     //EDIT USER
-    buttonEditUserVolver.addEventListener('click',interfaceMenu);
-    buttonEditUserGuardar.addEventListener('click',editUser);
+    buttonEditUserVolver.addEventListener('click', interfaceMenu);
+    buttonEditUserGuardar.addEventListener('click', editUser);
 
     //NEW LABORATORY
-    buttonNewLaboratoryVolver.addEventListener('click',interfaceMenu);
-    buttonNewLaboratoryNewLaboratory.addEventListener('click',newLaboratory);
+    buttonNewLaboratoryVolver.addEventListener('click', interfaceMenu);
+    buttonNewLaboratoryNewLaboratory.addEventListener('click', newLaboratory);
 
     //EDIT LABORATORY
-    buttonEditLaboratoryVolver.addEventListener('click',interfaceMenu);
-    buttonNewLaboratoryShowLaboratories.addEventListener('click',interfaceShowLaboratories);
-    buttonEditLaboratoryGuardar.addEventListener('click',editLaboratory);
+    buttonEditLaboratoryVolver.addEventListener('click', interfaceMenu);
+    buttonNewLaboratoryShowLaboratories.addEventListener('click', interfaceShowLaboratories);
+    buttonEditLaboratoryGuardar.addEventListener('click', editLaboratory);
 
     //NEW RESERVE
-    buttonNewReserveVolver.addEventListener('click',interfaceMenu);
-    buttonNewReserveShowReserves.addEventListener('click',interfaceShowReserves);
-    buttonNewReserveNewReserve.addEventListener('click',newReserve);
+    buttonNewReserveVolver.addEventListener('click', interfaceMenu);
+    buttonNewReserveShowReserves.addEventListener('click', interfaceShowReserves);
+    buttonNewReserveNewReserve.addEventListener('click', newReserve);
 
     //NEW RESOURCE
-    buttonNewResourceVovler.addEventListener('click',interfaceMenu);
-    buttonNewResourceShowResources.addEventListener('click',interfaceShowResources);
-    buttonNewResourceAdd.addEventListener('click',addResource);
+    buttonNewResourceVovler.addEventListener('click', interfaceMenu);
+    buttonNewResourceShowResources.addEventListener('click', interfaceShowResources);
+    buttonNewResourceAdd.addEventListener('click', addResource);
 
     //SHOW USERS
-    buttonShowUsersVolver.addEventListener('click',interfaceMenu);
-    buttonShowUsersNewUser.addEventListener('click',interfaceNewUserMenu);
+    buttonShowUsersVolver.addEventListener('click', interfaceMenu);
+    buttonShowUsersNewUser.addEventListener('click', interfaceNewUserMenu);
 
     //SHOW RESERVES
-    buttonShowReservesVolver.addEventListener('click',interfaceMenu);
-    buttonShowReservesNewReserve.addEventListener('click',interfaceNewReserve);
+    buttonShowReservesVolver.addEventListener('click', interfaceMenu);
+    buttonShowReservesNewReserve.addEventListener('click', interfaceNewReserve);
 
     //SHOW RESOURCES
-    buttonShowResourcesVolver.addEventListener('click',interfaceMenu);
-    buttonShowResourcesNewResource.addEventListener('click',interfaceNewResource);
+    buttonShowResourcesVolver.addEventListener('click', interfaceMenu);
+    buttonShowResourcesNewResource.addEventListener('click', interfaceNewResource);
 
     //SHOW LABORATORIES
-    buttonShowLaboratoriesVolver.addEventListener('click',interfaceMenu);
-    buttonShowLaboratoriesNewLaboratory.addEventListener('click',interfaceNewLaboratory);
+    buttonShowLaboratoriesVolver.addEventListener('click', interfaceMenu);
+    buttonShowLaboratoriesNewLaboratory.addEventListener('click', interfaceNewLaboratory);
 
     //MENU
-    buttonMenuLogOut.addEventListener('click',logOut);
+    buttonMenuLogOut.addEventListener('click', logOut);
 
     //ADD SCHEDDULE
-    buttonAddScheduleVolver.addEventListener('click',interfaceMenu);
-    buttonAddScheduleAgregar.addEventListener('click',addSchedule);
+    buttonAddScheduleVolver.addEventListener('click', interfaceMenu);
+    buttonAddScheduleAgregar.addEventListener('click', addSchedule);
 }
 
 //======INPUTS
-function inputEventos(){
+function inputEventos() {
     //LOGIN
+    inputLoginID.addEventListener("input", function () {
+        if (this.value < 1) {
+            this.value = "";
+        }
+    });
 
     //NEW USER
     inputNewUserID.addEventListener("input", function () {
@@ -512,13 +727,13 @@ function inputEventos(){
 
     //EDIT LABORATORY
 
-    
+
     //NEW RESERVE
     let today = new Date().toISOString().split("T")[0];
     inputNewReserveDate.setAttribute("min", today);
 
     inputNewReserveEndTime.setAttribute("readonly", true);
-    inputNewReserveStartTime.addEventListener("input",horaFinal);
+    inputNewReserveStartTime.addEventListener("input", horaFinal);
 
     //NEW RESOURCE
     inputNewResourceQuantity.addEventListener("input", function () {
@@ -533,11 +748,11 @@ function inputEventos(){
         }
     });
 
-    selectNewResourceType.addEventListener("change", function() {
+    selectNewResourceType.addEventListener("change", function () {
         let value = this.value;
-        
+
         cleanNewResource();
-        
+
         if (value === "physical") {
             divNewResourcePhysical.style.display = "flex";
         } else if (value === "digital") {
@@ -552,22 +767,22 @@ function inputEventos(){
     //SHOW RESOURCES
 
     //MENU
-  
+
 }
 
 //======METODOS PARA FUNCIONAMIENTO
 //GENERALES
-    //GERNERAR LOS LABORATORIOS EN EL SELECT INDICADO
+//GERNERAR LOS LABORATORIOS EN EL SELECT INDICADO
 function addLaboratoriesSelect(selectLaboratory) {
     selectLaboratory.innerHTML = "";
 
-    
+
     let option = document.createElement("option");
     option.value = "none";
     option.text = "";
     selectLaboratory.appendChild(option);
 
-    
+
     laboratories.forEach(laboratory => {
         option = document.createElement("option");
         option.value = laboratory.name;
@@ -575,21 +790,21 @@ function addLaboratoriesSelect(selectLaboratory) {
         selectLaboratory.appendChild(option);
     });
 }
-    //PONER LOS TIPOS DE ALGO (UN ARREGLO [{VALUE = "", TEXT = ""}]}) EN UN SELECT INDICADO
-function addTypesSelect(selectType,types){
-    selectType.innerHTML ="";
-    
+//PONER LOS TIPOS DE ALGO (UN ARREGLO [{VALUE = "", TEXT = ""}]}) EN UN SELECT INDICADO
+function addTypesSelect(selectType, types) {
+    selectType.innerHTML = "";
+
     types.forEach(type => {
         let option = document.createElement("option");
-        option.value = type.value;  
-        option.textContent = type.text;  
-        selectType.appendChild(option);  
+        option.value = type.value;
+        option.textContent = type.text;
+        selectType.appendChild(option);
     });
 }
 //LOGIN
 //POR SI NO ESTA LOGUEADO NO DEJARLO ACCEDER A LAS PAGINAS
-function loginValidate(){
-    if(!isLogin){
+function loginValidate() {
+    if (!isLogin) {
         interfaceLogin();
     }
 }
@@ -602,7 +817,7 @@ function loginValidate(){
 //EDIT LABORATORY
 
 //NEW RESERVE
-    //PARA QUE CAMBIE LA HORA FINAL DE LA RESERVA
+//PARA QUE CAMBIE LA HORA FINAL DE LA RESERVA
 function horaFinal() {
     if (inputNewReserveStartTime.value) {
         let [hours, minutes] = inputNewReserveStartTime.value.split(":");
@@ -626,8 +841,8 @@ function horaFinal() {
     }
 }
 //NEW RESOURCE
-    //LIMPIAR LOS INPUTS
-function cleanNewResource(){
+//LIMPIAR LOS INPUTS
+function cleanNewResource() {
     divNewResourcePhysical.style.display = "none";
     inputNewResourceName.value = "";
     inputNewResourceQuantity.value = "";
@@ -636,8 +851,8 @@ function cleanNewResource(){
     inputNewResourceVersion.value = "";
 }
 //SHOW USERS
-    //CREAR LAS TARJETAS DE USUARIOS
-function showUsers(){
+//CREAR LAS TARJETAS DE USUARIOS
+function showUsers() {
     divShowUsersUsers.innerHTML = "";
 
     let tempUsersArray = tempAddUsers();
@@ -667,7 +882,7 @@ function showUsers(){
     });
 }
 //SHOW RESERVES
-    //CREAR LAS TARJETAS DE RESERVAS
+//CREAR LAS TARJETAS DE RESERVAS
 function showReserves() {
     divShowReservesReserves.innerHTML = "";
 
@@ -698,12 +913,12 @@ function showReserves() {
     });
 }
 //SHOW RESOURCES
-    //CREAR LAS TARJETAS DE RECURSOS
-function showResources(){
+//CREAR LAS TARJETAS DE RECURSOS
+function showResources() {
     showResourcesPhysical();
     showResourcesDigital();
 }
-    //CREAR TARJETAS RECURSOS FISICOS
+//CREAR TARJETAS RECURSOS FISICOS
 function showResourcesPhysical() {
     divShowResourcesPhysical.innerHTML = "";
     let tempPhysicalArray = tempAddPhysical();
@@ -730,7 +945,7 @@ function showResourcesPhysical() {
         divShowResourcesPhysical.appendChild(resourceCard);
     });
 }
-    //CREAR TARJETAS RECURSOS DIGITALES
+//CREAR TARJETAS RECURSOS DIGITALES
 function showResourcesDigital() {
     divShowResourcesDigital.innerHTML = "";
 
@@ -759,17 +974,20 @@ function showResourcesDigital() {
     });
 }
 //MENU
-    //CREAR LOS BOTONES DEL MENU
-function generateMenuButtons(){
+//CREAR LOS BOTONES DEL MENU
+function generateMenuButtons() {
     divMenuBotones.innerHTML = "";
-    if(userLogin.type == 'admin'){
+    if (userLogin == null || !isLogin) {
+        return
+    }
+    if (userLogin.type == 'admin') {
         adminMenuButtons();
-    }else{
+    } else {
         userMenuButtons();
     }
 }
-    //PARA GENERAR LOS BOTONES DEL ADMINISTRADOR
-function adminMenuButtons(){
+//PARA GENERAR LOS BOTONES DEL ADMINISTRADOR
+function adminMenuButtons() {
     let botones = [
         { text: "Nuevo Usuario", action: interfaceNewUserMenu },
         { text: "Nueva Reserva", action: interfaceNewReserve },
@@ -782,24 +1000,24 @@ function adminMenuButtons(){
         { text: "Mostrar Reservas", action: interfaceShowReserves },
         { text: "Mostrar Laboratorios", action: interfaceShowLaboratories },
         { text: "Mostrar Recursos", action: interfaceShowResources }
-        
+
     ];
 
-    crearBotones(divMenuBotones,botones);
+    crearBotones(divMenuBotones, botones);
 }
-    //PARA GENERAR LOS BOTONES DE CUALQUIERA NO ADMINISTRADOR
-function userMenuButtons(){
+//PARA GENERAR LOS BOTONES DE CUALQUIERA NO ADMINISTRADOR
+function userMenuButtons() {
     let botones = [
         { text: "Editar Usuario", action: interfaceEditUser },
         { text: "Nueva Reserva", action: interfaceNewReserve },
         { text: "Mostrar Reservas", action: interfaceShowReserves },
         { text: "Mostrar Laboratorios", action: interfaceShowLaboratories }
     ];
-    
-    crearBotones(divMenuBotones,botones);
+
+    crearBotones(divMenuBotones, botones);
 }
-    //PARA CREAR BOTONES ENTRANDO UNA LISTA CON EL TEXTO , ACCION
-function crearBotones(elemento,botones){
+//PARA CREAR BOTONES ENTRANDO UNA LISTA CON EL TEXTO , ACCION
+function crearBotones(elemento, botones) {
     botones.forEach(boton => {
         let btn = document.createElement("button");
         btn.textContent = boton.text;
@@ -807,14 +1025,14 @@ function crearBotones(elemento,botones){
         elemento.appendChild(btn);
     });
 }
-    //PARA DESLOGUEARSE
-function logOut(){
+//PARA DESLOGUEARSE
+function logOut() {
     userLogin = null;
     isLogin = false;
     loginValidate();
 }
 //MAIN (ES DONDE GUARDO LO GENERAL PARA INICIAR TODO)
-function main(){   
+function main() {
     //APAGAR TODAS LAS INTERFACES
     interfacesOff();
     //GENERAR LAS FUNCIONES DE LOS BOTONES
@@ -823,15 +1041,10 @@ function main(){
     inputEventos();
 
 
-
-
-
-
-
-    //TEMPORALES
-    userLogin = new User("ALEJANDRO",1234,"PRUEBA@MAIL.COM","*****","admin");
+    userLogin = new User(null, 1234, null, "password", "admin");
     isLogin = true;
-    login();
+    laboratories = getLaboratories();
+
     interfaceMenu();
 }
 //ESTA SE EJECUTA AUTOMATICAMENTE CUANDO TODA LA PAGINA WEB YA "CARGA"
@@ -851,11 +1064,11 @@ main();
 function tempAddUsers() {
     let users = [];
     for (let i = 0; i < 3; i++) {
-        let randomNumber = rando(1,99999)
+        let randomNumber = rando(1, 99999)
         users.push(new User(
-            `Usuario${i}`,           
+            `Usuario${i}`,
             randomNumber,
-            `correo${randomNumber}@email.com`, 
+            `correo${randomNumber}@email.com`,
             "Contrasena",
             "Profesor"
         ));
@@ -869,7 +1082,7 @@ function tempAddLaboratories() {
         laboratories.push(new Laboratory(
             `Laboratorio ${i}`,
             `LAB${i}`,
-            Math.floor(Math.random() * 50) + 10, 
+            Math.floor(Math.random() * 50) + 10,
             `Edificio ${String.fromCharCode(65 + i)} - Piso ${i % 3 + 1}`,
             "../img/Laboratorio.jpg" // Foto
         ));
@@ -888,9 +1101,9 @@ function tempAddReserves() {
         let endHour = "11:30AM"
 
         reserves.push(new Reserve(
-            lab, 
-            type, 
-            day, 
+            lab,
+            type,
+            day,
             startHour,
             endHour
         ));
@@ -902,7 +1115,7 @@ function tempAddPhysical() {
     let physicalResources = [];
 
     for (let i = 0; i < 10; i++) {
-        let randomNumber = rando(1,99999)
+        let randomNumber = rando(1, 99999)
         let object = `Objeto ${i + 1}`;
         let quantity = randomNumber;
 
@@ -916,7 +1129,7 @@ function tempAddDigital() {
     let digitalResources = [];
 
     for (let i = 10; i < 20; i++) {
-        let randomNumber = rando(1,99999)
+        let randomNumber = rando(1, 99999)
         let name = `Software ${randomNumber}`;
         let version = `Version: ${randomNumber}.0`;
 
