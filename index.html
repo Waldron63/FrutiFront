@@ -241,105 +241,6 @@
         </div>
     </section>
     
-    <section id="seccionNewResource" class="seccion">
-        <div class="divUserBackground">
-            <div class="divUserPrincipal">
-                <img src="./img/Logo.png" class="logoGrande">
-                <div class="divUserForm">
-                    <h1><strong>Agregar Recurso</strong></h1>
-                    
-                    <div class="divInputsUserForm">
-                        <label for="selectNewResourceLaboratory"><strong>Laboratorio</strong></label>
-                        <select name="laboratory" id="selectNewResourceLaboratory"></select>
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="selectNewResourceType"><strong>Tipo de Recurso</strong></label>
-                        <select name="Type" id="selectNewResourceType"></select>
-                    </div>
-
-                    <div id="divNewResourcePhysical" class="divInputsUserForm">
-                        <div class="divInputsUserForm">
-                            <label for="inputNewResourceName"><strong>Nombre</strong></label>
-                            <input type="text" name="name" id="inputNewResourceName">
-                        </div>
-
-                        <div class="divInputsUserForm">
-                            <label for="inputNewResourceQuantity"><strong>Cantidad</strong></label>
-                            <input type="number" name="quantity" id="inputNewResourceQuantity" min="1">
-                        </div>
-
-                    </div>
-
-                    <div id="divNewResourceDigital" class="divInputsUserForm">
-                        <div class="divInputsUserForm">
-                            <label for="inputNewResourceSoftware"><strong>Nombre del Software</strong></label>
-                            <input type="text" name="software" id="inputNewResourceSoftware">
-                        </div>
-
-                        <div class="divInputsUserForm">
-                            <label for="inputNewResourceVersion"><strong>Version</strong></label>
-                            <input type="number" name="version" id="inputNewResourceVersion" min="1">
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="divUserBotones">
-                    <button id="buttonNewResourceVovler" type="button"><strong>Volver</strong></button>
-                    <button id="buttonNewResourceShowResources" type="button"><strong>Mirar Recursos</strong></button>
-                    <button id="buttonNewResourceAdd" type="button"><strong>Agregar</strong></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="seccionAddSchedule" class="seccion">
-        <div class="divUserBackground">
-            <div class="divUserPrincipal">
-                <img src="./img/Logo.png" class="logoGrande">
-                <div class="divUserForm">
-                    <h1><strong>Agregar Horarios</strong></h1>
-                    
-                    <div class="divInputsUserForm">
-                        <label for="selectAddScheduleLaboratory"><strong>Laboratorio</strong></label>
-                        <select name="laboratory" id="selectAddScheduleLaboratory"></select>
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="selectAddScheduleType"><strong>Tipo de horario</strong></label>
-                        <select name="Type" id="selectAddScheduleType"></select>
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="inputAddScheduleStarDate"><strong>Fecha Inicial</strong></label>
-                        <input type="date" name="date" id="inputAddScheduleStarDate">
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="inputAddScheduleEndDate"><strong>Fecha Final</strong></label>
-                        <input type="date" name="date" id="inputAddScheduleEndDate">
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="inputAddScheduleStartTime"><strong>Hora Inicial</strong></label>
-                        <input type="time" name="startTime" id="inputAddScheduleStartTime">
-                    </div>
-
-                    <div class="divInputsUserForm">
-                        <label for="inputAddScheduleEndTime"><strong>Hora Final</strong></label>
-                        <input type="time" name="endTime" id="inputAddScheduleEndTime">
-                    </div>
-                </div>
-
-                <div class="divUserBotones">
-                    <button id="buttonAddScheduleVolver" type="button"><strong>Volver</strong></button>
-                    <button id="buttonAddScheduleAgregar" type="button"><strong>Agregar</strong></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="seccionShowUsers" class="seccion">
         <div class="divShowBackground">
             <div class="encabezadoMenu">
@@ -395,38 +296,6 @@
         </div>
     </section>
 
-    <section id="seccionShowResources" class="seccion">
-        <div class="divShowBackground">
-            <div class="encabezadoMenu">
-                <img src="./img/Logo.png" class="logoPequeno">
-                <h1>Mostrar Recursos</h1>
-            </div>
-            <div class="divShowContainer">
-                <div class="divInputsUserForm">
-                    <label for="selectShowResourcesLaboratory"><strong>Laboratorio</strong></label>
-                    <select name="laboratory" id="selectShowResourcesLaboratory"></select>
-                </div>
-
-                <div class="divShowColumns">
-                    <div class="divShowContent divShowRecursos">
-                        <h2>Recursos Físicos</h2>
-                        <div id="divShowResourcesPhysical" class="divShowList"></div>
-                    </div>
-
-                    <div class="divShowContent divShowRecursos">
-                    <h2>Recursos Digitales</h2>
-                    <div id="divShowResourcesDigital" class="divShowList"></div>
-                </div>
-                </div>
-            
-                <div class="divShowBotones">
-                    <button id="buttonShowResourcesVolver" type="button"><strong>Volver</strong></button>
-                    <button id="buttonShowResourcesNewResource" type="button"><strong>Agregar Recurso</strong></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="seccionMenu" class="seccion">
         <div>
             <div class="encabezadoMenu">
@@ -457,14 +326,7 @@
         </div>
     </section>
 
-    
 
-    
-
-    <!--PARA CREAR UNA SECCION SIEMPRE USAR ESTE-->
-    <section id="seccion" class="seccion">
-
-    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
