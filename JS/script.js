@@ -81,11 +81,13 @@ const divMenuBotones = document.getElementById('divMenuBotones');
 
 //SHOW LABORATORIES
 const seccionShowLaboratories = document.getElementById('seccionShowLaboratories');
+const divShowLaboratoriesContent = document.getElementById('divShowLaboratoriesContent');
 const buttonShowLaboratoriesVolver = document.getElementById('buttonShowLaboratoriesVolver');
 const buttonShowLaboratoriesNewLaboratory = document.getElementById('buttonShowLaboratoriesNewLaboratory');
 
 //SISTEMA DE LOGUEO
 let userLogin = null; //DATOS DEL USUARIO LOGUEADO
+let userEdit = null; //DATOS DEL USUARIO A EDITAR
 let isLogin = false; //PARA INDICAR QUE EL USUARIO ESTA LOGUEADO O NO
 let token = null;
 
@@ -181,6 +183,7 @@ async function interfaceNewUserMenu() {
 //EDIT USER
 async function interfaceEditUser() {
     interfacesOff();
+    llenarCamposEditUser(userLogin.id);
     seccionEditUser.style.display = 'flex';
     loginValidate();
 }
@@ -193,7 +196,6 @@ async function interfaceNewLaboratory() {
 //EDIT LABORATORY
 async function interfaceEditLaboratory() {
     addLaboratoriesSelect(selectEditLaboratoryLaboratory);
-
     interfacesOff();
     seccionEditLaboratory.style.display = 'flex';
     loginValidate();
@@ -209,7 +211,7 @@ async function interfaceNewReserve() {
 }
 //SHOW USERS
 async function interfaceShowUsers() {
-    showUsers();
+    await showUsers();
 
     interfacesOff();
     seccionShowUsers.style.display = 'flex';
@@ -217,14 +219,15 @@ async function interfaceShowUsers() {
 }
 //SHOW RESERVES
 async function interfaceShowReserves() {
-    showReserves();
+    await showReserves();
 
     interfacesOff();
     seccionShowReserves.style.display = 'flex';
     loginValidate();
 }
 //SHOW LABORATORIES
-function interfaceShowLaboratories() {
+async function interfaceShowLaboratories() {
+    await showLaboratories();
     interfacesOff();
     seccionShowLaboratories.style.display = 'flex';
     loginValidate();
@@ -239,7 +242,7 @@ function interfaceMenu() {
 
 //======CREAR COSAS
 //NEW USER
-function newUser() {
+async function newUser() {
     let id = inputNewUserID.value.trim();
     let name = inputNewUserUser.value.trim();
     let mail = inputNewUserEmail.value.trim();
@@ -262,17 +265,20 @@ function newUser() {
         rol: rol
     };
 
-    const res = postAxios("/api/user/signin",userData,"Usuario");
+    const res = await postAxios("/api/user/signin",userData,"Usuario");
     if(res){
         inputNewUserID.value = "";
         inputNewUserUser.value = "";
         inputNewUserEmail.value = "";
         inputNewUserPassword.value = "";
+        if (document.getElementById("selectNewUserType")) {
+            document.getElementById("selectNewUserType").value = "none";
+        }
 
     }
 }
 //NEW LABORATORY
-function newLaboratory() {
+async function newLaboratory() {
     let name = inputNewLaboratoryName.value.trim();
     let abbreviation = inputNewLaboratoryAbreviation.value.trim();
     let capacity = inputNewLaboratoryCapacity.value.trim();
@@ -284,7 +290,6 @@ function newLaboratory() {
     }
 
     const laboratoryData = {
-        id: abbreviation,
         name: name,
         abbreviation: abbreviation,
         totalCapacity: capacity,
@@ -292,7 +297,7 @@ function newLaboratory() {
         scheduleReferences: []
     };
     
-    const res = postAxios("/api/laboratories/",laboratoryData,"Laboratorio");
+    const res = await postAxios("/api/laboratories/",laboratoryData,"Laboratorio");
     if(res){
         inputNewLaboratoryName.value = "";
         inputNewLaboratoryAbreviation.value = "";
@@ -302,7 +307,7 @@ function newLaboratory() {
     }
 }
 //NEW RESERVE
-function newReserve() {
+async function newReserve() {
     let type = selectNewReserveType.value.trim();
     let reason = textAreaNewReserveRazon.value.trim();
     let userId = userLogin.id;
@@ -338,7 +343,7 @@ function newReserve() {
     };
 
 
-    const res = postAxios("/api/reserve",reserveData,"Reserva");
+    const res = await postAxios("/api/reserve",reserveData,"Reserva");
     if(res){
         document.getElementById("selectNewReserveType").value = "";
         document.getElementById("textAreaNewReserveRazon").value = "";
@@ -352,14 +357,81 @@ function newReserve() {
 //======ACTUALIZAR COSAS
 //ACTUALIZAR USER
 async function editUser() {
-    alert("Editado");
+
+    let name = inputEditUserUser.value.trim();
+    let mail = inputEditUserEmail.value.trim();
+    let password = inputEditUserPassword.value.trim();
+    
+    try{
+        let resName;
+        let resMail;
+        let resPassword;
+
+        if(name != ""){
+            resName = await putAxios(`/api/user/name/`,name,"Nombre Usuario",userEdit.id);
+        }
+        if(mail != ""){
+            resMail = await putAxios(`/api/user/mail/`,mail,"Correo",userEdit.id);
+        }
+        if(password != ""){
+            resPassword = await putAxios(`/api/user/password/`,password,"Contraseña",userEdit.id);
+        }
+        if(resName){
+            inputEditUserUser.value = "";
+        }
+        if(resMail){
+            inputEditUserEmail.value = "";
+        }
+        if(resPassword){
+            inputEditUserPassword.value = "";
+        }
+        return true;
+    }catch(error){
+        console.error("Error al editar: ",error);
+        return false;
+    }
+        
 }
 //ACTUALIZAR LABORATORY
 async function editLaboratory() {
-    let labName = inputEditLaboratoryAbreviation();
-    getLaboratory();
+    let idLaboratory = selectEditLaboratoryLaboratory.value.trim();
+    if (idLaboratory == "none") {
+        crearPopupError("Seleccionar laboratorio a editar");
+        return false;
+    }
 
+    let abbreviation = inputEditLaboratoryAbreviation.value.trim();
+    let name = inputEditLaboratoryName.value.trim();
+    let totalCapacity = inputEditLaboratoryCapacity.value.trim();
+    let location = inputEditLaboratoryLocation.value.trim();
+
+    try {
+        let resAbbreviation;
+        let resName;
+        let resCapacity;
+        let resLocation;
+/*
+        if (name !== "") {
+            resName = await putAxios(`/api/laboratories/name/${idLaboratory}`, { name }, "Nombre");
+        }
+        if (totalCapacity !== "") {
+            resCapacity = await putAxios(`/api/laboratories/totalCapacity/${idLaboratory}`, { totalCapacity: parseInt(totalCapacity) }, "Capacidad");
+        }
+        if (location !== "") {
+            resLocation = await putAxios(`/api/laboratories/location/${idLaboratory}`, { location }, "Ubicación");
+        }
+*/
+        selectEditLaboratoryLaboratory.value = "none";
+        llenarCamposEditLaboratory();
+
+        return true;
+    } catch (error) {
+        console.error("Error al editar laboratorio: ", error);
+        return false;
+    }
 }
+
+
 
 //======ELIMINAR COSAS
 //DELETE USER
@@ -367,19 +439,49 @@ async function deleteUser(idUsuario) {
     try {
         await axios.delete(`${api}/api/user/delete/${idUsuario}`);
     } catch (error) {
+        console.error("Error eliminar el usuario: ", error);
         return;
     }
 }
 //DELETE LABORATORY
-async function deleteLaboratory(){
-    alert("BORRADA")
+async function deleteLaboratory(abbreviation) {
+    try {
+        await axios.delete(`${api}/api/laboratories/${abbreviation}/byelaboratory`);
+    } catch (error) {
+        console.error("Error al eliminar el laboratorio:", error);
+    }
 }
+
 //DELETE RESERVE
 async function deleteReserve(reserva) {
     alert("Borrada")
 }
 
 //======MOSTRAR COSAS
+//EDIT USER
+async function llenarCamposEditUser(id){
+    userEdit = await getUser(id);
+    inputEditUserUser.value = userEdit.name;
+    inputEditUserEmail.value = userEdit.mail;
+}
+//EDIT LABORATORY
+async function llenarCamposEditLaboratory(){
+    let id = selectEditLaboratoryLaboratory.value;
+    if(id == "none"){
+        inputEditLaboratoryName.value = "";
+        inputEditLaboratoryAbreviation.value = "";
+        inputEditLaboratoryCapacity.value = "";
+        inputEditLaboratoryLocation.value = "";
+        inputEditLaboratoryImage.value = "";
+    }else{
+        let laboratory = await getLaboratory(id);
+        inputEditLaboratoryName.value = laboratory.name;
+        inputEditLaboratoryAbreviation.value = laboratory.abbreviation;
+        inputEditLaboratoryCapacity.value = laboratory.totalCapacity;
+        inputEditLaboratoryLocation.value = laboratory.location;        
+    }
+    
+}
 //CREAR LAS TARJETAS DE USUARIOS
 async function showUsers() {
     try{
@@ -401,17 +503,69 @@ async function showUsers() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Borrar";
             deleteButton.classList.add("deleteButton");
-
             deleteButton.addEventListener("click", async () => {
                 await deleteUser(usuario.id);
                 showUsers();
             });
 
+            let editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.classList.add("deleteButton");
+            editButton.addEventListener("click", async () => {
+                interfaceEditUser();
+                llenarCamposEditUser(usuario.id);
+            });
+
             userCard.appendChild(deleteButton);
+            userCard.appendChild(editButton);
             divShowUsersUsers.appendChild(userCard);
         });
     }catch (error){
         console.error("Error monstrar Usuarios: ",error);
+    }
+}
+//CREAR LAS TARJEDAS DE LABORATORIOS
+async function showLaboratories() {
+    try {
+        divShowLaboratoriesContent.innerHTML = "";
+        let tempLaboratoriesArray = await getLaboratories(); 
+
+        tempLaboratoriesArray.forEach(laboratorio => {
+            let labCard = document.createElement("div");
+            labCard.classList.add("showCards");
+
+            labCard.innerHTML = `
+                <strong>Nombre: </strong>${laboratorio.name} <br>
+                <strong>ID: </strong>${laboratorio.id} <br>
+                <strong>Abreviación: </strong>${laboratorio.abbreviation} <br>
+                <strong>Capacidad: </strong>${laboratorio.totalCapacity} <br>
+                <strong>Ubicación: </strong>${laboratorio.location} <br>
+            `;
+
+            // Botón para eliminar laboratorio
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Borrar";
+            deleteButton.classList.add("deleteButton");
+            deleteButton.addEventListener("click", async () => {
+                await deleteLaboratory(laboratorio.id);
+                await showLaboratories();
+            });
+
+            // Botón para editar laboratorio
+            let editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.classList.add("deleteButton");
+            editButton.addEventListener("click",async ()  => {
+                await interfaceEditLaboratory();
+            });
+
+            // Agregar botones al card del laboratorio
+            labCard.appendChild(deleteButton);
+            labCard.appendChild(editButton);
+            divShowLaboratoriesContent.appendChild(labCard);
+        });
+    } catch (error) {
+        console.error("Error al mostrar laboratorios: ", error);
     }
 }
 //CREAR LAS TARJETAS DE RESERVAS
@@ -419,12 +573,13 @@ async function showReserves() {
     try {
         divShowReservesReserves.innerHTML = "";
         const tempReservesArray = await getReserves();
-
-        tempReservesArray.forEach(reserva => {
-            let usuarioReserva = getUser(reserva.userId);
+        console.log(tempReservesArray);
+        tempReservesArray.forEach(async reserva => {
+            let usuarioReserva = await getUser(reserva.userId);
 
             let reserveCard = document.createElement("div");
             reserveCard.classList.add("showCards");
+            let endTime = horaFinal(reserva.startHour);
 
             reserveCard.innerHTML = `
                 <strong>Laboratorio:</strong> ${reserva.laboratoryName} <br>
@@ -432,7 +587,7 @@ async function showReserves() {
                 <strong>Usuario:</strong> ${usuarioReserva.name} <br>
                 <strong>Tipo:</strong> ${reserva.type.toUpperCase()} <br>
                 <strong>Fecha:</strong> ${reserva.numberDay} - ${reserva.month} - ${reserva.year}<br>
-                <strong>Hora:</strong> ${reserva.startHour} - ${reserva.endTime} <br>
+                <strong>Hora:</strong> ${reserva.startHour} - ${endTime} <br>
                 <strong>Dia:</strong> ${reserva.day}<br>
             `;
 
@@ -456,24 +611,32 @@ async function showReserves() {
 
 //======ENVIAR COSAS AL BACK
 //PARA ENVIAR UN POST (General)
-function postAxios(ruta,data,nombreObjeto){
-    let res = false;
-
-    axios.post(`${api+ruta}`, data)
-        .then(response => {
-            crearPopUp('Se ha creado correctamente',`${nombreObjeto} se ha creado con exito`);
-            res = true;
-        })
-        .catch(error => {
-            console.error(`Error al crear ${nombreObjeto}: `, error);
-            crearPopupError(`Error al crear ${nombreObjeto}`);
-            res = false;
-        });
-
-
-        return res;
+async function postAxios(ruta,data,nombreObjeto){
+    try{
+        await axios.post(`${api+ruta}`, data);
+        crearPopUp('Se ha creado correctamente',`${nombreObjeto} se ha creado con exito`);
+        return true;
+    }catch(error){
+        console.error(`Error al crear ${nombreObjeto}: `, error);
+        crearPopupError(`Error al crear ${nombreObjeto}`);
+        return false;
+    }
 }
-
+async function putAxios(ruta,data,nombreObjeto,id) {
+    try{
+        await axios.put(`${api}${ruta}${data}`, id, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        crearPopUp('Se ha actualizado correctamente',`${nombreObjeto} se ha Actualizado con exito`);
+        return true;
+    }catch(error){
+        console.error(`Error al actualizar ${nombreObjeto}: `, error);
+        crearPopupError(`Error al Actualizar ${nombreObjeto}`);
+        return false;
+    }
+}
 //======SOLICITAR AL BACK
 //CONFIRMAR EL LOGIN
 async function login() {
@@ -514,7 +677,12 @@ async function getUsers(){
 //OBTENER USUARIO ESPECIFICO
 async function getUser(id) {
     try{
-
+        return {
+            id:842,
+            name:"ALEJANDRO",
+            mail:"alejandro@mail.com",
+            rol:"admin"
+        };
     }catch(error){
         console.error("Error al conseguir usuario: ",error);
     }
@@ -525,6 +693,7 @@ async function getLaboratories() {
         let response = await axios.get(`${api}/api/laboratories/laboratory`);
         return response.data;
     } catch (error) {
+        console.error("Error al obtener laboratorios: ",error);
         return [];
     }
 }
@@ -534,6 +703,7 @@ async function getLaboratory(abbreviation) {
         const response = await axios.get(`${api}/api/laboratories/abbreviation/${abbreviation}`);
         return response.data;
     } catch (error) {
+        console.error("Error al obtener laboratorio",error);
         return null;
     }
 }
@@ -541,14 +711,14 @@ async function getLaboratory(abbreviation) {
 async function getReserves() {
     try {
         let response;
-
         if (userLogin.rol === "admin") {
-            response = await axios.get(`${api}api/reserve/reserves`); 
+            response = await axios.get(`${api}/api/reserve/reserves`); 
         } else {
             response = await axios.get(`${api}/api/reserve/users/${userLogin.id}`); 
         }        
         return response.data;
     } catch (error) {
+        console.error("Error al obtener las reservas: ",error);
         return [];
     }
 }
@@ -603,7 +773,6 @@ function crearBoton(divName, buttonName,texto, event){
     newButton.id = `${buttonName}`;
     newButton.innerHTML = `<strong>${texto}</strong>`;
     newButton.addEventListener("click", event);
-    newButton.classList.add(clase);
     
     document.getElementById(`${divName}`).appendChild(newButton);
 }
@@ -714,7 +883,7 @@ function userMenuButtons() {
 }
 
 //======VALLIDACIONES / FUNCIONAMIENTO
-//VALIDAR COSAS DE INPUTS
+//VALIDACIONES /  COSAS DE INPUTS
 function inputEventos() {
     //LOGIN
     inputLoginID.addEventListener("input", function () {
@@ -742,7 +911,15 @@ function inputEventos() {
     inputNewReserveDate.setAttribute("min", today);
 
     inputNewReserveEndTime.setAttribute("readonly", true);
-    inputNewReserveStartTime.addEventListener("input", horaFinal);
+    inputNewReserveStartTime.addEventListener("input", () =>{
+        let res = horaFinal(inputNewReserveStartTime.value);
+        inputNewReserveEndTime.value = res;
+    });
+
+    //EDIT LABORATORY
+    selectEditLaboratoryLaboratory.addEventListener("change",() => {
+        llenarCamposEditLaboratory(); 
+    });
 }
 //VERIFICAR QUE ESTE LOGUEADO, SI NO, LO MANDA PARA MENU
 function loginValidate() {
@@ -757,9 +934,9 @@ function logOut() {
     interfaceLogin();
 }
 //PARA PONER LA HORA FINAL 
-function horaFinal() {
-    if (inputNewReserveStartTime.value) {
-        let [hours, minutes] = inputNewReserveStartTime.value.split(":");
+function horaFinal(startHour) {
+    if (startHour) {
+        let [hours, minutes] = startHour.split(":");
         let endHours = parseInt(hours);
         let endMinutes = parseInt(minutes) + 30;
 
@@ -774,9 +951,9 @@ function horaFinal() {
             endHours -= 24;
         }
 
-        inputNewReserveEndTime.value = `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
+        return `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
     } else {
-        inputNewReserveEndTime.value = "";
+        return "";
     }
 }
 
@@ -788,13 +965,9 @@ async function main() {
     
 
     //BORRAR
-    userLogin = {
-        id: 1231312,
-        name:"adasdas",
-        mail:"adassad@gmail.com",
-        password:13123123,
-        rol:"admin"
-    };
+    
+
+    userLogin = await getUser(842);
     isLogin = true;
     laboratories = await getLaboratories();
 
