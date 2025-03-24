@@ -246,6 +246,15 @@ async function interfaceShowLaboratories() {
     seccionShowLaboratories.style.display = 'flex';
     loginValidate();
 }
+//NEW SCHEDULE
+async function interfaceAddSchedule() {
+    interfacesOff();
+    addLaboratoriesSelect(selectAddScheduleLaboratory);
+    addTypesSelect(selectAddScheduleDay,dayTypes);
+
+    seccionAddSchedule.style.display = "flex";
+    loginValidate();
+}
 //MENU
 function interfaceMenu() {
     generateMenuButtons();
@@ -309,6 +318,8 @@ async function newLaboratory() {
         totalCapacity: capacity,
         location: location,
         scheduleReferences: [],
+        physicalResource: null,
+        softwareResource: null
     };
     
     const res = await postAxios("/api/laboratories/",laboratoryData,"Laboratorio");
@@ -447,11 +458,49 @@ async function editLaboratory() {
 
         return true;
     } catch (error) {
+        crearPopupError("Errorr al editar el laboratorio");
         console.error("Error al editar laboratorio: ", error);
         return false;
     }
 }
+//ADD SCHEDULE
+async function addSchedule (){
+    let idLaboratory = selectAddScheduleLaboratory.value.trim();
+    if (idLaboratory == "none") {
+        crearPopupError("Seleccionar laboratorio a editar");
+        return false;
+    }
 
+    try{
+        let dayOfWeek = selectAddScheduleDay.value.trim();
+        let openingTime = inputAddScheduleStartTime.value.trim();
+        let closingTime = inputAddScheduleEndTime.value.trim();
+        if(dayOfWeek == "none" || openingTime == "" || closingTime == ""){
+            crearPopupError("Seleccionar todos los campos");
+            return false;
+        }
+        let laboratory = await getLaboratory(idLaboratory);
+        console.log(laboratory);
+        let scheduleReferences = laboratory.scheduleReferences;
+        if (scheduleReferences == null || scheduleReferences == undefined){
+            scheduleReferences = [];
+        }
+        const schedule = {
+            dayOfWeek: dayOfWeek,
+            openingTime: openingTime,
+            closingTime: closingTime
+        };
+        scheduleReferences.push(schedule);
+        await putAxiosLab(`/api/laboratories/scheduleReference/${idLaboratory}`, 
+            schedule,"Horarios");
+
+    }catch(error){
+        crearPopupError("Error al Agregar un horario");
+        console.error("Error al agregar horario: ",error);
+        return false;
+    }
+    
+}
 
 
 //======ELIMINAR COSAS
@@ -685,7 +734,7 @@ async function putAxiosLab(ruta, data, nombreObjeto) {
     try {
         const response = await axios.put(`${api + ruta}`, data);
         crearPopUp('Actualización Exitosa', `${nombreObjeto} se ha actualizado correctamente`);
-        return response.data;
+        return true;
     } catch (error) {
         console.error(`Error al actualizar ${nombreObjeto}:`, error);
         crearPopupError(`Error al actualizar ${nombreObjeto}`);
@@ -893,6 +942,10 @@ function botonesEvents() {
     buttonShowLaboratoriesVolver.addEventListener('click', interfaceMenu);
     buttonShowLaboratoriesNewLaboratory.addEventListener('click', interfaceNewLaboratory);
 
+    //ADD SCHEDDULE
+    buttonAddScheduleVolver.addEventListener('click', interfaceMenu);
+    buttonAddScheduleAgregar.addEventListener('click', addSchedule);
+
     //MENU
     buttonMenuLogOut.addEventListener('click', logOut);
 }
@@ -917,6 +970,7 @@ function adminMenuButtons() {
         { text: "Nuevo Laboratorio", action: interfaceNewLaboratory },
         { text: "Editar Laboratorio", action: interfaceEditLaboratory },
         { text: "Mostrar Laboratorios", action: interfaceShowLaboratories },
+        { text: "Agregar Horario", action: interfaceAddSchedule},
         { text: "Nueva Reserva", action: interfaceNewReserve },
         { text: "Mostrar Reservas", action: interfaceShowReserves }
     ];
@@ -973,6 +1027,9 @@ function inputEventos() {
     selectEditLaboratoryLaboratory.addEventListener("change",() => {
         llenarCamposEditLaboratory(); 
     });
+
+    //ADD SCHEDULE
+    inputAddScheduleStarDate.setAttribute("min", today);
 }
 //VERIFICAR QUE ESTE LOGUEADO, SI NO, LO MANDA PARA MENU
 function loginValidate() {
