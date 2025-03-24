@@ -1,18 +1,364 @@
+
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Reserva de laboratorios</title>
-        <link rel="stylesheet" href="./css/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas Laboratorios</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+
+<section id="seccionLogin" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Login</strong></h1>
+                <div class="divInputsUserForm">
+                    <label for="inputLoginID"><strong>ID</strong></label>
+                    <input type="text" name="Userid" id="inputLoginID">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputLoginPassword"><strong>Contraseña</strong></label>
+                    <input type="password" name="password" id="inputLoginPassword">
+                </div>
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonLoginNewUser" type="button"><strong>Crear Usuario</strong></button>
+                <button id="buttonLoginLogin" type="button"><strong>Ingresar</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionNewUser" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Crear Usuario</strong></h1>
+                <div class="divInputsUserForm">
+                    <label for="inputNewUserUser"><strong>Nombre Usuario</strong></label>
+                    <input type="text" name="user" id="inputNewUserUser">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewUserID"><strong>ID Escuela</strong></label>
+                    <input type="number" name="idUser" id="inputNewUserID" min="1">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewUserEmail"><strong>Correo</strong></label>
+                    <input type="email" name="email" id="inputNewUserEmail">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewUserPassword"><strong>Contraseña</strong></label>
+                    <input type="password" name="password" id="inputNewUserPassword">
+                </div>
+
+                <div class="divInputsUserForm" id="divSelectUserType">
+
+                </div>
+            </div>
+
+            <div class="divUserBotones" id="divNewUserButtons">
+                <button id="buttonNewUserLogin" type="button"><strong>Login</strong></button>
+                <button id="buttonNewUserNewUser" type="button"><strong>Crear</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionEditUser" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Editar Usuario</strong></h1>
+                <div class="divInputsUserForm">
+                    <label for="inputEditUserUser"><strong>Nombre Usuario</strong></label>
+                    <input type="text" name="user" id="inputEditUserUser">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditUserEmail"><strong>Correo</strong></label>
+                    <input type="email" name="email" id="inputEditUserEmail">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditUserPassword"><strong>Contraseña</strong></label>
+                    <input type="password" name="password" id="inputEditUserPassword">
+                </div>
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonEditUserVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonEditUserGuardar" type="button"><strong>Guardar</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionNewLaboratory" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Crear Laboratorio</strong></h1>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewLaboratoryName"><strong>Nombre</strong></label>
+                    <input type="text" name="name" id="inputNewLaboratoryName">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewLaboratoryAbreviation"><strong>Abreviacion</strong></label>
+                    <input type="text" name="abreviation" id="inputNewLaboratoryAbreviation">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewLaboratoryCapacity"><strong>Capacidad Total</strong></label>
+                    <input type="number" name="capacity" id="inputNewLaboratoryCapacity" min="1">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewLaboratoryLocation"><strong>Ubicacion</strong></label>
+                    <input type="text" name="location" id="inputNewLaboratoryLocation">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewLaboratoryImage"><strong>Fotografía</strong></label>
+                    <input type="file" name="image" id="inputNewLaboratoryImage" accept="image/*">
+                </div>
+
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonNewLaboratoryVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonNewLaboratoryShowLaboratories" type="button"><strong>Mirar Laboratorios</strong></button>
+                <button id="buttonNewLaboratoryNewLaboratory" type="button"><strong>Crear</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionEditLaboratory" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Editar Laboratorio</strong></h1>
+
+                <div class="divInputsUserForm">
+                    <label for="selectEditLaboratoryLaboratory"><strong>Laboratorio</strong></label>
+                    <select name="laboratory" id="selectEditLaboratoryLaboratory"></select>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditLaboratoryName"><strong>Nombre</strong></label>
+                    <input type="text" name="name" id="inputEditLaboratoryName">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditLaboratoryAbreviation"><strong>Abreviacion</strong></label>
+                    <input type="text" name="abreviation" id="inputEditLaboratoryAbreviation">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditLaboratoryCapacity"><strong>Capacidad Total</strong></label>
+                    <input type="number" name="capacity" id="inputEditLaboratoryCapacity" min="1">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditLaboratoryLocation"><strong>Ubicacion</strong></label>
+                    <input type="text" name="location" id="inputEditLaboratoryLocation">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputEditLaboratoryImage"><strong>Fotografía</strong></label>
+                    <input type="file" name="image" id="inputEditLaboratoryImage" accept="image/*">
+                </div>
+
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonEditLaboratoryVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonEditLaboratoryGuardar" type="button"><strong>Guardar</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionNewReserve" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Crear Reserva</strong></h1>
+
+                <div class="divInputsUserForm">
+                    <label for="selectNewReserveLaboratory"><strong>Laboratorio</strong></label>
+                    <select name="laboratory" id="selectNewReserveLaboratory"></select>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="selectNewReserveType"><strong>Tipo de Reserva</strong></label>
+                    <select name="Type" id="selectNewReserveType"></select>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="textAreaNewReserveRazon"><strong>Razon</strong></label>
+                    <textarea name="Razon" id="textAreaNewReserveRazon" rows="2"></textarea>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewReserveDate"><strong>Fecha</strong></label>
+                    <input type="date" name="date" id="inputNewReserveDate">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewReserveStartTime"><strong>Hora Inicial</strong></label>
+                    <input type="time" name="startTime" id="inputNewReserveStartTime">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputNewReserveEndTime"><strong>Hora Final</strong></label>
+                    <input type="time" name="endTime" id="inputNewReserveEndTime">
+                </div>
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonNewReserveVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonNewReserveShowReserves" type="button"><strong>Mirar Reservas</strong></button>
+                <button id="buttonNewReserveNewReserve" type="button"><strong>Crear</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionShowUsers" class="seccion">
+    <div class="divShowBackground">
+        <div class="encabezadoMenu">
+            <img src="./img/Logo.png" class="logoPequeno">
+            <h1>Mostrar Usuarios</h1>
+        </div>
+        <div class="divShowContainer">
+            <h1><strong>Usuarios:</strong></h1>
+            <div id="divShowUsersUsers" class="divShowContent"></div>
+            <div class="divShowBotones">
+                <button id="buttonShowUsersVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonShowUsersNewUser" type="button"><strong>Crear Usuario</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionShowReserves" class="seccion">
+    <div class="divShowBackground">
+        <div class="encabezadoMenu">
+            <img src="./img/Logo.png" class="logoPequeno">
+            <h1>Mostrar Reservas</h1>
+        </div>
+        <div class="divShowContainer">
+            <h1><strong>Reservas:</strong></h1>
+            <div id="divShowReservesReserves" class="divShowContent"></div>
+            <div class="divShowBotones">
+                <button id="buttonShowReservesVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonShowReservesNewReserve" type="button"><strong>Crear Reserva</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="seccionShowLaboratories" class="seccion">
+    <div class="divShowBackground">
+        <div class="encabezadoMenu">
+            <img src="./img/Logo.png" class="logoPequeno">
+            <h1>Mostrar Laboratorios</h1>
+        </div>
+        <div class="divShowContainer">
+            <h1><strong>Laboratorios:</strong></h1>
+            <div id="divShowLaboratoriesContent" class="divShowContent"></div>
+            <div class="divShowBotones">
+                <button id="buttonShowLaboratoriesVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonShowLaboratoriesNewLaboratory" type="button"><strong>Agregar Laboratorio</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-    </head>
-    
-    <body>
-        
-        
-        <script src="./js/javaScript.js" defer></script>
-    </body>
+
+
+<section id="seccionAddSchedule" class="seccion">
+    <div class="divUserBackground">
+        <div class="divUserPrincipal">
+            <img src="./img/Logo.png" class="logoGrande">
+            <div class="divUserForm">
+                <h1><strong>Agregar Horarios</strong></h1>
+
+                <div class="divInputsUserForm">
+                    <label for="selectAddScheduleLaboratory"><strong>Laboratorio</strong></label>
+                    <select name="laboratory" id="selectAddScheduleLaboratory"></select>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="selectAddScheduleDay"><strong>Dia de la semana</strong></label>
+                    <select name="Type" id="selectAddScheduleDay"></select>
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputAddScheduleStarDate"><strong>Fecha Inicial</strong></label>
+                    <input type="date" name="date" id="inputAddScheduleStarDate">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputAddScheduleEndDate"><strong>Fecha Final</strong></label>
+                    <input type="date" name="date" id="inputAddScheduleEndDate">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputAddScheduleStartTime"><strong>Hora Inicial</strong></label>
+                    <input type="time" name="startTime" id="inputAddScheduleStartTime">
+                </div>
+
+                <div class="divInputsUserForm">
+                    <label for="inputAddScheduleEndTime"><strong>Hora Final</strong></label>
+                    <input type="time" name="endTime" id="inputAddScheduleEndTime">
+                </div>
+            </div>
+
+            <div class="divUserBotones">
+                <button id="buttonAddScheduleVolver" type="button"><strong>Volver</strong></button>
+                <button id="buttonAddScheduleAgregar" type="button"><strong>Agregar</strong></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="seccionMenu" class="seccion">
+    <div>
+        <div class="encabezadoMenu">
+            <img src="./img/Logo.png" class="logoPequeno">
+            <h1>Menú</h1>
+            <button class="longOutButton" type="button" id="buttonMenuLogOut"><strong>SALIR</strong></button>
+        </div>
+        <div id="divMenuBotones">
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./JS/script.js"></script>
+</body>
 
 </html>
