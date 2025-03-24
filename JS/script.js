@@ -480,7 +480,6 @@ async function addSchedule (){
             return false;
         }
         let laboratory = await getLaboratory(idLaboratory);
-        console.log(laboratory);
         let scheduleReferences = laboratory.scheduleReferences;
         if (scheduleReferences == null || scheduleReferences == undefined){
             scheduleReferences = [];
@@ -752,8 +751,19 @@ async function login() {
         return;
     }
     
-    //PONER FUNCION DE LOGIN ACA
-    isLogin = true;
+    userLogin = await getUser(id);
+    if(userLogin == null){
+        crearPopupError("Usuario no existente en la BD");
+        inputLoginID.value = "";
+        inputLoginPassword.value = "";
+        isLogin = false;
+        return
+    }else{
+        isLogin = true;
+        inputLoginID.value = "";
+        inputLoginPassword.value = "";
+    }
+
 
     if(isLogin){
         inputLoginID.value = "";
@@ -1071,17 +1081,7 @@ async function main() {
     interfacesOff();
     botonesEvents();
     inputEventos();
-    
-    
-
-    //BORRAR
-    
-
-    userLogin = await getUser(842);
-    isLogin = true;
-    laboratories = await getLaboratories();
-
-    interfaceMenu();
+    interfaceLogin();
 }
 
 document.addEventListener("DOMContentLoaded", main);
