@@ -1,0 +1,386 @@
+    /*VARIABLES*/
+:root{
+    --colorPrincipal: #990000;
+    --colorPrincipalTrasparente: #99000091;
+
+    --colorPrincipalClaro: #ffffff;
+
+    --colorSecundario: #ff9595;
+    --colorSecundarioClaro: #fda9a9;
+
+    --colorFondoSecundario: #F5F5F5;
+
+    --colorTextoOscuro: #000000;
+    --colorTextoClaro: #ffffff;
+
+    --colorBoxShadow: #00000072;
+
+    --fontFamily: "Raleway", sans-serif;
+
+    --borderRadius: 2px;
+
+    /*FOTOS*/
+    --imgLoginBackground: url('../img/User.jpg');
+    --imgMenuBackground: url('../img/User.jpg');
+
+}
+
+/*GENERAL*/
+body {
+    font-family: var(--fontFamily);
+    font-weight: 100;
+    font-style: normal;
+
+    
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden;
+}
+
+h1 {
+    font-family: var(--fontFamily);
+    font-size: 2.5rem;
+    font-weight: 100;
+
+    align-self: center;
+    text-align: center;
+}
+
+label {
+    font-family: var(--fontFamily);
+    font-size: 1rem;
+    font-weight: normal;
+
+    
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+input, textarea {
+    font-size: 1rem;
+
+    width: 35vw;
+    padding: 10px 12px;
+    
+    border: none;
+    border-radius: var(--borderRadius);
+
+
+    margin-bottom: 20px;
+}
+
+
+select {
+    font-size: 1rem;
+
+    width: 37vw;
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: var(--borderRadius);
+    
+    margin-bottom: 20px;
+}
+
+button {
+    width: 40%;
+    
+    font-family: var(--fontFamily);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    text-align: center;
+    
+    color: var(--colorTextoClaro);
+    background-color: var(--colorPrincipal);
+    
+    border: none;
+    border-radius: var(--borderRadius);
+    padding: 12px 0px;
+    margin: 2px;
+}
+
+    /*CLASES*/
+/*USER*/
+.divUserBackground {
+    height: 100vh;
+    width: 100%;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    background: var(--imgLoginBackground);
+    background-size: cover;
+    background-position: center;
+}
+
+.divUserPrincipal{
+    height: 100%;
+    width: 40%;
+    padding: 20px; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    color: var(--colorTextoClaro);
+    background: var(--colorPrincipalTrasparente);
+    backdrop-filter: blur(4px);
+
+    animation: slideInRight 0.8s ease-out;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.divUserForm{
+    width: 80%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divInputsUserForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.divUserBotones{
+    width: 90%;
+
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.logoGrande{
+    width: 40vw;
+    max-width: 400px;
+    margin-left: 50px;
+}
+
+/*MENU y/o ENCABEZADO*/
+.encabezadoMenu{
+    background: var(--colorPrincipal);
+    color: var(--colorTextoClaro);
+    display: flex;
+    flex-direction: row;
+    width:100vw;
+    padding: 8px;
+    
+}
+
+.logoPequeno{
+    width: 20vw;
+    max-width: 200px;
+}
+
+.encabezadoMenu h1{
+    flex-grow: 1; 
+    text-align: center; 
+    margin: 0; 
+}
+
+/*SHOW USERS/LABORATORY/RESOURCES*/
+.divShowBackground{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divShowContainer {
+    width: 80vw;
+    height: 76vh;
+    margin: 5vh;
+    padding: 5px;
+
+    background: var(--colorSecundario);
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
+    color: var(--colorTextoOscuro);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+}
+
+.divShowContent {
+    width: 70vw;
+    height: 45vh; 
+    padding-inline: 3vw;
+
+    background: var(--colorSecundarioClaro);
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
+    border-radius: var(--borderRadius);    
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto;
+}
+
+.divShowBotones{
+    width: 70vw;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.showCards {
+    font-family: var(--fontFamily);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+    width: 80%;
+    height: auto;
+    padding: 25px 20px; 
+    margin: 10px;
+
+    background: var(--colorFondoSecundario);
+    color: var(--colorTextoOscuro);
+    border-radius: var(--borderRadius);
+    box-shadow: 0px 0px 10px 3px var(--colorBoxShadow);
+    
+    animation: fadeIn 0.6s ease-out;
+}
+
+/*RESOURCES*/
+.divShowColumns {
+    
+    width: 95%;
+    height: 70%;
+
+    margin: 20px;
+    gap: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divShowList {
+    height: 100%;
+    width: 100%;
+
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    overflow-y: auto;    
+    overflow-x: hidden;
+}
+
+.divShowRecursos {
+    width: 40%;
+    height: 100%;
+    
+    background: var(--colorPrincipalClaro);
+    color: var(--colorTextoOscuro);
+
+    border-radius: var(--borderRadius);
+
+    overflow-y: auto;
+}
+
+.deleteButton {
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+}
+
+    /*ESPECIFICO*/
+#divMenuBotones {
+    width: 100vw;
+    height: 80vh;
+    gap: 15px;
+    padding: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    overflow-y: auto;
+    
+    background: var(--imgLoginBackground);
+    background-size:cover;
+    background-position: center;
+
+}
+
+#divMenuBotones button {
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+
+
+    width: 30%;
+    min-width: 400px;
+    height: 15vh;
+    background: var(--colorPrincipalTrasparente);
+    backdrop-filter: blur(5px);
+    border-radius: var(--borderRadius);
+}
+
+    /*ANIMACIONES*/
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%); 
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px 3px var(--colorBoxShadow);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 0px 15px 5px var(--colorBoxShadow);
+}
+
+.showCards:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 5px 0px var(--colorBoxShadow);
+}
+
+.deleteButton:hover , .longOutButton:hover{
+    background-color: red;
+}
+
+#divMenuBotones button:hover {
+    background: var(--colorSecundario);
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 5px var(--colorBoxShadow);
+}
