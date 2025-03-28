@@ -745,7 +745,6 @@ async function putAxiosLab(ruta, data, nombreObjeto) {
 async function login() {
     let id = inputLoginID.value.trim();
     let password = inputLoginPassword.value.trim();
-
     if (id === "" || password === "") {
         crearPopupError("Por favor, completa todos los campos.");
         return;
@@ -763,7 +762,7 @@ async function login() {
         inputLoginID.value = "";
         inputLoginPassword.value = "";
     }
-
+    isLogin = true;
 
     if(isLogin){
         inputLoginID.value = "";
@@ -1078,6 +1077,8 @@ function horaFinal(startHour) {
 }
 
 async function main() {
+    isLogin = true;
+    userLogin = await getUser(842);
     interfacesOff();
     botonesEvents();
     inputEventos();
