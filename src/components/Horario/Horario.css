@@ -1,0 +1,103 @@
+:root{
+    --ColorBotones:#990000;
+    --ColorLetraClara: #ffffff;
+    --ColorLetraOscura: #000000;
+
+    --ColorEncabezado: #990000;
+    --ColorHoras:#4b4b4b;
+    --ColorCeldas:#ffffff;
+    --ColorBordes: #ea0000;
+    --ColorDiaHoy: #a2eebb;
+
+    --heightHoras: 3.86vh;
+    --heigthCeldas: calc(var(--heightHoras)/2);
+}
+.horarioWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    flex-direction: column;
+    
+    align-items: center;
+    
+    gap: 1vh;
+    padding: 0.5vw;
+
+    box-sizing: border-box;
+}
+
+.horarioHeader {
+    display: flex;
+    width: 100%;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-inline: 0.5vw;
+    gap: 1vw;
+
+    box-sizing: border-box;
+}
+
+.horarioHeaderButtons{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.horarioHeader button {
+    background-color: var(--ColorBotones);
+    color: var(--ColorLetraClara);
+    padding: 5px 10px;
+}
+
+.horarioHeader h3 {
+    margin: 0;
+}
+
+.horarioTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.horarioTable th, .horarioTable td {
+    border: 1px solid var(--ColorBordes);
+    text-align: center;
+}
+
+.horarioTable th {
+    background-color:var(--ColorEncabezado);
+    color:var(--ColorLetraClara);
+    height: 3vh;
+}
+
+.horarioCell {
+    background-color: var(--ColorCeldas);
+    height: var(--heigthCeldas);
+}
+
+.horaCell{
+    height: var(--heightHoras);
+
+    background: var(--ColorHoras);
+    color: var(--ColorLetraClara);
+    white-space: nowrap;
+
+}
+
+.horarioWrapper{
+    border: red solid;
+}
+
+.horarioHeader,
+.horarioTable{
+    border: black solid;
+}
+
+.diaActual {
+    background-color: var(--ColorDiaHoy) !important;
+    color: black !important;
+    font-weight: bold;
+}
