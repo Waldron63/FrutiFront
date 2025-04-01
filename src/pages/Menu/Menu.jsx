@@ -17,7 +17,7 @@ function Menu() {
             </div>
 
             <div className="reservasContainer">
-
+              <h3>Reservas</h3>
             </div>
           </div>
 

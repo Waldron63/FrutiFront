@@ -41,16 +41,17 @@
   height: 4vh;
 }
 
-.signOutButton{
+.signOutButton {
   padding: 1vh;
-
-
   background: var(--ColorBoton);
   color: var(--ColorTextoBoton);
-
-  position: relative; 
+  position: relative;
   right: 3vh;
+  
+  display: inline-block;
+  width: auto; 
 }
+
 /* ==========================
      DISTRIBUCIÓN HORIZONTAL DEL MENÚ
      ==========================

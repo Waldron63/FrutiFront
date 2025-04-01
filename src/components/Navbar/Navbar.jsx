@@ -43,8 +43,9 @@ function Navbar() {
         </li>
         
       </ul>
-
-      <button className="signOutButton"><strong>Salir</strong></button>
+      <Link to="/login">
+        <button className="signOutButton"><strong>Salir</strong></button>
+      </Link>
     </nav>
   );
 }

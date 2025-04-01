@@ -1,16 +1,13 @@
-/* ==========================
-   VARIABLES GLOBALES
-   ========================== */
-:root {
-    --TipoGrafiaPrincipal: 'Atkinson Hyperlegible', sans-serif;
-    --TipoGrafiaSecundaria: 'Merriweather', serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+:root {
+    --TipoGrafiaPrincipal: 'Poppins', sans-serif;
+    --TipoGrafiaSecundaria: 'Poppins', sans-serif;
     --ButtonBorderRadius: 5px;
+
+    --boxShadow: 0px 3px 5px 1px #000000 ;
 }
 
-/* ==========================
-   RESETEO Y CONFIGURACIÓN BASE
-   ========================== */
 * {
     margin: 0;
     padding: 0;
@@ -22,9 +19,6 @@ body {
     font-size: 1rem;
 }
 
-/* ==========================
-   TIPOGRAFÍA DE ENCABEZADOS
-   ========================== */
 h1,
 h2,
 h3,
@@ -35,33 +29,13 @@ h6 {
     font-weight: 700;
 }
 
-h1 {
-    font-size: 2.5rem;
-}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
 
-h2 {
-    font-size: 2rem;
-}
-
-h3 {
-    font-size: 1.75rem;
-}
-
-h4 {
-    font-size: 1.5rem;
-}
-
-h5 {
-    font-size: 1.25rem;
-}
-
-h6 {
-    font-size: 1rem;
-}
-
-/* ==========================
-   TIPOGRAFÍA GENERAL
-   ========================== */
 p,
 a,
 ul,
@@ -69,8 +43,6 @@ ol,
 input,
 textarea {
     font-size: 1rem;
-    
-    
     text-decoration: none;
     color: inherit;
     outline: none;
@@ -81,9 +53,6 @@ ol {
     margin-left: 20px;
 }
 
-/* ==========================
-   TIPOGRAFÍA DE ELEMENTOS INTERACTIVOS
-   ========================== */
 button {
     font-family: var(--TipoGrafiaPrincipal);
     font-size: 1rem;
@@ -93,4 +62,5 @@ button {
     cursor: pointer;
     justify-content: center;
     align-content: center;
+    box-shadow: var(--boxShadow);
 }

@@ -1,18 +1,20 @@
 :root{
-    --ColorBotones:#990000;
+    --ColorBotones:#800020;
     --ColorLetraClara: #ffffff;
     --ColorLetraOscura: #000000;
 
-    --ColorEncabezado: #990000;
-    --ColorHoras:#e24d4d;
+    --ColorEncabezado: #800020;
+    --ColorHoras:#1A2A3A;
     --ColorCeldas:#ffffff;
-    --ColorBordes: #ffb9b9;
-    --ColorDiaHoy: #43ff82;
+    --ColorBordes: #ffffff;
+    --ColorDiaHoy: #b3871f;
 
     --ColorReservas: #7aeb80;
 
     --heightHoras: 3.7vh;
     --heigthCeldas: calc(var(--heightHoras)/2);
+
+    --BorderRadius: 14px;
 }
 
 .horarioWrapper {
@@ -54,6 +56,7 @@
 }
 
 .horarioTable {
+    
     width: 100%;
     border-collapse: collapse;
 }
@@ -61,12 +64,6 @@
 .horarioTable th, .horarioTable td {
     border: 1px solid var(--ColorBordes);
     text-align: center;
-}
-
-.horarioTable th {
-    background-color:var(--ColorEncabezado);
-    color:var(--ColorLetraClara);
-    height: 3vh;
 }
 
 .horarioCell {
@@ -83,6 +80,17 @@
     background: var(--ColorHoras);
     color: var(--ColorLetraClara);
     white-space: nowrap;
+    border-radius: var(--BorderRadius);
+}
+
+.horarioTable th {
+    width: 2vw;
+    background-color:var(--ColorEncabezado);
+    color:var(--ColorLetraClara);
+    height: 3vh;
+    border-radius: var(--BorderRadius);
+    font-size: 0.85rem;
+    font-weight: bold;
 }
 
 .reserva {
@@ -97,7 +105,6 @@
     white-space: pre-line;
 }
 
-
 .reservasContainer {
     display: flex;
     flex-direction: column;
@@ -105,5 +112,5 @@
 
 .diaActual {
     background: var(--ColorDiaHoy) !important;
-  }
+}
   
