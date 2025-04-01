@@ -3,6 +3,8 @@ import React from "react";
 import Laboratorios from "./pages/Laboratorios";
 import CrearLaboratorio from "./pages/CrearLaboratorio";
 import AdminLaboratorios from "./pages/AdminLaboratorios";
+import Reservas from "./pages/Reservas";
+import AdminReservas from "./pages/AdminReservas";
 
 function App() {
   /*return (
@@ -12,7 +14,7 @@ function App() {
   );*/
   //return <CrearLaboratorio />;
   //return <AdminLaboratorios />;
-  return <Laboratorios />;
+  return <AdminReservas />;
 }
 
 export default App;
