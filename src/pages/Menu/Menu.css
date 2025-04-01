@@ -81,8 +81,6 @@
     display: flex;
     flex-direction: column;
 
-    background-color: lightblue;
-
 }
 
 .reservasContainer {
@@ -91,14 +89,12 @@
 
     display: flex;
 
-    background-color: lightcoral;
 }
 
 /* ==========================
    Sección derecha
    ========================== */
 .rightContainer {
-    background-color: lightgreen;
 
     height: var(--heightSeccionDerecha);
     width:var(--widthSeccionDerecha);
@@ -112,20 +108,4 @@
 
     box-sizing: border-box;
     padding: 1vh;
-}
-
-/* ==========================
-   Bordes de prueba (para visualizar)
-   ========================== */
-.Generalcontainer,
-.leftContainer,
-.horarioContainer,
-.horario,
-.reservasContainer,
-.reservas,
-.rightContainer,
-.laboratoriosContainer,
-.laboratorios,
-.restante{
-    border: 1px solid black;
 }

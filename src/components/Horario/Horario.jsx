@@ -1,30 +1,37 @@
-import { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import "./Horario.css";
 
 function Horario() {
+  const api = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net";
+
+  const [reservas, setReservas] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const horarios = [
-    "7:00 AM",
-    "8:00 AM",
-    "9:00 AM",
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "1:00 PM",
-    "2:00 PM",
-    "3:00 PM",
-    "4:00 PM",
-    "5:00 PM",
-    "6:00 PM",
-    "7:00 PM"
+    "7:00 AM", "8:30 AM", "10:00 AM", "11:30 AM", "1:00 PM",
+    "2:30 PM", "4:00 PM", "5:30 PM", "7:00 PM"
   ];
 
   const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
+  useEffect(() => {
+    async function fetchReservas() {
+      try {
+        const response = await axios.get(`${api}/api/reserve/reserves`);
+        console.log(response.data); // Mantener este log para ver las reservas que llegan
+        setReservas(response.data);
+      } catch (error) {
+        console.error("Error al obtener las reservas: ", error);
+      }
+    }
+
+    fetchReservas();
+  }, []);
+
   const getWeekRange = (date) => {
     const startOfWeek = new Date(date);
-    startOfWeek.setDate(date.getDate() - date.getDay() + 1);
+    startOfWeek.setDate(date.getDate() - (date.getDay() === 0 ? 6 : date.getDay() - 1));
 
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 5);
@@ -35,40 +42,36 @@ function Horario() {
   const { startOfWeek, endOfWeek } = getWeekRange(currentDate);
 
   const formatDate = (date) => {
-    return `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}`;
+    return `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1).toString().padStart(2, "0")}`;
   };
 
   const todayFormatted = formatDate(new Date());
 
-  const goToPreviousWeek = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() - 7);
-    setCurrentDate(newDate);
-  };
+  const goToPreviousWeek = () => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 7)));
+  const goToNextWeek = () => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 7)));
+  const goToToday = () => setCurrentDate(new Date());
 
-  const goToNextWeek = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + 7);
-    setCurrentDate(newDate);
-  };
-
-  const goToToday = () => {
-    setCurrentDate(new Date());
+  // Función para convertir la hora de la reserva
+  const convertirHoraReserva = (horaReserva) => {
+    const [hour, minute] = horaReserva.split(":");
+    const date = new Date();
+    date.setHours(parseInt(hour), parseInt(minute), 0);
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   return (
     <div className="horarioWrapper">
       <div className="horarioHeader">
         <h2>Horario</h2>
-        <h5>
-          Semana: {formatDate(startOfWeek)} - {formatDate(endOfWeek)}
-        </h5>
+        <h5>Semana: {formatDate(startOfWeek)} - {formatDate(endOfWeek)}</h5>
         <div className="horarioHeaderButtons">
-          <button onClick={goToPreviousWeek}>←</button>
+          <button onClick={goToPreviousWeek}>{'<'}</button>
           <button onClick={goToToday}>Hoy</button>
-          <button onClick={goToNextWeek}>→</button>
+          <button onClick={goToNextWeek}>{'>'}</button>
         </div>
       </div>
 
@@ -77,9 +80,9 @@ function Horario() {
           <tr>
             <th>Horas</th>
             {diasSemana.map((dia, index) => {
-              const dayDate = new Date(startOfWeek);
-              dayDate.setDate(startOfWeek.getDate() + index);
-              const formattedDay = formatDate(dayDate);
+              const tablaDia = new Date(startOfWeek);
+              tablaDia.setDate(startOfWeek.getDate() + index);
+              const formattedDay = formatDate(tablaDia);
 
               return (
                 <th key={dia} className={formattedDay === todayFormatted ? "diaActual" : ""}>
@@ -89,23 +92,40 @@ function Horario() {
             })}
           </tr>
         </thead>
+
         <tbody>
-          {horarios.map((hora) => (
-            <>
-              {/* Fila para la hora exacta */}
-              <tr key={`${hora}-00`}>
-                <td className="horaCell" rowSpan={2}>{hora}</td>
-                {diasSemana.map((dia) => (
-                  <td key={`${dia}-${hora}-00`} className="horarioCell"></td>
-                ))}
-              </tr>
-              {/* Fila para los 30 minutos */}
-              <tr key={`${hora}-30`}>
-                {diasSemana.map((dia) => (
-                  <td key={`${dia}-${hora}-30`} className="horarioCell subHoraCell"></td>
-                ))}
-              </tr>
-            </>
+          {horarios.map((hora, horaIndex) => (
+            <tr key={hora}>
+              <td className="horaCell">{hora}</td>
+              {diasSemana.map((dia, diaIndex) => {
+                const tablaDia = new Date(startOfWeek);
+                tablaDia.setDate(startOfWeek.getDate() + diaIndex);
+                const formattedDay = formatDate(tablaDia);
+                const numeroDiaTabla = tablaDia.getDate(); // Día numérico
+
+                // Filtrar las reservas para el día y la hora
+                const reservasDiaHora = reservas.filter(reserva => {
+                  const reservaHoraTexto = convertirHoraReserva(reserva.startHour.slice(0, 5)); // Extraemos "HH:MM"
+                  const reservaDia = reserva.numberDay; // Día de la reserva
+                  return reservaHoraTexto === hora && reservaDia === numeroDiaTabla;
+                });
+
+                // Generar el texto de las reservas y unirlas en una sola línea
+                const contenidoCelda = reservasDiaHora.map(r =>
+                  `[ ${r.reason} (${r.laboratoryName}) ]` 
+                ).join("\n");
+
+                return (
+                  <td key={`${dia}-${hora}`} className="horarioCell">
+                    {contenidoCelda && (
+                      <div className="reserva">
+                        {contenidoCelda}
+                      </div>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
           ))}
         </tbody>
       </table>

@@ -4,40 +4,36 @@
     --ColorLetraOscura: #000000;
 
     --ColorEncabezado: #990000;
-    --ColorHoras:#4b4b4b;
+    --ColorHoras:#e24d4d;
     --ColorCeldas:#ffffff;
-    --ColorBordes: #ea0000;
-    --ColorDiaHoy: #a2eebb;
+    --ColorBordes: #ffb9b9;
+    --ColorDiaHoy: #43ff82;
 
-    --heightHoras: 3.86vh;
+    --ColorReservas: #7aeb80;
+
+    --heightHoras: 3.7vh;
     --heigthCeldas: calc(var(--heightHoras)/2);
 }
+
 .horarioWrapper {
     height: 100%;
     width: 100%;
     display: flex;
-
     flex-direction: column;
-    
     align-items: center;
-    
     gap: 1vh;
     padding: 0.5vw;
-
     box-sizing: border-box;
 }
 
 .horarioHeader {
     display: flex;
     width: 100%;
-
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     padding-inline: 0.5vw;
     gap: 1vw;
-
     box-sizing: border-box;
 }
 
@@ -76,28 +72,38 @@
 .horarioCell {
     background-color: var(--ColorCeldas);
     height: var(--heigthCeldas);
+    font-size: 0.8rem;
+    min-height: 3.7vh;
 }
 
 .horaCell{
     height: var(--heightHoras);
-
+    font-size: 0.9rem;
+    font-weight: bold;
     background: var(--ColorHoras);
     color: var(--ColorLetraClara);
     white-space: nowrap;
-
 }
 
-.horarioWrapper{
-    border: red solid;
+.reserva {
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--ColorReservas);
+    color: var(--ColorLetraOscura);
+    font-weight: bold;
+    white-space: pre-line;
 }
 
-.horarioHeader,
-.horarioTable{
-    border: black solid;
+
+.reservasContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 .diaActual {
-    background-color: var(--ColorDiaHoy) !important;
-    color: black !important;
-    font-weight: bold;
-}
+    background: var(--ColorDiaHoy) !important;
+  }
+  

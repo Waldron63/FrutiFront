@@ -2,7 +2,7 @@
    VARIABLES
    ========================== */
 :root {
-  --ColorBackgroundLista: #99000017;
+  --ColorBackgroundLista: #ffffffc3;
   --ColorLineaBajoSeleccion: #990000;
   
   --ColorTextoPrimariaBajoSeleccion: #990000;
@@ -100,7 +100,7 @@
   align-items: center;
   justify-content:center;
 
-  background: transparent;
+  background: var(--ColorBackgroundLista);
 
   padding-top: 5px;
   
@@ -117,13 +117,14 @@
   display: none;
   height: auto;
   padding-inline: 1vw;
+
   
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
   justify-content:center;
 
-  background: transparent;
+  background: var(--ColorBackgroundLista);
 
   padding-top: 5px;
   
