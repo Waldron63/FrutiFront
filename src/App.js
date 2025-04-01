@@ -10,9 +10,9 @@ function App() {
       <Laboratorios />
     </div>
   );*/
-  return <CrearLaboratorio />;
+  //return <CrearLaboratorio />;
   //return <AdminLaboratorios />;
-  //return <Laboratorios />;
+  return <Laboratorios />;
 }
 
 export default App;
