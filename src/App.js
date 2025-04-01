@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import './styles/App.css';
+import CrearReservas from './pages/CrearReservas';
+import Reservas from './pages/Reservas';
 
 function App() {
     const [currentPage, setCurrentPage] = useState('home');
@@ -66,11 +68,13 @@ function App() {
         setIsUserModalOpen(false);
     };
 
-    return (
+    /*return (
         <div className="app">
             <Sidebar onNavigate={handleNavigation} openUserModal={openUserModal} />
         </div>
-    );
+    );*/
+
+    return (<><Reservas /></>);
 }
 
 export default App;
