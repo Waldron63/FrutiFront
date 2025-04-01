@@ -14,30 +14,27 @@ import NewUser from "../pages/CrearUsuario/CrearUsuario";
 import EditUser from "../pages/EditarUsuario/EditarUsuario";
 import ShowUsers from "../pages/ListarUsuarios/ListarUsuario";
 
+import ProtectedRoute from './ProtectedRoute';  
 
-function AppRoutes() {
+function AppRoutesP() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/menu" />} />
-      
       <Route path="/login" element={<Login />} />
-      <Route path="/menu" element={<Menu />} />
-
-      <Route path="/newLaboratory" element={<NewLaboratory />} />
-      <Route path="/editLaboratory" element={<EditLaboratory />} />
-      <Route path="/showLaboratories" element={<ShowLaboratories />} />
-
-      <Route path="/newReserve" element={<NewReserve />} />
-      <Route path="/showReserves" element={<ShowReserves />} />
-
-      <Route path="/newUser" element={<NewUser />} />
-      <Route path="/editUser" element={<EditUser />} />
-      <Route path="/showUsers" element={<ShowUsers />} />
-
       <Route path="/signOut" element={<Navigate to="/login" />} />
 
+      {/* Rutas protegidas */}
+      <Route path="/menu" element={<ProtectedRoute element={Menu} />} />
+      <Route path="/newLaboratory" element={<ProtectedRoute element={NewLaboratory} />} />
+      <Route path="/editLaboratory" element={<ProtectedRoute element={EditLaboratory} />} />
+      <Route path="/showLaboratories" element={<ProtectedRoute element={ShowLaboratories} />} />
+      <Route path="/newReserve" element={<ProtectedRoute element={NewReserve} />} />
+      <Route path="/showReserves" element={<ProtectedRoute element={ShowReserves} />} />
+      <Route path="/newUser" element={<ProtectedRoute element={NewUser} />} />
+      <Route path="/editUser" element={<ProtectedRoute element={EditUser} />} />
+      <Route path="/showUsers" element={<ProtectedRoute element={ShowUsers} />} />
     </Routes>
   );
 }
 
-export default AppRoutes;
+export default AppRoutesP;

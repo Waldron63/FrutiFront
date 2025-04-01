@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/img/LogoRojo.png";
+import { removeAuthSession } from "../../utils/auth";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    removeAuthSession();  
+    navigate("/login");   
+  };
+
   return (
     <nav className="navBar">
       <img src={logo} className="logo" alt="Logo" />
       <p><strong>Reservas Laboratorios</strong></p>
 
       <ul className="navList">
-
         <li className="navItem">
           <span className="mainLink">
             <Link to="/Menu"><strong>Inicio</strong></Link>
@@ -41,11 +48,9 @@ function Navbar() {
             <li className="secondLink"><Link to="/showUsers"><strong>Listar usuarios</strong></Link></li>
           </ul>
         </li>
-        
       </ul>
-      <Link to="/login">
-        <button className="signOutButton"><strong>Salir</strong></button>
-      </Link>
+
+      <button className="signOutButton" onClick={logout}><strong>Salir</strong></button>
     </nav>
   );
 }

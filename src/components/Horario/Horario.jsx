@@ -1,10 +1,8 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Horario.css";
 
 function Horario() {
-  const api =
-    "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net";
+  const api ="https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net";
 
   const [reservas, setReservas] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -41,6 +39,21 @@ function Horario() {
     }
 
     fetchReservas();
+  }, []);
+ 
+  useEffect(() => {
+    async function getUser(id) {
+      try{
+          let response = await axios.get(`${api}/api/user/userinfo/${id}`);
+          return response.data;
+  
+      }catch(error){
+          console.error("Error al conseguir usuario: ",error);
+          return null;
+      }
+  }
+
+    getUser(842)
   }, []);
 
   const getWeekRange = (date) => {
