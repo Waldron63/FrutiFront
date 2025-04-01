@@ -1,5 +1,5 @@
 import React from "react";
-import CrearUsuario from "../pages/EditarUsuario";
+import CrearUsuario from "../pages/EditarUsuario/EditarUsuario";
 
 function EditUser() {
     const containerStyle = {

@@ -1,0 +1,1 @@
+export const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net"; 

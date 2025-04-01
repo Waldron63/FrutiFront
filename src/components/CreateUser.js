@@ -1,5 +1,5 @@
 import React from "react";
-import CrearUsuario from "../pages/CrearUsuario";
+import CrearUsuario from "../pages/CrearUsuario/CrearUsuario";
 
 function CreateUser() {
     const containerStyle = {
