@@ -5,19 +5,23 @@ import { showSuccessPopup, showErrorPopup } from '../utils/popUps';
 export const createUser = async (userData) => {
   try {
     const response = await axios.post(`${api}/user/signin`, userData);
+    showSuccessPopup("Creacion de usuaario satisfactoria","Se creo el usuario correctamente");
     return response.data;
   } catch (error) {
-    console.log("Error crear usuario: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error crear usuario: "+errorMessage, error);
+    showErrorPopup("Error al crear el usuario");
   }
 };
 
 export const deleteUser = async (id) => {
   try {
     await axios.delete(`${api}/user/delete/${id}`);
+    showSuccessPopup("Eliminar usuario satisfactoriamente","Se elimino el usuario correctamente");
   } catch (error) {
-    console.log("Error eliminar usuario: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error eliminar usuario: " + errorMessage, error);
+    showErrorPopup("Error al eliminar el usuario");
   }
 };
 
@@ -26,9 +30,11 @@ export const updatePassword = async (id, password) => {
     await axios.put(`${api}/user/password/${password}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
+    showSuccessPopup("Actualizacion exitosa","Se actualizo la contraseña correctamente");
   } catch (error) {
-    console.log("Error actualizar contraseña: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error actualizar contraseña: " + errorMessage, error);
+    showErrorPopup("Error al actualizar contraseña");
   }
 };
 
@@ -37,9 +43,11 @@ export const updateEmail = async (id, email) => {
     await axios.put(`${api}/user/mail/${email}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
+    showSuccessPopup("Actualizacion exitosa","Actualizacion correo exitosa");
   } catch (error) {
-    console.log("Error actualizar correo: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error actualizar correo: " + errorMessage, error);
+    showErrorPopup("Error al actualizar el horario");
   }
 };
 
@@ -48,9 +56,11 @@ export const updateUserName = async (id, name) => {
     await axios.put(`${api}/user/name/${name}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
+    showSuccessPopup("Actualizacion exitosa","Actualiacion nombre correctamente");
   } catch (error) {
-    console.log("Error actualizar nombre: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error actualizar nombre: " + errorMessage, error);
+    showErrorPopup("Error al actualizar el nombre");
   }
 };
 
@@ -59,9 +69,11 @@ export const updateRole = async (id, role) => {
     await axios.put(`${api}/user/rol/${role}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
+    showSuccessPopup("Actualizacion exitosa","Actualizacion de rol satisfactoria");
   } catch (error) {
-    console.log("Error actualizar rol: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error actualizar rol: " + errorMessage, error);
+    showErrorPopup("Error al actualizar el rol");
   }
 };
 
@@ -70,8 +82,8 @@ export const getAllUsers = async () => {
     const response = await axios.get(`${api}/user/all`);
     return response.data;
   } catch (error) {
-    console.log("Error obtener usuarios: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error obtener usuarios: " + errorMessage, error);
   }
 };
 
@@ -80,8 +92,9 @@ export const getUserByEmail = async (email) => {
     const response = await axios.get(`${api}/user/${email}`);
     return response.data;
   } catch (error) {
-    console.log("Error obtener usuario por email: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error obtener usuario por email:  + errorMessage", error);
+    
   }
 };
 
@@ -90,8 +103,8 @@ export const getUserById = async (id) => {
     const response = await axios.get(`${api}/user/userinfo/${id}`);
     return response.data;
   } catch (error) {
-    console.log("Error obtener usuario por ID: ", error);
-    throw error;
+    const errorMessage = error.response?.data?.message || "";
+    console.error("Error obtener usuario por ID: " + errorMessage, error);
   }
 };
 
