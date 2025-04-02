@@ -4,7 +4,7 @@ import "./Horario.css";
 import axios from "axios";
 
 function Horario() {
-  const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net"; 
+  const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net";
 
   const [reservas, setReservas] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -32,23 +32,14 @@ function Horario() {
 
 
 
-  
+
   useEffect(() => {
     async function fetchReservas() {
-      const userData = {
-        "id": 1042025,
-        "name": "PRUEBAAAAA",
-        "mail": "PRUEBAAAAA@mail.com",
-        "password": "password",
-        "rol": "teacher"
-    };
       try {
-        //const response = await axios.post(`${api}/api/user/signin`, userData);
-        const response = await axios.post(`${api}/api/user/signin`, userData);
-        //let response = await axios.get(`${api}/api/user/all`);
-        console.log(response.data);
+        const response = await axios.get(`${api}/api/reserve/reserves`);
+        setReservas(response.data);
       } catch (error) {
-        console.error("ERROR AYUDA: ",error);
+        console.error("Error al obtener las reservas: ", error);
       }
     }
 

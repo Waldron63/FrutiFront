@@ -17,7 +17,7 @@
     --heightSeccionDerecha: calc(var(--heightGeneral) - 1vh);
     --widthSeccionDerecha: calc((var(--widthGeneral) * 0.3) - 1vw);
   }
-  
+
 
    html, body {
     margin: 0;
@@ -45,12 +45,12 @@
 
     display: flex;
     flex-direction: row;
-    
+
     justify-content: center;
     align-items: center;
-    
+
     gap: 1vh;
-    
+
     box-sizing: border-box;
 }
 
@@ -58,10 +58,10 @@
    Sección izquierda
    ========================== */
 .leftContainer{
-    
+
     height: var(--heightSeccionIzquierda);
     width:var(--widthSeccionIzquierda);
-    
+
 
     display: flex;
     flex-direction: column;
@@ -98,7 +98,7 @@
 
     height: var(--heightSeccionDerecha);
     width:var(--widthSeccionDerecha);
-    
+
 
     display: flex;
     flex-direction: column;
@@ -109,4 +109,3 @@
     box-sizing: border-box;
     padding: 1vh;
 }
-

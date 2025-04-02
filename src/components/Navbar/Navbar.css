@@ -4,12 +4,12 @@
 :root {
   --ColorBackgroundLista: #ffffffc3;
   --ColorLineaBajoSeleccion: #990000;
-  
+
   --ColorTextoPrimariaBajoSeleccion: #990000;
   --ColorTextoSecundarioBajoSeleccion: #990000;
   --ColorTextoBoton: #ffffff;
   --ColorTextoOscuro: #000000;
-  
+
   --ColorBoton: #990000;
 
   --borderRadiusBoton: 5px;
@@ -29,7 +29,7 @@
   align-items: center;
   padding-block: 3vh;
 
-  
+
   margin-bottom: 5px;
 
 }
@@ -48,9 +48,9 @@
   color: var(--ColorTextoBoton);
   position: relative;
   right: 3vh;
-  
+
   display: inline-block;
-  width: auto; 
+  width: auto;
 }
 
 /* ==========================
@@ -68,7 +68,7 @@
   margin-inline: 4vw;
 
   list-style: none;
-  
+
 }
 
 /* Estilos para los enlaces */
@@ -112,7 +112,7 @@
   display: none;
   height: auto;
   padding-inline: 1vw;
-  
+
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
@@ -121,8 +121,8 @@
   background: var(--ColorBackgroundLista);
 
   padding-top: 5px;
-  
-  
+
+
   position: absolute;
   list-style: none;
   white-space: nowrap;
@@ -136,7 +136,7 @@
   height: auto;
   padding-inline: 1vw;
 
-  
+
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
@@ -145,8 +145,8 @@
   background: var(--ColorBackgroundLista);
 
   padding-top: 5px;
-  
-  
+
+
   position: absolute;
   list-style: none;
   white-space: nowrap;
@@ -173,7 +173,7 @@
 
 
   position: absolute;
-  
+
 
   bottom: -5px;
   left: -20%;

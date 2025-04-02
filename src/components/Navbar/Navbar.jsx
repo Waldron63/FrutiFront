@@ -7,8 +7,8 @@ function Navbar() {
   const navigate = useNavigate();
 
   const logout = () => {
-    removeAuthSession();  
-    navigate("/login");   
+    removeAuthSession();
+    navigate("/login");
   };
 
   return (

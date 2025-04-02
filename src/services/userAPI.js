@@ -94,7 +94,7 @@ export const getUserByEmail = async (email) => {
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
     console.error("Error obtener usuario por email:  + errorMessage", error);
-    
+
   }
 };
 

@@ -8,15 +8,7 @@ export const setAuthSession = (user) => {
 
 export const getUserInfo = () => {
   const user = Cookies.get('user');
-  //return user ? JSON.parse(user) : null;
-  return {
-    id: 842,
-    name: "Alejandro",
-    mail: "Prueba@mail.com",
-    password: "PRUEBA",
-    //rol: "teacher"
-    rol: "admin"
-  };
+  return user ? JSON.parse(user) : null;
 };
 
 export const removeAuthSession = () => {
