@@ -7,13 +7,13 @@ function Navbar() {
   const navigate = useNavigate();
 
   const logout = () => {
-    removeAuthSession();  
-    navigate("/login");   
+    removeAuthSession();
+    navigate("/login");
   };
 
   return (
     <nav className="navBar">
-      <img src={logo} className="logo-image" alt="Logo" />
+      <img src={logo} className="logoNavBar" alt="Logo" />
       <p><strong>Reservas Laboratorios</strong></p>
 
       <ul className="navList">

@@ -1,30 +1,69 @@
-import React, {use, useState} from 'react';
-import '../../assets/img/edificio-h-nocturna.jpg';
-import '../../assets/styles/Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/authAPI";
+import "../../assets/styles/user.css";
+import { getUserInfo, isAuthenticated } from "../../utils/auth";
 
 const CrearUsuario = () => {
-    const [usuario,setUsuario] = useState('');
-    const [id,setId] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [type,setType] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const userRol = [
+        { value: "teacher", text: "Profesor" },
+        { value: "admin", text: "Administrador" }
+    ];
+
+    const [usuario, setUsuario] = useState("");
+    const [id, setId] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rol, setRol] = useState(userRol[0].value);
+
+    const estaAutenticado = isAuthenticated();
+    const userInfo = estaAutenticado ? getUserInfo() : null;
+    const esAdmin = userInfo?.rol === "admin";
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Usuario:", usuario);
-        console.log("ID:", id);
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Tipo:", type);
+
+        const userData = {
+            "id": id,
+            "name": usuario,
+            "mail": email,
+            "password": password,
+            "rol": rol
+        };
+
+
+        try {
+            const response = await registerUser(userData); // Cambio aquí
+            if(response){
+                setUsuario("");
+                setId("");
+                setEmail("");
+                setPassword("");
+                setRol(userRol[0].value);
+            }
+        } catch (error) {
+            console.error("Error al registrar usuario:", error);
+        }
     };
 
+    const handleLogin = () => {
+        navigate("/login");
+    };
 
+    const handleListarUsuarios = () => {
+        navigate("/showUsers");
+    };
 
     return (
         <div className="container">
-            <div className="background"></div>
-            <div className="form-section">
-                <img src={require('../../assets/img/Logo.png')} className="logo-container" alt="Logo" />
+            <div className="formSection">
+                <img
+                    src={require("../../assets/img/Logo.png")}
+                    className="logo"
+                    alt="Logo"
+                />
                 <h1>Crear Usuario</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="divInputsUserForm">
@@ -40,10 +79,16 @@ const CrearUsuario = () => {
                     <div className="divInputsUserForm">
                         <label htmlFor="ID">ID</label>
                         <input
-                            type="text"
+                            type="number"
+                            min="1"
                             id="id"
                             value={id}
                             onChange={(e) => setId(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "-" || e.key === "e") {
+                                    e.preventDefault();
+                                }
+                            }}
                             required
                         />
                     </div>
@@ -67,17 +112,35 @@ const CrearUsuario = () => {
                             required
                         />
                     </div>
-                    <div className="divInputsUserForm">
-                        <label htmlFor="tipo">Tipo</label>
-                        <input
-                            type="text"
-                            id="tipo"
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                            required
-                        />
-                    </div>
+
+                    {esAdmin && (
+                        <div className="divInputsUserForm" id="selectRol">
+                            <label htmlFor="rol">Rol</label>
+                            <select
+                                id="rol"
+                                value={rol}
+                                onChange={(e) => setRol(e.target.value)}
+                                required
+                            >
+                                {userRol.map((role) => (
+                                    <option key={role.value} value={role.value}>
+                                        {role.text}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
                     <div className="divUserBotones">
+                        {estaAutenticado ? (
+                            <button type="button" onClick={handleListarUsuarios}>
+                                Listar Usuarios
+                            </button>
+                        ) : (
+                            <button type="button" onClick={handleLogin}>
+                                Ingresar
+                            </button>
+                        )}
                         <button type="submit">Crear Usuario</button>
                     </div>
                 </form>
@@ -86,6 +149,4 @@ const CrearUsuario = () => {
     );
 };
 
-
 export default CrearUsuario;
-

@@ -4,7 +4,7 @@ import { showSuccessPopup, showErrorPopup } from '../utils/popUps';
 
 export const createUser = async (userData) => {
   try {
-    const response = await axios.post(`${api}/user/signin`, userData);
+    const response = await axios.post(`${api}/api/user/signin`, userData);
     showSuccessPopup("Creacion de usuaario satisfactoria","Se creo el usuario correctamente");
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const createUser = async (userData) => {
 
 export const deleteUser = async (id) => {
   try {
-    await axios.delete(`${api}/user/delete/${id}`);
+    await axios.delete(`${api}/api/user/delete/${id}`);
     showSuccessPopup("Eliminar usuario satisfactoriamente","Se elimino el usuario correctamente");
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
@@ -27,7 +27,7 @@ export const deleteUser = async (id) => {
 
 export const updatePassword = async (id, password) => {
   try {
-    await axios.put(`${api}/user/password/${password}`, { id }, {
+    await axios.put(`${api}/api/user/password/${password}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
     showSuccessPopup("Actualizacion exitosa","Se actualizo la contraseña correctamente");
@@ -40,7 +40,7 @@ export const updatePassword = async (id, password) => {
 
 export const updateEmail = async (id, email) => {
   try {
-    await axios.put(`${api}/user/mail/${email}`, { id }, {
+    await axios.put(`${api}/api/user/mail/${email}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
     showSuccessPopup("Actualizacion exitosa","Actualizacion correo exitosa");
@@ -53,7 +53,7 @@ export const updateEmail = async (id, email) => {
 
 export const updateUserName = async (id, name) => {
   try {
-    await axios.put(`${api}/user/name/${name}`, { id }, {
+    await axios.put(`${api}/api/user/name/${name}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
     showSuccessPopup("Actualizacion exitosa","Actualiacion nombre correctamente");
@@ -66,7 +66,7 @@ export const updateUserName = async (id, name) => {
 
 export const updateRole = async (id, role) => {
   try {
-    await axios.put(`${api}/user/rol/${role}`, { id }, {
+    await axios.put(`${api}/api/user/rol/${role}`, { id }, {
       headers: { "Content-Type": "application/json" },
     });
     showSuccessPopup("Actualizacion exitosa","Actualizacion de rol satisfactoria");
@@ -79,7 +79,7 @@ export const updateRole = async (id, role) => {
 
 export const getAllUsers = async () => {
   try {
-    const response = await axios.get(`${api}/user/all`);
+    const response = await axios.get(`${api}/api/user/all`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
@@ -89,18 +89,18 @@ export const getAllUsers = async () => {
 
 export const getUserByEmail = async (email) => {
   try {
-    const response = await axios.get(`${api}/user/${email}`);
+    const response = await axios.get(`${api}/api/user/${email}`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
     console.error("Error obtener usuario por email:  + errorMessage", error);
-    
+
   }
 };
 
 export const getUserById = async (id) => {
   try {
-    const response = await axios.get(`${api}/user/userinfo/${id}`);
+    const response = await axios.get(`${api}/api/user/userinfo/${id}`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";

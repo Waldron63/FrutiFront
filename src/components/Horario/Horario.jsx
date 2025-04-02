@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import {createUser} from "../../services/userAPI";
 import "./Horario.css";
 import axios from "axios";
 
 function Horario() {
-  const api ="https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net";
+  const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net";
 
   const [reservas, setReservas] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -29,6 +30,9 @@ function Horario() {
     "Sábado",
   ];
 
+
+
+
   useEffect(() => {
     async function fetchReservas() {
       try {
@@ -40,21 +44,6 @@ function Horario() {
     }
 
     fetchReservas();
-  }, []);
- 
-  useEffect(() => {
-    async function getUser(id) {
-      try{
-          let response = await axios.get(`${api}/api/user/userinfo/${id}`);
-          return response.data;
-  
-      }catch(error){
-          console.error("Error al conseguir usuario: ",error);
-          return null;
-      }
-  }
-
-    getUser(842)
   }, []);
 
   const getWeekRange = (date) => {
