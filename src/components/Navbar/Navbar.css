@@ -35,10 +35,15 @@
   white-space: nowrap;
 }
 
-.logo{
-  height: 4vh;
-  width: 4vw;
+.logo-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
 
+.header-text {
+  flex-grow: 1;
+  text-align: left;
 }
 
 .signOutButton {

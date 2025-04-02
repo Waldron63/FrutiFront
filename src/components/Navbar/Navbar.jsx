@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../../assets/img/Logo.png";
+import logo from "../../assets/img/LogoRojo.png";
 import { removeAuthSession } from "../../utils/auth";
 
 function Navbar() {
@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav className="navBar">
-      <img src={logo} className="logo" alt="Logo" />
+      <img src={logo} className="logo-image" alt="Logo" />
       <p><strong>Reservas Laboratorios</strong></p>
 
       <ul className="navList">
