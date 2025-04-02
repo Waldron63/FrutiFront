@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AdminReservas.css';
 import ReserveService from '../services/ReserveService';
+import { FaTrash, FaEdit, FaSync } from 'react-icons/fa';
 
 const AdminReservas = () => {
   const [reservas, setReservas] = useState([]);
@@ -15,6 +16,8 @@ const AdminReservas = () => {
   const [laboratories, setLaboratories] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [scheduleDetails, setScheduleDetails] = useState({});
+  const [deleteLoading, setDeleteLoading] = useState(false); // Estado para seguimiento de borrado en proceso
+  const [lastDeletedId, setLastDeletedId] = useState(null); // Seguimiento de última reserva eliminada
 
   useEffect(() => {
     // Obtener el usuario actual
@@ -126,7 +129,9 @@ const AdminReservas = () => {
   const handleDelete = async (reserva) => {
     if (window.confirm('¿Estás seguro de que quieres borrar esta reserva?')) {
       try {
-        setLoading(true);
+        // Activar indicador de carga y guardar ID de la reserva que se está eliminando
+        setDeleteLoading(true);
+        setLastDeletedId(reserva._id || reserva.id || reserva.scheduleId);
 
         // Si tiene scheduleId es el formato de MongoDB
         if (reserva.scheduleId) {
@@ -138,15 +143,50 @@ const AdminReservas = () => {
         }
         // Si ninguno funciona, intenta con el _id
         else if (reserva._id) {
-          console.warn("No se pudo determinar el formato correcto para eliminar");
+          console.warn("Utilizando formato alternativo para eliminar");
+          // Aquí podrías implementar una llamada alternativa si fuera necesario
+          await ReserveService.deleteReserveByUser(reserva.userId);
+        } else {
+          throw new Error("No se pudo determinar cómo eliminar esta reserva");
         }
 
         // Actualizar lista de reservas después de eliminar
-        fetchAllReservas();
+        await fetchAllReservas();
+
+        // Mostrar notificación de éxito
+        const notification = document.createElement('div');
+        notification.className = 'delete-notification success';
+        notification.innerHTML = 'Reserva eliminada con éxito';
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.classList.add('show');
+          setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => document.body.removeChild(notification), 300);
+          }, 2000);
+        }, 100);
+
       } catch (err) {
         console.error('Error al eliminar reserva:', err);
         setError('No se pudo eliminar la reserva. Por favor, intenta de nuevo más tarde.');
-        setLoading(false);
+
+        // Mostrar notificación de error
+        const notification = document.createElement('div');
+        notification.className = 'delete-notification error';
+        notification.innerHTML = 'Error al eliminar la reserva';
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.classList.add('show');
+          setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => document.body.removeChild(notification), 300);
+          }, 2000);
+        }, 100);
+      } finally {
+        setDeleteLoading(false);
+        setLastDeletedId(null);
       }
     }
   };
@@ -347,13 +387,13 @@ const AdminReservas = () => {
     }
   };
 
-  if (loading) return <div className="loading">Cargando reservas...</div>;
+  if (loading && !deleteLoading) return <div className="loading">Cargando reservas...</div>;
   if (error) {
     return (
       <div className="error-container">
         <div className="error-message">{error}</div>
         <button className="retry-button" onClick={handleRetry}>
-          Intentar nuevamente
+          <FaSync className="icon-margin-right" /> Intentar nuevamente
         </button>
       </div>
     );
@@ -399,58 +439,73 @@ const AdminReservas = () => {
             {filteredReservas.length === 0 ? (
               <div className="no-reservas">No hay reservas para mostrar</div>
             ) : (
-              filteredReservas.map((reserva, index) => (
-                <div
-                  className={`admin-reserva-card ${getReserveTypeColor(reserva.type)}`}
-                  key={reserva._id || reserva.id || index}
-                >
-                  <div className="reserva-header">
-                    <div className="reserva-lab-name">
-                      {(() => {
-                        const scheduleInfo = getScheduleInfo(reserva);
-                        return scheduleInfo.laboratory || "Laboratorio";
-                      })()}
-                    </div>
-                    <div className="reserva-date-time">
-                      {(() => {
-                        const scheduleInfo = getScheduleInfo(reserva);
-                        if (scheduleInfo.dateInfo === "Fecha no disponible" && scheduleInfo.timeInfo === "Horario no disponible") {
-                          return <span className="unavailable-info">Fecha no disponible | Horario no disponible</span>;
-                        }
-                        return `${scheduleInfo.dateInfo} | ${scheduleInfo.timeInfo}`;
-                      })()}
-                    </div>
-                  </div>
+              filteredReservas.map((reserva, index) => {
+                const reservaId = reserva._id || reserva.id || reserva.scheduleId;
+                const isDeleting = deleteLoading && lastDeletedId === reservaId;
 
-                  <div className="reserva-details">
-                    <div className="reserva-user">
-                      <span className="detail-label">Usuario:</span>
-                      <span className="detail-value">ID: {reserva.userId}</span>
+                return (
+                  <div
+                    className={`admin-reserva-card ${getReserveTypeColor(reserva.type)} ${isDeleting ? 'deleting' : ''}`}
+                    key={reservaId || index}
+                  >
+                    <div className="reserva-header">
+                      <div className="reserva-lab-name">
+                        {(() => {
+                          const scheduleInfo = getScheduleInfo(reserva);
+                          return scheduleInfo.laboratory || "Laboratorio";
+                        })()}
+                      </div>
+                      <div className="reserva-date-time">
+                        {(() => {
+                          const scheduleInfo = getScheduleInfo(reserva);
+                          if (scheduleInfo.dateInfo === "Fecha no disponible" && scheduleInfo.timeInfo === "Horario no disponible") {
+                            return <span className="unavailable-info">Fecha no disponible | Horario no disponible</span>;
+                          }
+                          return `${scheduleInfo.dateInfo} | ${scheduleInfo.timeInfo}`;
+                        })()}
+                      </div>
                     </div>
-                    <div className="reserva-description">
-                      <span className="detail-label">Descripción/Motivo:</span>
-                      <span className="detail-value">{reserva.reason || "Sin descripción"}</span>
-                    </div>
-                    <div className="reserva-type">
-                      <span className="detail-label">Tipo:</span>
-                      <span className="detail-value">{reserva.type || "No especificado"}</span>
-                    </div>
-                    <div className="reserva-state">
-                      <span className="detail-label">Estado:</span>
-                      <span className="detail-value">{reserva.state || "No especificado"}</span>
-                    </div>
-                  </div>
 
-                  <div className="reserva-actions">
-                    <button className="btn-editar">
-                      Editar
-                    </button>
-                    <button className="btn-borrar" onClick={() => handleDelete(reserva)}>
-                      Borrar
-                    </button>
+                    <div className="reserva-details">
+                      <div className="reserva-user">
+                        <span className="detail-label">Usuario:</span>
+                        <span className="detail-value">ID: {reserva.userId}</span>
+                      </div>
+                      <div className="reserva-description">
+                        <span className="detail-label">Descripción/Motivo:</span>
+                        <span className="detail-value">{reserva.reason || "Sin descripción"}</span>
+                      </div>
+                      <div className="reserva-type">
+                        <span className="detail-label">Tipo:</span>
+                        <span className="detail-value">{reserva.type || "No especificado"}</span>
+                      </div>
+                      <div className="reserva-state">
+                        <span className="detail-label">Estado:</span>
+                        <span className="detail-value">{reserva.state || "No especificado"}</span>
+                      </div>
+                    </div>
+
+                    <div className="reserva-actions">
+                      <button className="btn-editar">
+                        <FaEdit className="action-icon" /> Editar
+                      </button>
+                      <button
+                        className={`btn-borrar ${isDeleting ? 'loading' : ''}`}
+                        onClick={() => handleDelete(reserva)}
+                        disabled={deleteLoading}
+                      >
+                        {isDeleting ? (
+                          <div className="spinner"></div>
+                        ) : (
+                          <>
+                            <FaTrash className="action-icon" /> Borrar
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>
@@ -505,6 +560,84 @@ const AdminReservas = () => {
           </div>
         </div>
       </div>
+
+      {/* Estilos para las notificaciones y animaciones de borrado */}
+      <style jsx>{`
+        /* Estilos para el spinner de carga */
+        .spinner {
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          border-top: 2px solid white;
+          width: 16px;
+          height: 16px;
+          animation: spin 1s linear infinite;
+          margin: 0 auto;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        /* Estilos para la tarjeta durante la eliminación */
+        .admin-reserva-card.deleting {
+          opacity: 0.6;
+          transition: opacity 0.3s ease;
+        }
+
+        /* Estilos para notificaciones */
+        .delete-notification {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          padding: 15px 25px;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          z-index: 1000;
+          transform: translateY(100px);
+          opacity: 0;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .delete-notification.success {
+          background-color: #28a745;
+        }
+
+        .delete-notification.error {
+          background-color: #dc3545;
+        }
+
+        .delete-notification.show {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        /* Estilos para los botones de acción */
+        .btn-borrar, .btn-editar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 8px 16px;
+        }
+
+        .action-icon {
+          font-size: 14px;
+        }
+
+        /* Estilos para el botón deshabilitado */
+        .btn-borrar:disabled {
+          cursor: not-allowed;
+          opacity: 0.8;
+        }
+
+        /* Estilos para el icono en el botón de retry */
+        .icon-margin-right {
+          margin-right: 8px;
+        }
+      `}</style>
     </div>
   );
 };

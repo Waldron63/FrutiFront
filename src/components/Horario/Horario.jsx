@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {createUser} from "../../services/userAPI";
+import React, { useEffect, useState } from "react";
+import { getAllReserves } from "../../services/reserveAPI";
 import "./Horario.css";
-import axios from "axios";
 
 function Horario() {
-  const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net";
 
   const [reservas, setReservas] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -36,10 +34,10 @@ function Horario() {
   useEffect(() => {
     async function fetchReservas() {
       try {
-        const response = await axios.get(`${api}/api/reserve/reserves`);
-        setReservas(response.data);
+        const reservasData = await getAllReserves();
+        setReservas(reservasData);
       } catch (error) {
-        console.error("Error al obtener las reservas: ", error);
+        console.error("Error al obtener reservas:", error);
       }
     }
 

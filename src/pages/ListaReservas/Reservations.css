@@ -24,11 +24,19 @@
   margin-bottom: 30px;
 }
 
-.reservas-content {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 30px;
+.reservas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
 }
+
+.reservas-content {
+  max-width: 1000px;
+  width: 100%;
+}
+
+
 
 /* Lista de reservas */
 .reservas-list {
@@ -254,4 +262,20 @@
   border-radius: 8px;
   margin-bottom: 20px;
   border-left: 4px solid #d32f2f;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  padding: 10px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding: 10px 0;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
 }

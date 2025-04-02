@@ -50,6 +50,7 @@ const CrearUsuario = () => {
 
     const handleLogin = () => {
         navigate("/login");
+        navigate("/login");
     };
 
     const handleListarUsuarios = () => {
