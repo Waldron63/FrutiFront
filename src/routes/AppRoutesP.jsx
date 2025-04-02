@@ -4,8 +4,8 @@ import Menu from "../pages/Menu/Menu";
 import Login from "../pages/Login/Login";
 
 import NewLaboratory from "../pages/CrearLaboratorio/CrearLaboratorio";
-//import EditLaboratory from "../pages/EditarLaboratorio/EditarLaboratorio";
-import ShowLaboratories from "../pages/ListarLaboratorios/ListarLaboratorios";
+import EditLaboratory from "../pages/ListarLaboratorios/ListarLaboratorios";
+import ShowLaboratories from "../pages/ListarLaboratorios/AdminLaboratorios";
 
 import NewReserve from "../pages/CrearReserva/CrearReservas";
 import ShowReserves from "../pages/ListaReservas/Reservas";
@@ -29,6 +29,7 @@ function AppRoutesP() {
       <Route path="/newLaboratory" element={<ProtectedRoute element={NewLaboratory} />} />
 
       <Route path="/showLaboratories" element={<ProtectedRoute element={ShowLaboratories} />} />
+      <Route path="/editLaboratories" element={<ProtectedRoute element={EditLaboratory} />} />
       <Route path="/newReserve" element={<ProtectedRoute element={NewReserve} />} />
       <Route path="/showReserves" element={<ProtectedRoute element={ShowReserves} />} />
       

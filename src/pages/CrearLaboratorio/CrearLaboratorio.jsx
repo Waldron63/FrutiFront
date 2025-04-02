@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from "../../components/Navbar/Navbar";
 import {
   FaFlask,
   FaKeyboard,
@@ -122,6 +123,7 @@ const CrearLaboratorio = () => {
 
   return (
     <div className="container-labs">
+      <Navbar />
       <div className="header-section">
         <h1 className="main-title">Crear Laboratorio</h1>
         <div className="view-controls">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Laboratory.css';
 import LabCardAdmin from '../../components/LabCardAdmin';
+import Navbar from "../../components/Navbar/Navbar";
 import {
   getLaboratories,
   deleteLaboratory,
@@ -147,6 +148,7 @@ const AdminLaboratorios = () => {
 
   return (
     <div className="container-labs">
+      <Navbar />
       <div className="header-section">
         <h1 className="main-title">Administración de Laboratorios</h1>
         <button

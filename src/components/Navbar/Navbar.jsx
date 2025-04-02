@@ -36,11 +36,11 @@ function Navbar() {
         <li className="navItem dropDown">
           <span className="mainLink"><strong>Laboratorios</strong></span>
           <ul className="dropDownMenuLab">
-            <li className="secondLink"><Link to="/ShowLaboratories"><strong>Listar laboratorios</strong></Link></li>
+            <li className="secondLink"><Link to="/editLaboratories"><strong>Listar laboratorios</strong></Link></li>
             {userRole === "admin" && (
               <>
                 <li className="secondLink"><Link to="/newLaboratory"><strong>Crear laboratorio</strong></Link></li>
-                <li className="secondLink"><Link to="/editLaboratory"><strong>Editar laboratorio</strong></Link></li>
+                <li className="secondLink"><Link to="/ShowLaboratories"><strong>Administracion laboratorios</strong></Link></li>
               </>
             )}
           </ul>
