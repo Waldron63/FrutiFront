@@ -25,14 +25,14 @@ const CrearUsuario = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userData = { 
+        const userData = {
             "id": id,
             "name": usuario,
             "mail": email,
             "password": password,
-            "rol": rol 
+            "rol": rol
         };
-        
+
 
         try {
             const response = await registerUser(userData); // Cambio aquí

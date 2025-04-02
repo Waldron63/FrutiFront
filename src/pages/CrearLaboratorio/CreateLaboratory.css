@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de colores principal */
+  --burgundy-primary: #800020;     /* Burgundy profundo */
+  --navy-blue: #1A2A3A;            /* Azul marino */
+  --teal: #00297A;                 /* Azul teal */
+  --brown: #683725;                /* Marrón */
+  
+  /* Colores base */
+  --white: #FFFFFF;
+  --light-gray: #F5F5F5;
+  --medium-gray: #9E9E9E;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --ivory: #FFFFF0;
+}
+
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f4f4;
+  color: var(--text-primary);
+}
+
+/* Contenedor principal */
+.container-labs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Sección de encabezado */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.main-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--burgundy-primary);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.view-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toggle-button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: var(--burgundy-primary);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(128, 0, 32, 0.2);
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #922020;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(128, 0, 32, 0.3);
+}
+
+/* Contenedor del formulario */
+.lab-form-container {
+  margin-bottom: 2rem;
+}
+
+.lab-form {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Secciones del formulario */
+.form-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: var(--burgundy-primary);
+  display: flex;
+  align-items: center;
+}
+
+.section-icon {
+  margin-right: 0.75rem;
+}
+
+/* Filas de entrada */
+.input-row {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-row:last-child {
+  margin-bottom: 0;
+}
+
+.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.three-columns {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Grupos de entrada */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  color: var(--burgundy-primary);
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Estilos de campos */
+.form-input,
+.form-select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--burgundy-primary);
+  box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+  background-color: var(--white);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23800020' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* Sección de horarios */
+.schedule-container {
+  background-color: #f8f8f8;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.schedule-inputs {
+  margin-bottom: 1.5rem;
+}
+
+.add-schedule-btn {
+  background-color: var(--teal);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.add-schedule-btn:hover {
+  background-color: var(--burgundy-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de horarios */
+.schedules-list-container {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+.schedules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--burgundy-primary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-item.intensity-0 {
+  border-left-color: var(--burgundy-primary);
+}
+
+.schedule-item.intensity-1 {
+  border-left-color: var(--navy-blue);
+}
+
+.schedule-item.intensity-2 {
+  border-left-color: var(--teal);
+}
+
+.schedule-item.intensity-3 {
+  border-left-color: var(--brown);
+}
+
+.schedule-day {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.schedule-time {
+  color: var(--text-secondary);
+}
+
+.delete-schedule {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.delete-schedule:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+.no-schedules {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-secondary);
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  font-style: italic;
+}
+
+/* Botón de guardar */
+.save-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.save-button.primary {
+  background-color: var(--burgundy-primary);
+  color: white;
+}
+
+.save-button.primary:hover {
+  background-color: #922020;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(128, 0, 32, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .input-row.three-columns,
+  .input-row.two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .lab-form {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-labs {
+    padding: 1rem;
+  }
+  
+  .main-title {
+    font-size: 1.75rem;
+  }
+}

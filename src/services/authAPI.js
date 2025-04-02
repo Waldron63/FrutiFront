@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { api } from './api'; 
+import { api } from './api';
 import { showSuccessPopup, showErrorPopup } from '../utils/popUps';
 
 export const registerUser = async (userData) => {
