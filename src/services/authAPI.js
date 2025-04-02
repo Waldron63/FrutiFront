@@ -17,6 +17,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (authRequest) => {
   try {
     const response = await axios.post(`${api}/auth/login`, authRequest);
+    showSuccessPopup("Login exitoso", "Se ingreso Correctamente");
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";

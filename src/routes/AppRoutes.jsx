@@ -18,7 +18,7 @@ import ShowUsers from "../pages/ListarUsuarios/ListarUsuario";
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/menu" />} />
+      <Route path="/" element={<Navigate to="/newUser" />} />
       
       <Route path="/login" element={<Login />} />
       <Route path="/menu" element={<Menu />} />

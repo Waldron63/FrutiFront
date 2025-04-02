@@ -41,10 +41,10 @@ a,
 ul,
 ol,
 input,
-textarea {
+textarea,
+select {
     font-size: 1rem;
     text-decoration: none;
-    color: inherit;
     outline: none;
 }
 
