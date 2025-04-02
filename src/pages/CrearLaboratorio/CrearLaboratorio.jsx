@@ -26,8 +26,8 @@ const CrearLaboratorio = () => {
 
   const [schedule, setSchedule] = useState({
     dayOfWeek: "MONDAY",
-    openingTime: "08:00",
-    closingTime: "20:00"
+    openingTime: "07:00",
+    closingTime: "19:00"
   });
 
   const [schedules, setSchedules] = useState([]);
@@ -220,7 +220,7 @@ const CrearLaboratorio = () => {
                       onChange={handleScheduleChange}
                       className="form-select"
                     >
-                      {['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'].map(day => (
+                      {['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'].map(day => (
                         <option key={day} value={day}>{getDayOfWeek(day)}</option>
                       ))}
                     </select>
