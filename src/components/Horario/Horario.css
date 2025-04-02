@@ -1,0 +1,115 @@
+:root{
+    --ColorBotones:#800020;
+    --ColorLetraClara: #ffffff;
+    --ColorLetraOscura: #000000;
+
+    --ColorEncabezado: #800020;
+    --ColorHoras:#1A2A3A;
+    --ColorCeldas:#ffffff;
+    --ColorBordes: #ffffff;
+    --ColorDiaHoy: #b3871f;
+
+    --ColorReservas: #7aeb80;
+
+    --heightHoras: 3.7vh;
+    --heigthCeldas: calc(var(--heightHoras)/2);
+
+    --BorderRadius: 14px;
+}
+
+.horarioWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    padding: 0.5vw;
+    box-sizing: border-box;
+}
+
+.horarioHeader {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 0.5vw;
+    gap: 1vw;
+    box-sizing: border-box;
+}
+
+.horarioHeaderButtons{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.horarioHeader button {
+    background-color: var(--ColorBotones);
+    color: var(--ColorLetraClara);
+    padding: 5px 10px;
+}
+
+.horarioHeader h3 {
+    margin: 0;
+}
+
+.horarioTable {
+
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.horarioTable th, .horarioTable td {
+    border: 1px solid var(--ColorBordes);
+    text-align: center;
+}
+
+.horarioCell {
+    background-color: var(--ColorCeldas);
+    height: var(--heigthCeldas);
+    font-size: 0.8rem;
+    min-height: 3.7vh;
+}
+
+.horaCell{
+    height: var(--heightHoras);
+    font-size: 0.9rem;
+    font-weight: bold;
+    background: var(--ColorHoras);
+    color: var(--ColorLetraClara);
+    white-space: nowrap;
+    border-radius: var(--BorderRadius);
+}
+
+.horarioTable th {
+    width: 2vw;
+    background-color:var(--ColorEncabezado);
+    color:var(--ColorLetraClara);
+    height: 3vh;
+    border-radius: var(--BorderRadius);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.reserva {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--ColorReservas);
+    color: var(--ColorLetraOscura);
+    font-weight: bold;
+    white-space: pre-line;
+}
+
+.reservasContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.diaActual {
+    background: var(--ColorDiaHoy) !important;
+}
