@@ -6,11 +6,11 @@ import {
   FaClock,
   FaSave,
 } from "react-icons/fa";
-import "../styles/CreateReserve.css";
-import "../styles/CreateLaboratory.css";
+import "./CreateReserve.css";
+import "../CrearLaboratorio/CreateLaboratory.css";
 import {
   createReserve
-} from "../services/ReserveService";
+} from "../../services/ReserveService";
 
 const CrearReservas = () => {
   const [reserveRequest, setReserveRequest] = useState({

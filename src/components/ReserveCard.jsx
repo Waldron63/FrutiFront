@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Laboratory.css';
+import '../pages/ListarLaboratorios/Laboratory.css';
 
 /**
  * Componente que representa una tarjeta de laboratorio completa

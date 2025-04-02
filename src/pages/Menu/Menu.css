@@ -1,0 +1,111 @@
+/* ==========================
+   Reset y Ajustes Globales
+   ========================== */
+   :root {
+    --heightGeneral: 92.8vh;
+    --widthGeneral: 98.7vw;
+
+    --heightSeccionIzquierda: calc(var(--heightGeneral) - 1vh);
+    --widthSeccionIzquierda: calc((var(--widthGeneral) * 0.7) - 1vw);
+
+    --heigthHorario: calc((var(--heightSeccionIzquierda)*0.7) - 1vh);;
+    --widhtHorario: calc(var(--widthSeccionIzquierda) - 1.5vw);
+
+    --heigthReservas:calc((var(--heightSeccionIzquierda)*0.3) - 1vh);;;
+    --widthReservas: calc(var(--widthSeccionIzquierda) - 1.5vw);;
+
+    --heightSeccionDerecha: calc(var(--heightGeneral) - 1vh);
+    --widthSeccionDerecha: calc((var(--widthGeneral) * 0.3) - 1vw);
+  }
+
+
+   html, body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* ==========================
+   Contenedor General
+   ========================== */
+.restante{
+
+    height: var(--heightGeneral);
+    width: 99vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1vw;
+}
+
+.Generalcontainer {
+    height:var(--heightGeneral);
+    width: var(--widthGeneral);
+    margin-inline: 0.6vh;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 1vh;
+
+    box-sizing: border-box;
+}
+
+/* ==========================
+   Sección izquierda
+   ========================== */
+.leftContainer{
+
+    height: var(--heightSeccionIzquierda);
+    width:var(--widthSeccionIzquierda);
+
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    gap: 1vh;
+    padding: 1vh;
+}
+
+.horarioContainer {
+    height: var(--heigthHorario);
+    width: var(--widhtHorario);
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.reservasContainer {
+    height: var(--heigthReservas);
+    width: var(--widthReservas);
+
+    display: flex;
+
+}
+
+/* ==========================
+   Sección derecha
+   ========================== */
+.rightContainer {
+
+    height: var(--heightSeccionDerecha);
+    width:var(--widthSeccionDerecha);
+
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding: 1vh;
+}

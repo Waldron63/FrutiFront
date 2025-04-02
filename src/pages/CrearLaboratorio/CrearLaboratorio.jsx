@@ -13,8 +13,8 @@ import {
   FaSave,
   FaTimes
 } from 'react-icons/fa';
-import '../styles/CreateLaboratory.css';
-import { createLaboratory, updatePhysicalResources, updateSoftwareResources } from '../services/labService';
+import "./CreateLaboratory.css";
+import { createLaboratory, updatePhysicalResources, updateSoftwareResources } from '../../services/labService';
 
 const CrearLaboratorio = () => {
   const [lab, setLab] = useState({
@@ -41,7 +41,7 @@ const CrearLaboratorio = () => {
 
   const [software, setSoftware] = useState({
     operativeSystem: "",
-    partition: "No"
+    partition: false
   });
 
   const handleChange = (e) => {
@@ -81,7 +81,7 @@ const CrearLaboratorio = () => {
 
       const newLab = { ...lab, scheduleReferences: schedules };
       // Para evitar errores, comentamos la llamada real al servicio
-      // await createLaboratory(newLab);
+      await createLaboratory(newLab);
       console.log("Enviando datos de laboratorio:", newLab);
 
       setShowResources(true);
@@ -93,8 +93,8 @@ const CrearLaboratorio = () => {
   const handleSaveResources = async () => {
     try {
       // Para evitar errores, comentamos las llamadas reales a los servicios
-      // await updatePhysicalResources(lab.abbreviation, physical);
-      // await updateSoftwareResources(lab.abbreviation, software);
+      await updatePhysicalResources(lab.abbreviation, physical);
+      await updateSoftwareResources(lab.abbreviation, software);
 
       console.log("Recursos físicos:", physical);
       console.log("Recursos de software:", software);

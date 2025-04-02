@@ -1,20 +1,12 @@
-// src/App.js
-import React from "react";
-import Laboratorios from "./pages/Laboratorios";
-import CrearLaboratorio from "./pages/CrearLaboratorio";
-import AdminLaboratorios from "./pages/AdminLaboratorios";
-import Reservas from "./pages/Reservas";
-import AdminReservas from "./pages/AdminReservas";
+import { HashRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  /*return (
-    <div>
-      <Laboratorios />
-    </div>
-  );*/
-  //return <CrearLaboratorio />;
-  //return <AdminLaboratorios />;
-  return <AdminReservas />;
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
 }
 
 export default App;

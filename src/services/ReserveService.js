@@ -1,5 +1,5 @@
 // /src/services/ReserveService.js
-const API_URL = "http://localhost:8080/api/reserve";
+const API_URL = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net/api/reserve";
 
 /**
  * Servicio para gestionar las reservas de laboratorios

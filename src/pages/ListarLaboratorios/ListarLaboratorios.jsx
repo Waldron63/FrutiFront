@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Laboratory.css';
-import LabCard from '../components/LabCard';
-import CarouselDetailsPanel from '../components/CarouselDetailsPanel';
-import labService from '../services/labService';
+import './Laboratory.css';
+import LabCard from '../../components/LabCard';
+import CarouselDetailsPanel from '../../components/CarouselDetailsPanel';
+import labService from '../../services/labService';
 
-const Laboratorios = () => {
+const ListarLaboratorios = () => {
   const [laboratorios, setLaboratorios] = useState([]);
   const [activo, setActivo] = useState(null);
   const [vista, setVista] = useState('grid');
@@ -139,4 +139,4 @@ const Laboratorios = () => {
   );
 };
 
-export default Laboratorios;
+export default ListarLaboratorios;

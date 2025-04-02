@@ -1,10 +1,10 @@
 // /src/services/labService.js
-const API_URL = 'http://localhost:8080/api/laboratories';
+export const api = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net/api/laboratories";
 
 // Obtener todos los laboratorios
 export const getLaboratories = async () => {
   try {
-    const response = await fetch(`${API_URL}/laboratory`);
+    const response = await fetch(`${api}/laboratory`);
     if (!response.ok) {
       throw new Error('Error al cargar laboratorios');
     }
@@ -18,7 +18,7 @@ export const getLaboratories = async () => {
 // Obtener un laboratorio por abreviatura
 export const getLaboratoryByAbbreviation = async (abbreviation) => {
   try {
-    const response = await fetch(`${API_URL}/abbreviation/${abbreviation}`);
+    const response = await fetch(`${api}/abbreviation/${abbreviation}`);
     if (!response.ok) {
       throw new Error('Error al cargar el laboratorio');
     }
@@ -32,7 +32,7 @@ export const getLaboratoryByAbbreviation = async (abbreviation) => {
 // Crear un nuevo laboratorio
 export const createLaboratory = async (labData) => {
   try {
-    const response = await fetch(`${API_URL}/`, {
+    const response = await fetch(`${api}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const createLaboratory = async (labData) => {
 // Actualizar capacidad total
 export const updateCapacity = async (abbreviation, totalCapacity) => {
   try {
-    const response = await fetch(`${API_URL}/totalCapacity/${abbreviation}`, {
+    const response = await fetch(`${api}/totalCapacity/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export const updateCapacity = async (abbreviation, totalCapacity) => {
 // Actualizar abreviatura
 export const updateAbbreviation = async (abbreviation, newAbbreviation) => {
   try {
-    const response = await fetch(`${API_URL}/changeAbbreviation/${abbreviation}`, {
+    const response = await fetch(`${api}/changeAbbreviation/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export const updateAbbreviation = async (abbreviation, newAbbreviation) => {
 // Actualizar nombre
 export const updateName = async (abbreviation, newName) => {
   try {
-    const response = await fetch(`${API_URL}/name/${abbreviation}`, {
+    const response = await fetch(`${api}/name/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export const updateName = async (abbreviation, newName) => {
 // Actualizar ubicación
 export const updateLocation = async (abbreviation, newLocation) => {
   try {
-    const response = await fetch(`${API_URL}/location/${abbreviation}`, {
+    const response = await fetch(`${api}/location/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export const updateLocation = async (abbreviation, newLocation) => {
 // Actualizar recursos físicos
 export const updatePhysicalResources = async (abbreviation, physicalResources) => {
   try {
-    const response = await fetch(`${API_URL}/physicalResources/${abbreviation}`, {
+    const response = await fetch(`${api}/physicalResources/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ export const updatePhysicalResources = async (abbreviation, physicalResources) =
 // Actualizar recursos de software
 export const updateSoftwareResources = async (abbreviation, softwareResources) => {
   try {
-    const response = await fetch(`${API_URL}/softwareResources/${abbreviation}`, {
+    const response = await fetch(`${api}/softwareResources/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export const updateSoftwareResources = async (abbreviation, softwareResources) =
 // Actualizar horario
 export const updateSchedule = async (abbreviation, scheduleData) => {
   try {
-    const response = await fetch(`${API_URL}/scheduleReference/${abbreviation}`, {
+    const response = await fetch(`${api}/scheduleReference/${abbreviation}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ export const updateSchedule = async (abbreviation, scheduleData) => {
 // Eliminar un laboratorio
 export const deleteLaboratory = async (abbreviation) => {
   try {
-    const response = await fetch(`${API_URL}/${abbreviation}/byelaboratory`, {
+    const response = await fetch(`${api}/${abbreviation}/byelaboratory`, {
       method: 'DELETE',
     });
     if (!response.ok) {
@@ -211,7 +211,7 @@ export const deleteSchedule = async (abbreviation, scheduleId) => {
     // Como no veo un endpoint específico para eliminar horarios,
     // podríamos necesitar crear uno o adaptar este método
     // Por ahora, vamos a simular que existe un endpoint
-    const response = await fetch(`${API_URL}/${abbreviation}/scheduleReference/${scheduleId}`, {
+    const response = await fetch(`${api}/${abbreviation}/scheduleReference/${scheduleId}`, {
       method: 'DELETE',
     });
     if (!response.ok) {
@@ -227,7 +227,7 @@ export const deleteSchedule = async (abbreviation, scheduleId) => {
 // Para ver la disponibilidad de un laboratorio
 export const checkAvailability = async (abbreviation, schedule) => {
   try {
-    const response = await fetch(`${API_URL}/${abbreviation}/availability`, {
+    const response = await fetch(`${api}/${abbreviation}/availability`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
