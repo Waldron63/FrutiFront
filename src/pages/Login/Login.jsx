@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/authAPI";
-import { setAuthSession } from "../../utils/auth";
+import { getUserByEmail } from "../../services/userAPI";
+import { setAuthSession , getUserInfo} from "../../utils/auth";
 import "../../assets/styles/user.css";
 
 const Login = () => {
-  const [usuario, setUsuario] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -13,13 +14,17 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const userData = { usuario, password };
-      const response = await loginUser(userData);
-
-      if (response) {
-        setAuthSession(response);
-        navigate("/Menu");
-      }
+      const userData = {
+        "email" : email,
+        "password" : password
+      };
+      const token = await loginUser(userData);
+      //const userInfo = await getUserByEmail(email);
+      console.log(token);
+      //setAuthSession(response);
+      //console.log(await getUserInfo());
+      //navigate("/Menu");
+      
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -36,12 +41,12 @@ const Login = () => {
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="divInputsUserForm">
-            <label htmlFor="usuario">Usuario</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
-              id="usuario"
-              value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
