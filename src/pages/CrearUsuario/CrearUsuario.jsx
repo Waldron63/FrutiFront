@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../../services/userAPI";
+import { registerUser } from "../../services/authAPI";
 import "../../assets/styles/user.css";
 import { getUserInfo, isAuthenticated } from "../../utils/auth";
 
@@ -26,15 +26,16 @@ const CrearUsuario = () => {
         event.preventDefault();
 
         const userData = { 
-            name:usuario,
-            id:id,
-            email:email,
-            password:password,
-            rol:rol 
+            "id": id,
+            "name": usuario,
+            "mail": email,
+            "password": password,
+            "rol": rol 
         };
+        
 
         try {
-            const response = await createUser(userData);
+            const response = await registerUser(userData); // Cambio aquí
             if(response){
                 setUsuario("");
                 setId("");
@@ -43,7 +44,7 @@ const CrearUsuario = () => {
                 setRol(userRol[0].value);
             }
         } catch (error) {
-            console.error("Error al crear usuario:", error);
+            console.error("Error al registrar usuario:", error);
         }
     };
 

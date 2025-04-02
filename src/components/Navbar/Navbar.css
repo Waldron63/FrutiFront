@@ -8,6 +8,7 @@
   --ColorTextoPrimariaBajoSeleccion: #990000;
   --ColorTextoSecundarioBajoSeleccion: #990000;
   --ColorTextoBoton: #ffffff;
+  --ColorTextoOscuro: #000000;
   
   --ColorBoton: #990000;
 
@@ -37,7 +38,7 @@
   white-space: nowrap;
 }
 
-.logo{
+.logoNavBar{
   height: 4vh;
 }
 
@@ -68,6 +69,22 @@
 
   list-style: none;
   
+}
+
+/* Estilos para los enlaces */
+.navList a {
+  color: var(--ColorTextoOscuro);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navList a:visited {
+  color: var(--ColorTextoOscuro);
+}
+
+/* Cambiar color al pasar el mouse */
+.navList a:hover {
+  color: var(--ColorTextoPrimariaBajoSeleccion);
 }
 
 /* ==========================

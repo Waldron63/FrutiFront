@@ -19,23 +19,16 @@ const EditarUsuario = () => {
     const [password, setPassword] = useState("");
     const [rol, setRol] = useState(userRol[0].value);
     const [initialData, setInitialData] = useState({});
+    const [currentUserInfo] = useState(getUserInfo()); // Guardar userInfo de manera estable
 
-    const userInfo = getUserInfo();
-    const esAdmin = userInfo?.rol === "admin";
+    const esAdmin = currentUserInfo?.rol === "admin";
 
     useEffect(() => {
         const cargarDatosUsuario = async () => {
-            let userData;
-
-            if (id) {
-                userData = await getUserById(id);
-                setUserId(id);
-            } else {
-                userData = userInfo;
-                setUserId(userInfo?.id);
-            }
+            let userData = id ? await getUserById(id) : currentUserInfo;
 
             if (userData) {
+                setUserId(id || currentUserInfo?.id);
                 setUsuario(userData.name || "");
                 setEmail(userData.mail || "");
                 setRol(userData.rol || userRol[0].value);
@@ -48,7 +41,7 @@ const EditarUsuario = () => {
         };
 
         cargarDatosUsuario();
-    }, [id, userInfo]);
+    }, [id]); // Eliminamos `userInfo` para evitar renders infinitos
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -72,7 +65,8 @@ const EditarUsuario = () => {
                 await updateRole(userId, rol);
             }
 
-            navigate("/showUsers"); // Redirige a la lista de usuarios después de actualizar
+            navigate("/showUsers");
+            setTimeout(() => window.location.reload(), 100); // Opcional si no renderiza
         } catch (error) {
             console.error("Error al actualizar usuario:", error);
         }
@@ -131,7 +125,11 @@ const EditarUsuario = () => {
                         </div>
                     )}
                     <div className="divUserBotones">
-                        <button type="button" onClick={() => navigate("/showUsers")}>
+                        <button type="button" onClick={() => {
+                            console.log("SI envia");
+                            navigate("/showUsers");
+                            setTimeout(() => window.location.reload(), 100);
+                        }}>
                             Listar Usuarios
                         </button>
                         <button type="submit">Guardar</button>

@@ -4,7 +4,7 @@ import { showSuccessPopup, showErrorPopup } from '../utils/popUps';
 
 export const createLaboratory = async (laboratoryData) => {
   try {
-    const response = await axios.post(`${api}/laboratories/`, laboratoryData);
+    const response = await axios.post(`${api}/api/laboratories/`, laboratoryData);
     showSuccessPopup("Laboratorio Creado Satisfactoriamente", "Creacion de Laboratorio Exitosa");
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const createLaboratory = async (laboratoryData) => {
 
 export const getAllLaboratories = async () => {
   try {
-    const response = await axios.get(`${api}/laboratories/laboratory`);
+    const response = await axios.get(`${api}/api/laboratories/laboratory`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
@@ -26,7 +26,7 @@ export const getAllLaboratories = async () => {
 
 export const getLaboratoryByAbbreviation = async (abbreviation) => {
   try {
-    const response = await axios.get(`${api}/laboratories/abbreviation/${abbreviation}`);
+    const response = await axios.get(`${api}/api/laboratories/abbreviation/${abbreviation}`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
@@ -36,7 +36,7 @@ export const getLaboratoryByAbbreviation = async (abbreviation) => {
 
 export const updateLaboratoryScheduleReference = async (abbreviation, totalCapacity) => {
   try {
-    await axios.put(`${api}/laboratories/update/${abbreviation}`, { totalCapacity });
+    await axios.put(`${api}/api/laboratories/update/${abbreviation}`, { totalCapacity });
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
     console.error("Error actualizar laboratorio: "+errorMessage, error);
@@ -45,7 +45,7 @@ export const updateLaboratoryScheduleReference = async (abbreviation, totalCapac
 
 export const deleteLaboratory = async (abbreviation) => {
   try {
-    await axios.delete(`${api}/laboratories/${abbreviation}/byelaboratory`);
+    await axios.delete(`${api}/api/laboratories/${abbreviation}/byelaboratory`);
     showSuccessPopup("Laboratorio Eliminado", "Laboratorio eliminado satisfactoriamente");
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";
@@ -56,7 +56,7 @@ export const deleteLaboratory = async (abbreviation) => {
 
 export const checkLaboratoryAvailability = async (abbreviation, schedule) => {
   try {
-    const response = await axios.get(`${api}/laboratories/${abbreviation}/availability`, {
+    const response = await axios.get(`${api}/api/laboratories/${abbreviation}/availability`, {
       data: schedule
     });
     return response.data;

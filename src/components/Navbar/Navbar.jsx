@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav className="navBar">
-      <img src={logo} className="logo" alt="Logo" />
+      <img src={logo} className="logoNavBar" alt="Logo" />
       <p><strong>Reservas Laboratorios</strong></p>
 
       <ul className="navList">

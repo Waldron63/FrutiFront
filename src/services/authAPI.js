@@ -4,7 +4,7 @@ import { showSuccessPopup, showErrorPopup } from '../utils/popUps';
 
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`${api}/auth/register`, userData);
+    const response = await axios.post(`${api}/api/auth/register`, userData);
     showSuccessPopup("Registro Exitoso","Se ha registrado el usuario correctamente");
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (authRequest) => {
   try {
-    const response = await axios.post(`${api}/auth/login`, authRequest);
+    const response = await axios.post(`${api}/api/auth/login`, authRequest);
     showSuccessPopup("Login exitoso", "Se ingreso Correctamente");
     return response.data;
   } catch (error) {
