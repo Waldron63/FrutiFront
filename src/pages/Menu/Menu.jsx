@@ -15,13 +15,6 @@ function Menu() {
             <div className="horarioContainer">
               <Horario/>
             </div>
-
-            <div className="reservasContainer">
-            
-            </div>
-          </div>
-
-          <div className="rightContainer">
               
           </div>
         </div>
