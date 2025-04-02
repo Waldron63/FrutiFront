@@ -1,5 +1,5 @@
 // /src/services/labService.js
-export const api = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net/api/laboratories";
+export const api = "https://labreserveeci-hcfwbkh6czhhggba.eastus2-01.azurewebsites.net/api/laboratories";
 
 // Obtener todos los laboratorios
 export const getLaboratories = async () => {

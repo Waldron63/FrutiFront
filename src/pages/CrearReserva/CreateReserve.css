@@ -1,0 +1,172 @@
+/* CreateReservationForm.css */
+
+/* Main container styles */
+.create-reservation-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header with title and back button */
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reservation-header h1 {
+  color: #8B0000;
+  margin: 0;
+}
+
+.back-button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Form container */
+.reservation-form-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form section styles */
+.form-section {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  color: #8B0000;
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.section-title i, .form-label i {
+  margin-right: 10px;
+  color: #8B0000;
+}
+
+/* Form labels */
+.form-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #8B0000;
+  margin-bottom: 5px;
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f0f8ff;
+  font-size: 16px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8B0000;
+}
+
+/* Dropdown style */
+.dropdown {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath fill='%238B0000' d='M0 0h10L5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+/* Row layout for date fields */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Submit button section */
+.submit-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.submit-button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  min-width: 200px;
+}
+
+.submit-button i {
+  margin-right: 10px;
+}
+
+.submit-button:hover {
+  background-color: #6B0000;
+}
+
+/* Error and success messages */
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-column {
+    width: 100%;
+  }
+
+  .create-reservation-container {
+    padding: 10px;
+  }
+}
+
+/* Import Font Awesome for icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
