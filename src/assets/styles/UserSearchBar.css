@@ -1,0 +1,24 @@
+.search-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-box {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-icon {
+    position: relative;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+h1{
+    margin-left: 200px;
+    color: #990000;
+}

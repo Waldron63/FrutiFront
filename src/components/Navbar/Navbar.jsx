@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../../assets/img/LogoRojo.png";
+import logo from "../../assets/img/Logo.png";
 import { removeAuthSession } from "../../utils/auth";
 
 function Navbar() {

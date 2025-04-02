@@ -1,0 +1,116 @@
+.user-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 50%;
+    margin-left: 200px;
+}
+
+.user-filter-tabs button {
+    padding: 0.5rem 1rem;
+    border: white;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    transition: border-bottom 0.3s ease;
+}
+
+.user-filter-tabs button.active {
+    border-bottom: 5px solid #990000;
+}
+
+.user-filter-tabs button:hover {
+    border-bottom: 5px solid #990000;
+}
+
+.user-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.user-list-container {
+    height: 800px;
+    overflow-y: auto;
+    padding: 20px;
+    margin-left: 200px;
+}
+
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-left: 200px;
+
+}
+
+.user-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+}
+
+.user-card p {
+    word-wrap: break-word;
+    margin: 0;
+}
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress {
+    height: 10px;
+    background-color: #4caf50;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.edit-button {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

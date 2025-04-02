@@ -1,6 +1,7 @@
 import React, {use, useState} from 'react';
 import '../../assets/img/edificio-h-nocturna.jpg';
-import '../../assets/styles/Login.css'
+import '../../assets/styles/Login.css';
+
 const CrearUsuario = () => {
     const [usuario,setUsuario] = useState('');
     const [id,setId] = useState('');

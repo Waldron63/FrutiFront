@@ -27,8 +27,6 @@
   justify-content: space-evenly;
   align-items: center;
   padding-block: 3vh;
-
-  
   margin-bottom: 5px;
 
 }
@@ -39,6 +37,8 @@
 
 .logo{
   height: 4vh;
+  width: 4vw;
+
 }
 
 .signOutButton {
