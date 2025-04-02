@@ -17,12 +17,12 @@ function Menu() {
             </div>
 
             <div className="reservasContainer">
-              <h3>Reservas</h3>
+            
             </div>
           </div>
 
           <div className="rightContainer">
-              <h3>Laboratorios</h3>
+              
           </div>
         </div>
       </div>

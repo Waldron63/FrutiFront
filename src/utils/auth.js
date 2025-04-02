@@ -8,17 +8,7 @@ export const setAuthSession = (user) => {
 
 export const getUserInfo = () => {
   const user = Cookies.get('user');
-  // Si no hay usuario en cookies, devolvemos un objeto de usuario predeterminado para desarrollo
-  if (!user) {
-    return {
-      id: 841,
-      name: "MAPU",
-      mail: "MAPU@MAIL.COM",
-      password: "*",
-      rol: "admin"
-    };
-  }
-  return JSON.parse(user);
+  return user ? JSON.parse(user) : null;
 };
 
 export const removeAuthSession = () => {
