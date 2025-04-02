@@ -22,6 +22,8 @@ function AppRoutesP() {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signOut" element={<Navigate to="/login" />} />
+      <Route path="/newUser" element={<NewUser />} />
+
 
       <Route path="/menu" element={<ProtectedRoute element={Menu} />} />
       <Route path="/newLaboratory" element={<ProtectedRoute element={NewLaboratory} />} />
@@ -29,7 +31,7 @@ function AppRoutesP() {
       <Route path="/showLaboratories" element={<ProtectedRoute element={ShowLaboratories} />} />
       <Route path="/newReserve" element={<ProtectedRoute element={NewReserve} />} />
       <Route path="/showReserves" element={<ProtectedRoute element={ShowReserves} />} />
-      <Route path="/newUser" element={<ProtectedRoute element={NewUser} />} />
+      
       <Route path="/editUser" element={<ProtectedRoute element={EditUser} />} />
       <Route path="/showUsers" element={<ProtectedRoute element={ShowUsers} />} />
     </Routes>

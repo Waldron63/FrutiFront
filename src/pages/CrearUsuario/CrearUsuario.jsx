@@ -142,6 +142,14 @@ const CrearUsuario = () => {
                                 Ingresar
                             </button>
                         )}
+                        
+                        {estaAutenticado && (
+    <button type="button" onClick={() => navigate("/menu")}>
+        Volver
+    </button>
+)}
+
+                        
                         <button type="submit">Crear Usuario</button>
                     </div>
                 </form>

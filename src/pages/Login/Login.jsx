@@ -29,6 +29,7 @@ const Login = () => {
   };
 
   const handleCreateUser = () => {
+    console.log("SI hace algo");
     navigate("/newUser");
   };
 
