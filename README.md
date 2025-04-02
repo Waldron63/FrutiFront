@@ -1,3 +1,19 @@
+# Laboratory Reservation System
+The purpose of this project is to develop an application for laboratory reservations, specifically for the laboratories in the systems area of the Universidad Escuela Colombiana de Ingeniería Julio Garavito. This application will allow users to reserve each laboratory within the permitted schedule, as well as cancel reservations if necessary, and consult any type of information about each laboratory they need, all through a user-friendly and intuitive web interface. This repository is specifically for the Backend area; if you want to check the status of the front, follow this link: https://github.com/Waldron63/SunTeaBack
+## Tech Stack
+* HTML (starting the project)
+* CSS
+* Java Script
+* React 
+## Development Team
+* Alejandro Prieto
+* Juan David
+* María Paula Sánchez
+* Santiago Gualdron
+## Mock Up
+To organize our ideas, we realized a mock up to make clear about the design
+![image](https://github.com/user-attachments/assets/f35fbe5d-8f1d-4e33-81e1-828ec2a555d9)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -39,32 +55,38 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+# Package
+When making the folder, we had in mind a clear organization for each element of the front end.
+* assets: they contain both images used and css files.
+* components: each defined component is contained in this folder.
+* pages: all the .jsx files that are related to an already established CRUD functionality.
+* routes: works for security and protected routes.
+* services: all the services defined in back
+  
+![image](https://github.com/user-attachments/assets/95528fc8-167d-465f-9e58-e32074b8b6a4)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Important Elements
+### Components
+It is a reusable block of code that encapsulates logic and presentation of the user interface.
 
-### Code Splitting
+Example of the implemention of a component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image](https://github.com/user-attachments/assets/88ce1f55-0fc2-40a5-9ab0-448827e17ba5)
 
-### Analyzing the Bundle Size
+### Pages
+Components representing complete views
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Example of a Page
 
-### Making a Progressive Web App
+![image](https://github.com/user-attachments/assets/449d59ba-c248-4dec-bbeb-b33e77621184)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Services
+Modules that handle business logic and interactions with external APIs
 
-### Advanced Configuration
+Example of a service
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![image](https://github.com/user-attachments/assets/d8b278be-e3bd-445f-bafb-c41c177074f7)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
