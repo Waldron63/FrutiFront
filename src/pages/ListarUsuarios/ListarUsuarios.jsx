@@ -1,41 +1,47 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import UserFilterTabs from "../../components/ShowUsers/userFilterTabs";
+
 import UserList from "../../components/ShowUsers/UserList";
+import { getAllUsers } from "../../services/userAPI";
 import "./ListarUsuarios.css";
 
 function ListarUsuarios() {
-    const [filter, setFilter] = useState('Todos');
-    const [searchQuery, setSearchQuery] = useState('');
+    const [filter, setFilter] = useState("Todos");
     const [users, setUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
 
-    const handleFilterChange = (newFilter) => {
-        setFilter(newFilter);
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const usersData = await getAllUsers();
+                setUsers(usersData);
+                setFilteredUsers(usersData); // Mostrar todos inicialmente
+            } catch (error) {
+                console.error("Error al obtener usuarios:", error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    // 🔥 Función para actualizar la lista cuando se elimina un usuario
+    const handleDeleteUser = (id) => {
+        const updatedUsers = users.filter((user) => user.id !== id);
+        setUsers(updatedUsers); // Actualizar la lista de usuarios
     };
 
     useEffect(() => {
-        // Simular datos de usuarios
-        const fakeUsers = [
-            { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-            { id: 3, name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-            { id: 4, name: 'Bob Brown', email: 'bob.brown@example.com' },
-            { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-            { id: 3, name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-            { id: 4, name: 'Bob Brown', email: 'bob.brown@example.com' },
-            { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-            { id: 3, name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-            { id: 4, name: 'Bob Brown', email: 'bob.brown@example.com' },
-            { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-            { id: 3, name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-            { id: 4, name: 'Bob Brown', email: 'bob.brown@example.com' }
+        let filtered = users;
 
-        ];
-        setUsers(fakeUsers);
-    }, []);
+        if (filter === "Profesores") {
+            filtered = users.filter((user) => user.rol === "teacher");
+        } else if (filter === "Administradores") {
+            filtered = users.filter((user) => user.rol === "admin");
+        }
+
+        setFilteredUsers(filtered);
+    }, [filter, users]);
 
     return (
         <div>
@@ -44,8 +50,8 @@ function ListarUsuarios() {
                 <header>
                     <h1>Usuarios</h1>
                 </header>
-                <UserFilterTabs onFilterChange={handleFilterChange} />
-                <UserList users={users} />
+                <UserFilterTabs onFilterChange={setFilter} />
+                <UserList users={filteredUsers} onDelete={handleDeleteUser} />
             </main>
         </div>
     );

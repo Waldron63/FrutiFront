@@ -13,9 +13,9 @@ const EditarUsuario = () => {
         { value: "admin", text: "Administrador" }
     ];
 
-    const [userId, setUserId] = useState(null);
+    const [idUser, setId] = useState(null);
     const [usuario, setUsuario] = useState("");
-    const [email, setEmail] = useState("");
+    const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [rol, setRol] = useState(userRol[0].value);
     const [initialData, setInitialData] = useState({});
@@ -28,9 +28,9 @@ const EditarUsuario = () => {
             let userData = id ? await getUserById(id) : currentUserInfo;
 
             if (userData) {
-                setUserId(id || currentUserInfo?.id);
+                setId(id || currentUserInfo?.id);
                 setUsuario(userData.name || "");
-                setEmail(userData.mail || "");
+                setMail(userData.mail || "");
                 setRol(userData.rol || userRol[0].value);
                 setInitialData({
                     name: userData.name || "",
@@ -41,28 +41,28 @@ const EditarUsuario = () => {
         };
 
         cargarDatosUsuario();
-    }, [id]); // Eliminamos `userInfo` para evitar renders infinitos
+    }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            if (!userId) {
+            if (!idUser) {
                 console.error("No hay un ID de usuario disponible para actualizar.");
                 return;
             }
 
             if (usuario !== initialData.name) {
-                await updateUserName(userId, usuario);
+                await updateUserName(idUser, usuario);
             }
-            if (email !== initialData.mail) {
-                await updateEmail(userId, email);
+            if (mail !== initialData.mail) {
+                await updateEmail(idUser, mail);
             }
             if (password.trim() !== "") {
-                await updatePassword(userId, password);
+                await updatePassword(idUser, password);
             }
             if (esAdmin && rol !== initialData.rol) {
-                await updateRole(userId, rol);
+                await updateRole(idUser, rol);
             }
 
             navigate("/showUsers");
@@ -89,12 +89,12 @@ const EditarUsuario = () => {
                         />
                     </div>
                     <div className="divInputsUserForm">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="mail">mail</label>
                         <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="mail"
+                            id="mail"
+                            value={mail}
+                            onChange={(e) => setMail(e.target.value)}
                             required
                         />
                     </div>
