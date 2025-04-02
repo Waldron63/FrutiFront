@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Laboratory.css';
-import LabCardAdmin from '../components/LabCardAdmin';
+import './Laboratory.css';
+import LabCardAdmin from '../../components/LabCardAdmin';
 import {
   getLaboratories,
   deleteLaboratory,
@@ -10,7 +10,7 @@ import {
   updateLocation,
   updateCapacity,
   updateAbbreviation
-} from '../services/labService';
+} from '../../services/labService';
 
 const AdminLaboratorios = () => {
   const [laboratorios, setLaboratorios] = useState([]);
