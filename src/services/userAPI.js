@@ -94,7 +94,6 @@ export const getAllUsers = async () => {
 export const getUserByEmail = async (email) => {
   try {
     const response = await axios.get(`${api}/api/user/emails/${email}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || "";

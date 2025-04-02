@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/img/LogoRojo.png";
-import { removeAuthSession, getUserInfo } from "../../utils/auth"; // Importar getUserInfo
+import { removeAuthSession, getUserInfo } from "../../utils/auth";
 import { useEffect, useState } from "react";
 
 function Navbar() {

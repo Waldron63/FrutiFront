@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../services/authAPI";
 import "../../assets/styles/user.css";
+import { registerUser } from "../../services/authAPI";
 import { getUserInfo, isAuthenticated } from "../../utils/auth";
 
 const CrearUsuario = () => {
@@ -58,6 +58,7 @@ const CrearUsuario = () => {
 
     return (
         <div className="container">
+            
             <div className="formSection">
                 <img
                     src={require("../../assets/img/Logo.png")}
