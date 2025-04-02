@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import '../styles/Laboratory.css';
+import '../pages/ListarLaboratorios/Laboratory.css';
 
 const LabCardAdmin = ({
   lab,

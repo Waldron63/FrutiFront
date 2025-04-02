@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Laboratory.css';
+import '../pages/ListarLaboratorios/Laboratory.css';
 
 /**
  * Componente que representa una tarjeta de laboratorio completa
@@ -12,15 +12,15 @@ import '../styles/Laboratory.css';
  * @param {Object} utils - Funciones de utilidad (formatDateTime, getDayOfWeek)
  * @param {boolean} isAdmin - Si debe mostrar controles de administrador
  */
-const ReserveCard = ({ 
-  reserve, 
-  index, 
-  intensity, 
-  isActive, 
-  isCarouselView, 
+const ReserveCard = ({
+  reserve,
+  index,
+  intensity,
+  isActive,
+  isCarouselView,
   onToggle,
   utils,
-  isAdmin = false 
+  isAdmin = false
 }) => {
   const { formatDateTime, getDayOfWeek } = utils;
 
@@ -87,7 +87,7 @@ const ReserveCard = ({
       onClick={() => onToggle(index)}
     >
       {renderHeader()}
-      
+
       {isCarouselView ? (
         renderPreview()
       ) : isActive ? (

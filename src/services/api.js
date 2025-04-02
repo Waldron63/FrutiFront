@@ -1,0 +1,1 @@
+export const api = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net";

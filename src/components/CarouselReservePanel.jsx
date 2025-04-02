@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Laboratory.css";
+import "../pages/ListarLaboratorios/Laboratory.css";
 
 /**
  * Componente que muestra los detalles de una reserva debajo del carrusel

@@ -1,5 +1,9 @@
 // /src/services/ReserveService.js
-const API_URL = "http://localhost:8080/api/reserve";
+const API_URL = "https://labreserveecidevelop-cbfjhdbqb3h5end7.canadacentral-01.azurewebsites.net/api/reserve";
+
+/**
+ * Servicio para gestionar las reservas de laboratorios
+ */
 
 // Crear una nueva reserva
 export const createReserve = async (reserveRequest) => {
@@ -88,13 +92,21 @@ export const getReserveByLaboratory = async (labAbbreviation) => {
 // Obtener las Reservas de un usuario
 export const getReserveByUser = async (userId) => {
   try {
+    console.log("Intentando obtener reservas para el usuario:", userId);
+
     const response = await fetch(`${API_URL}/users/${userId}`);
+    console.log("Respuesta del servidor:", response);
+
     if (!response.ok) {
-      throw new Error("Error al cargar las reservas");
+      console.error("Error HTTP:", response.status, response.statusText);
+      throw new Error(`Error al cargar las reservas: ${response.status}`);
     }
-    return await response.json();
+
+    const data = await response.json();
+    console.log("Datos recibidos:", data);
+    return data;
   } catch (error) {
-    console.error("Error en el servicio de reservas:", error);
+    console.error("Error detallado:", error);
     throw error;
   }
 };
@@ -155,6 +167,20 @@ export const getOnlyReserveById = async (id) => {
   }
 };
 
+// Obtener un horario por su ID
+export const getScheduleById = async (scheduleId) => {
+  try {
+    const response = await fetch(`${API_URL}/schedule/${scheduleId}`);
+    if (!response.ok) {
+      throw new Error("Error al cargar el horario");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error en el servicio de reservas:", error);
+    throw error;
+  }
+};
+
 // crear nuevas reservas de forma random
 export const postReservesRandom = async () => {
   try {
@@ -171,6 +197,51 @@ export const postReservesRandom = async () => {
   }
 };
 
+// Función para obtener el usuario actual
+export const getCurrentUser = () => {
+  const userStr = localStorage.getItem('currentUser');
+  if (userStr) {
+    return JSON.parse(userStr);
+  }
+  // Usuario por defecto para desarrollo
+  return {
+    id: 842,
+    name: 'ADMINISTRADOR',
+    role: 'admin'
+  };
+};
+
+// Función para adaptar los datos de MongoDB al formato esperado por el componente
+export const adaptReserveData = (reserva) => {
+  // Si ya tiene la estructura esperada, devolverla tal cual
+  if (reserva.laboratory && reserva.schedule) {
+    return reserva;
+  }
+
+  // Crear un objeto con la estructura esperada
+  return {
+    id: reserva._id || reserva.id || "",
+    userId: reserva.userId || 0,
+    laboratory: {
+      name: "Laboratorio",
+      abbreviation: "LAB"
+    },
+    schedule: {
+      id: reserva.scheduleId || "",
+      day: new Date().toISOString().split('T')[0],
+      startHour: "08:00",
+      endHour: "10:00",
+      laboratoryReference: "LAB"
+    },
+    description: reserva.reason || reserva.description || "Sin descripción",
+    attendees: reserva.attendees || 0,
+    status: reserva.state || reserva.status || "ACTIVE",
+    user: {
+      name: `Usuario ID: ${reserva.userId || "Desconocido"}`
+    }
+  };
+};
+
 //exportamos todo como objeto por defecto
 export default {
   createReserve,
@@ -183,5 +254,8 @@ export default {
   getReserveByMonth,
   getReserveById,
   getOnlyReserveById,
+  getScheduleById,
   postReservesRandom,
+  getCurrentUser,
+  adaptReserveData
 };
