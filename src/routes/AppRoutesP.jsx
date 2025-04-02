@@ -23,7 +23,6 @@ function AppRoutesP() {
       <Route path="/login" element={<Login />} />
       <Route path="/signOut" element={<Navigate to="/login" />} />
 
-      {/* Rutas protegidas */}
       <Route path="/menu" element={<ProtectedRoute element={Menu} />} />
       <Route path="/newLaboratory" element={<ProtectedRoute element={NewLaboratory} />} />
 
