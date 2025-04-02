@@ -1,6 +1,7 @@
 import React, {use, useState} from 'react';
-import '../styles/Login.css';
-import backgroundImage from '../images/edificio-h-nocturna.jpg';
+import '../../assets/img/edificio-h-nocturna.jpg';
+import '../../assets/styles/Login.css'
+
 const EditarUsuario = () => {
     const [usuario,setUsuario] = useState('');
     const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const EditarUsuario = () => {
         <div className="container">
             <div className="background"></div>
             <div className="form-section">
-                <img src={require('../images/Logo.png')} className="logo" alt="Logo" />
+                <img src={require('../../assets/img/Logo.png')} className="logo" alt="Logo" />
                 <h1>Editar Usuario</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="divInputsUserForm">
@@ -60,7 +61,6 @@ const EditarUsuario = () => {
         </div>
     );
 };
-
 
 export default EditarUsuario;
 

@@ -1,6 +1,6 @@
 import React, {use, useState} from 'react';
-import '../../styles/Login.css';
-import backgroundImage from '../images/edificio-h-nocturna.jpg';
+import '../../assets/img/edificio-h-nocturna.jpg';
+import '../../assets/styles/Login.css'
 const CrearUsuario = () => {
     const [usuario,setUsuario] = useState('');
     const [id,setId] = useState('');
@@ -23,7 +23,7 @@ const CrearUsuario = () => {
         <div className="container">
             <div className="background"></div>
             <div className="form-section">
-                <img src={require('../images/Logo.png')} className="logo" alt="Logo" />
+                <img src={require('../../assets/img/Logo.png')} className="logo-container" alt="Logo" />
                 <h1>Crear Usuario</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="divInputsUserForm">

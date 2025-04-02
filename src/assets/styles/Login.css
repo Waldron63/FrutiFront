@@ -26,7 +26,7 @@ body {
     position: fixed;
     right: 0;
     top: 0;
-    color: white;
+    color: #ffffff;
 }
 .divInputsUserForm {
     margin-bottom: 1rem;
@@ -34,26 +34,38 @@ body {
 .divInputsUserForm input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: #fff;
+    background-color: #ffffff;
     justify-content: center;
+    color: black;
 }
 .divInputsUserForm label {
     display: block;
     font-weight: bold;
     margin-bottom: 0.5rem;
     justify-content: center;
+    color:white;
 }
 .divUserBotones {
     text-align: center;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: auto;
+}
+
 .logo {
     display: block;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     width: 200px;
+    height: 200vh;
 }
 
 h2 {
@@ -81,7 +93,7 @@ button {
     padding: 0.75rem;
     background: rgba(133, 27, 46, 0.9);
     color: #ffffff;
-    border: transparent;
+    border: black;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -92,7 +104,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/edificio-h-nocturna.jpg');
+    background-image: url('../img/edificio-h-nocturna.jpg');
     background-size: cover;
     background-position: center;
     z-index: -1; /* El fondo debe estar detrás de todo */

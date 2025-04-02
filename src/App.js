@@ -1,10 +1,12 @@
-import React from "react";
-import CrearUsuario from "./pages/CrearUsuario/CrearUsuario";
-import CreateUser from "./components/CreateUser";
-import EditarUsuario from "./pages/EditarUsuario/EditarUsuario";
+import { HashRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
 
-function App(){
-    return <CreateUser></CreateUser>
-    
+function App() {
+    return (
+        <Router>
+            <AppRoutes />
+        </Router>
+    );
 }
+
 export default App;

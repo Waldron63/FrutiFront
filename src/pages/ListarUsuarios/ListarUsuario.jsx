@@ -1,8 +1,15 @@
 import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
 
-function ListarUsuarioUser() {
-    return <h1>ListarUsuarioUser</h1>;
+function ListarUsuario() {
+    return (
+        <div>
+            <div>
+                <Navbar />
+            </div>
+        </div>
+    );
 }
   
-export default ListarUsuarioUser;
+export default ListarUsuario;
   
