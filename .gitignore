@@ -1,66 +1,23 @@
-HELP.md
-target/
-.mvn/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Archivos y carpetas de Visual Studio Code
-.vscode/
+# testing
+/coverage
 
-# Ignorar archivos de sistema de Windows
-Thumbs.db
-ehthumbs.db
+# production
+/build
 
-# Ignorar directorios de compilación
-/bin/
-obj/
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Ignorar archivos de configuración de IDE
-.vs/
-.idea/
-*.vscode
-
-# Ignorar dependencias de Node.js
-node_modules/
-
-# Archivos de configuración y caché de IntelliJ IDEA
-*.log
-*.bak
-*.swp
-*.swo
-*.tmp
-
-# Archivos de usuario específicos
-*.user
-*.userPrefs
-
-# Archivos de configuración de NetBeans
-nbproject/private/
-
-# Archivos y directorios generados por Docker
-docker-compose.override.yml
-.docker/
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-# Archivos de compilación de Android Studio
-*.apk
-*.ap_
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
