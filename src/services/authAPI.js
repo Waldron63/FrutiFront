@@ -17,10 +17,6 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (authRequest) => {
   try {
-    authRequest = {
-      "email" : "A@B.com",
-      "password" : "AB"
-  };
     const response = await axios.post(`${api}/api/auth/login`, authRequest);
     showSuccessPopup("Login exitoso", "Se ingreso Correctamente");
     return response.data;

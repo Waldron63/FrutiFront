@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReserveService from '../../services/ReserveService';
 import './Reservations.css';
+import Navbar from "../../components/Navbar/Navbar";
 const Reservas = () => {
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,6 +79,7 @@ const Reservas = () => {
 
   return (
     <div className="reservas-container">
+      <Navbar />
       <h1 className="reservas-title">Todas las Reservas</h1>
 
       {error && <div className="error-message">{error}</div>}

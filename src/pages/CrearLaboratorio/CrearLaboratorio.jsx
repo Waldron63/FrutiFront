@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from "../../components/Navbar/Navbar";
 import {
   FaFlask,
   FaKeyboard,
@@ -26,8 +27,8 @@ const CrearLaboratorio = () => {
 
   const [schedule, setSchedule] = useState({
     dayOfWeek: "MONDAY",
-    openingTime: "08:00",
-    closingTime: "20:00"
+    openingTime: "07:00",
+    closingTime: "19:00"
   });
 
   const [schedules, setSchedules] = useState([]);
@@ -122,6 +123,7 @@ const CrearLaboratorio = () => {
 
   return (
     <div className="container-labs">
+      <Navbar />
       <div className="header-section">
         <h1 className="main-title">Crear Laboratorio</h1>
         <div className="view-controls">
@@ -220,7 +222,7 @@ const CrearLaboratorio = () => {
                       onChange={handleScheduleChange}
                       className="form-select"
                     >
-                      {['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'].map(day => (
+                      {['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'].map(day => (
                         <option key={day} value={day}>{getDayOfWeek(day)}</option>
                       ))}
                     </select>
