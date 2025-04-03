@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReserveService  from '../../services/ReserveService';
 import './CreateReserve.css';
+import Navbar from "../../components/Navbar/Navbar";
 
 const CrearReservas = () => {
   const [formData, setFormData] = useState({
@@ -103,6 +104,7 @@ const CrearReservas = () => {
 
   return (
     <div className="create-reservation-container">
+      <Navbar />
       <div className="reservation-header">
         <h1>Crear Reserva</h1>
         <button className="back-button" onClick={handleCancel}>

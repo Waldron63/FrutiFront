@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/user.css";
-import { useParams, useNavigate } from "react-router-dom";
-import { getUserById, updateUserName, updateEmail, updatePassword, updateRole } from "../../services/userAPI";
-import { getUserInfo } from "../../utils/auth";
+import { getUserById, updateEmail, updatePassword, updateRole, updateUserName } from "../../services/userAPI";
+import { getUserInfo, isAuthenticated } from "../../utils/auth";
 
 const EditarUsuario = () => {
     const { id } = useParams();
@@ -22,6 +22,7 @@ const EditarUsuario = () => {
     const [currentUserInfo] = useState(getUserInfo()); // Guardar userInfo de manera estable
 
     const esAdmin = currentUserInfo?.rol === "admin";
+    const estaAutenticado = isAuthenticated();
 
     useEffect(() => {
         const cargarDatosUsuario = async () => {
@@ -66,7 +67,7 @@ const EditarUsuario = () => {
             }
 
             navigate("/showUsers");
-            setTimeout(() => window.location.reload(), 100); // Opcional si no renderiza
+            setTimeout(() => window.location.reload(), 100);
         } catch (error) {
             console.error("Error al actualizar usuario:", error);
         }
@@ -74,6 +75,7 @@ const EditarUsuario = () => {
 
     return (
         <div className="container">
+            
             <div className="formSection">
                 <img src={require("../../assets/img/Logo.png")} className="logo" alt="Logo" />
                 <h1>Editar Usuario</h1>
@@ -124,14 +126,25 @@ const EditarUsuario = () => {
                             </select>
                         </div>
                     )}
+                    
+                    
                     <div className="divUserBotones">
-                        <button type="button" onClick={() => {
-                            console.log("SI envia");
+                    {esAdmin && (
+                    
+                            <button type="button" onClick={() => {
                             navigate("/showUsers");
                             setTimeout(() => window.location.reload(), 100);
-                        }}>
+                                         }}>
                             Listar Usuarios
                         </button>
+                        
+                    )}
+                        <button type="button" onClick={()=>{
+                            navigate("/menu");
+                        }
+
+                        }
+                        >Volver</button>
                         <button type="submit">Guardar</button>
                     </div>
                 </form>

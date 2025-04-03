@@ -19,18 +19,17 @@ const Login = () => {
         "password" : password
       };
       const token = await loginUser(userData);
-      //const userInfo = await getUserByEmail(email);
-      console.log(token);
-      //setAuthSession(response);
-      //console.log(await getUserInfo());
-      //navigate("/Menu");
-      
+      const userInfo = await getUserByEmail(email);
+      setAuthSession(userInfo);
+      console.log(await getUserInfo());
+      navigate("/Menu");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
   };
 
   const handleCreateUser = () => {
+    console.log("SI hace algo");
     navigate("/newUser");
   };
 

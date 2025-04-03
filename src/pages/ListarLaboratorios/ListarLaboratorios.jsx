@@ -3,6 +3,7 @@ import './Laboratory.css';
 import LabCard from '../../components/LabCard';
 import CarouselDetailsPanel from '../../components/CarouselDetailsPanel';
 import labService from '../../services/labService';
+import Navbar from "../../components/Navbar/Navbar";
 
 const ListarLaboratorios = () => {
   const [laboratorios, setLaboratorios] = useState([]);
@@ -69,7 +70,12 @@ const ListarLaboratorios = () => {
   const utils = { formatDateTime, getDayOfWeek };
 
   return (
+    
+
     <div className="container-labs">
+      
+      <Navbar />
+      
       <div className="header-section">
         <h1 className="main-title">Laboratorios de Sistemas</h1>
         <div className="view-controls">
